@@ -7,7 +7,10 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RecipientController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\DashboardProjectController;
 use App\Http\Controllers\DashboardTransactionController;
+use GuzzleHttp\Middleware;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +33,7 @@ Route::get('/pengeluaran', [TransactionController::class, 'index'])->middleware(
 Route::get('/pengeluaran/{transaction:expense_id}', [TransactionController::class, 'show'])->middleware('auth');
 
 Route::get('/proyek', [ProjectController::class, 'index'])->middleware('auth');
-Route::get('/proyek/{project:slug}', [ProjectController::class, 'detail'])->middleware('auth');
+Route::get('/proyek/{project:project_id}', [ProjectController::class, 'detail'])->middleware('auth');
 
 Route::get('/penerima', [RecipientController::class, 'index'])->middleware('auth');
 
@@ -55,3 +58,4 @@ Route::get('/dashboard', function () {
 })->middleware('auth');
 
 Route::resource('/dashboard/pengeluaran', DashboardTransactionController::class)->middleware('auth');
+Route::resource('/dashboard/proyek', DashboardProjectController::class)->middleware('auth');

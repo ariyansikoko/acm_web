@@ -25,4 +25,9 @@ class Project extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'project_id';
+    }
 }

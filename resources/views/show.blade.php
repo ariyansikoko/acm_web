@@ -11,7 +11,7 @@
         </tr>
         <tr>
             <td>Tanggal</td>
-            <td>{{ $transaksi->requested_at }}</td>
+            <td>{{ \Carbon\Carbon::parse($transaksi->requested_at)->format('d M Y') }}</td>
         </tr>
         <tr>
             <td>Penerima</td>

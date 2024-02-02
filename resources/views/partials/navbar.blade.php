@@ -12,7 +12,7 @@
                 </li>
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('pengeluaran') ? 'active' : '' }}"
+                        <a class="nav-link {{ Request::is('pengeluaran*') ? 'active' : '' }}"
                             href="/pengeluaran">Pengeluaran</a>
                     </li>
                     <li class="nav-item">

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
-use App\Models\Location;
 use App\Models\Project;
 use App\Models\Recipient;
 use App\Models\Transaction;
@@ -17,9 +16,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(0)->create();
-        Transaction::factory(50)->create();
-        Project::factory(10)->create();
+        User::create([
+            'name' => 'Ariyan',
+            'email' => 'ariyansikoko@gmail.com',
+            'password' => bcrypt('asdasd'),
+            'isAdmin' => '1',
+        ]);
+
+        Transaction::factory(10)->create();
+
+        Transaction::create([
+            'expense_id' => '14232',
+            'project_id' => '1',
+            'recipient_id' => '1',
+            "requested_at" => '2020-01-01',
+            'amount' => '100000',
+            'category' => 'a',
+            'type' => 'a',
+            'description' => 'a',
+        ]);
+
+        Project::factory(2)->create();
 
         Recipient::create([
             'name' => 'Azlan',

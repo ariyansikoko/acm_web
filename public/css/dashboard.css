@@ -8,7 +8,7 @@
  * Sidebar
  */
 
-@media (min-width: 768px) {
+@media (min-width: 650px) {
   .sidebar .offcanvas-lg {
     position: -webkit-sticky;
     position: sticky;
@@ -25,7 +25,7 @@
 }
 
 .sidebar .nav-link.active {
-  color: #2470dc;
+  color: #2470dc !important;
 }
 
 .sidebar-heading {

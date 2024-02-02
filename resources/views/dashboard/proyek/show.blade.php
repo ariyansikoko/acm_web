@@ -1,16 +1,25 @@
-@extends('layouts.main')
+@extends('dashboard.layouts.main')
 
 @section('body')
-    <h1 class="mb-4">Detail Proyek</h1>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Daftar Proyek</h1>
+    </div>
+
+    @if (session()->has('success'))
+        <div class="alert alert-success col-lg-8 alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <table class="table table-hover table-striped-columns table-bordered">
         <tr>
             <td>Nama Pekerjaan</td>
-            <td><a href="/pengeluaran?project={{ $project->slug }}" class="text-decoration-none">{{ $project->title }}</a>
-            </td>
+            <td>{{ $project->title }}</td>
         </tr>
         <tr>
             <td>Tanggal Input</td>
-            <td>{{ \Carbon\Carbon::parse($project->project_date)->format('d M Y') }}</td>
+            <td>{{ $project->project_date }}</td>
         </tr>
         <tr>
             <td>Area Kerja</td>
@@ -33,7 +42,7 @@
             <td>{{ formatRupiah($project->comcase) }}</td>
         </tr>
         <tr>
-            <td>Nilai BOQ Minus Comcase</td>
+            <td>Nilai BOQ Minus Comcast</td>
             <td>
                 @if ($project->boq_actual != 0)
                     {{ formatRupiah($project->boq_actual - $project->comcase) }}
@@ -51,5 +60,4 @@
             <td>{{ $project->boq_desc }}</td>
         </tr>
     </table>
-    <a href="/proyek">Kembali</a>
 @endsection

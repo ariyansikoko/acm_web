@@ -18,11 +18,10 @@ return new class extends Migration
             $table->integer('episode')->nullable();
             $table->string('type')->nullable(); //jenis proyek
             $table->string('title')->nullable(); //nama proyek
-            $table->string('slug')->unique(); //slug
-            $table->decimal('boq_plan', $precision = 13, $scale = 0)->nullable(); //nilai BOQ plan
+            $table->decimal('boq_plan', $precision = 13, $scale = 0)->nullable()->default(0); //nilai BOQ plan
             $table->decimal('boq_actual', $precision = 13, $scale = 0)->nullable()->default(0); //nilai PO/BOQ Aktual
-            $table->decimal('comcase', $precision = 13, $scale = 0)->nullable(); //nilai comcast
-            $table->decimal('boq_subcon', $precision = 13, $scale = 0)->nullable(); //nilai BOQ subcon
+            $table->decimal('comcase', $precision = 13, $scale = 0)->nullable()->default(0); //nilai comcast
+            $table->decimal('boq_subcon', $precision = 13, $scale = 0)->nullable()->default(0); //nilai BOQ subcon
             $table->text('boq_desc')->nullable(); //keterangan BOQ
             $table->date('project_date')->nullable(); //tanggal proyek
             $table->timestamps();

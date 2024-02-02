@@ -18,7 +18,7 @@ class TransactionFactory extends Factory
     {
         return [
             'expense_id' => fake()->unique()->randomNumber(5, true),
-            'project_id' => mt_rand(1, 10),
+            'project_id' => mt_rand(1, 2),
             'recipient_id' => mt_rand(1, 3),
             'amount' => fake()->numberBetween(100000, 1000000),
             'description' => fake()->sentence(2, 5),

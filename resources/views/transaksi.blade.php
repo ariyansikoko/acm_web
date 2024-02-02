@@ -40,7 +40,7 @@
                     @foreach ($transaksi as $post)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $post->requested_at }}</td>
+                            <td>{{ \Carbon\Carbon::parse($post->requested_at)->format('d M Y') }}</td>
                             <td>{{ $post->project->title }}</td>
                             <td>{{ $post->recipient->name }}</td>
                             <td>{{ formatRupiah($post->amount) }}</td>

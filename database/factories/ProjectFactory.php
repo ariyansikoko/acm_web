@@ -18,7 +18,6 @@ class ProjectFactory extends Factory
     {
         return [
             'title' => fake()->unique()->sentence(mt_rand(3, 6)),
-            'slug' => fake()->unique()->slug(),
             'project_id' => fake()->unique()->randomNumber(6, true),
             'location' => fake()->randomElement(['Medan', 'Jambi', 'Ridar']),
             'type' => fake()->randomElement(['MTEL', 'HEM', 'Node B']),
