@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -13,14 +14,14 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id(); //index utama
-            $table->string('expense_id')->unique(); //kode transaksi & index
+            $table->date('transaction_date')->nullable(); //tgl permintaan
             $table->foreignId('project_id');
             $table->foreignId('recipient_id');
             $table->decimal('amount', $precision = 13, $scale = 0); //debit
             $table->text('description')->nullable();
             $table->text('category'); //kategori biaya
-            $table->text('type'); //jenis biaya
-            $table->date('requested_at')->nullable(); //tgl permintaan
+            $table->foreignId('expensetype_id'); //jenis biaya
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

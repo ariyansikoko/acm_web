@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Expensetype;
 use App\Models\Transaction;
 use App\Models\Project;
 use App\Models\Recipient;
@@ -24,9 +25,14 @@ class DashboardTransactionController extends Controller
      */
     public function create()
     {
+        $project = Project::orderBy('title')->get();
+        $recipient = Recipient::orderBy('name')->get();
+        $expensetype = Expensetype::orderBy('cost_id')->get();
+
         return view('dashboard.transaksi.create', [
-            'projects' => Project::all(),
-            'recipients' => Recipient::all(),
+            'projects' => $project,
+            'recipients' => $recipient,
+            'expensetypes' => $expensetype,
         ]);
     }
 
@@ -36,17 +42,17 @@ class DashboardTransactionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'expense_id' => 'required|unique:transactions',
             'project_id' => 'required',
             'recipient_id' => 'required',
-            'requested_at' => 'required|date',
+            'transaction_date' => 'required|date',
             'amount' => 'required|numeric|integer',
             'category' => 'required',
-            'type' => 'required',
+            'expensetype_id' => 'required',
             'description' => 'required',
         ]);
 
         Transaction::create($validated);
+
         return redirect('dashboard/pengeluaran')->with('success', 'Data berhasil ditambahkan.');
     }
 
@@ -69,6 +75,7 @@ class DashboardTransactionController extends Controller
             'transaksi' => $pengeluaran,
             'projects' => Project::all(),
             'recipients' => Recipient::all(),
+            'expensetypes' => Expensetype::all(),
         ]);
     }
 
@@ -80,16 +87,12 @@ class DashboardTransactionController extends Controller
         $rules = [
             'project_id' => 'required',
             'recipient_id' => 'required',
-            'requested_at' => 'required|date',
+            'transaction_date' => 'required|date',
             'amount' => 'required|numeric|integer',
             'category' => 'required',
-            'type' => 'required',
+            'expensetype_id' => 'required',
             'description' => 'required',
         ];
-
-        if ($request->expense_id != $pengeluaran->expense_id) {
-            $rules['requested_at'] = 'required|unique:transactions|digits:5';
-        }
 
         $validated = $request->validate($rules);
 

@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recipient;
-use App\Http\Requests\StoreRecipientRequest;
-use App\Http\Requests\UpdateRecipientRequest;
+use App\Models\Expensetype;
+use App\Http\Requests\StoreExpensetypeRequest;
+use App\Http\Requests\UpdateExpensetypeRequest;
 
-class RecipientController extends Controller
+class ExpensetypeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('staff', [
-            'title' => 'ACM | Staff',
-            'recipient' => Recipient::all(),
-        ]);
+        //
     }
 
     /**
@@ -30,7 +27,7 @@ class RecipientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRecipientRequest $request)
+    public function store(StoreExpensetypeRequest $request)
     {
         //
     }
@@ -38,7 +35,7 @@ class RecipientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Recipient $recipient)
+    public function show(Expensetype $expensetype)
     {
         //
     }
@@ -46,7 +43,7 @@ class RecipientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Recipient $recipient)
+    public function edit(Expensetype $expensetype)
     {
         //
     }
@@ -54,7 +51,7 @@ class RecipientController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRecipientRequest $request, Recipient $recipient)
+    public function update(UpdateExpensetypeRequest $request, Expensetype $expensetype)
     {
         //
     }
@@ -62,7 +59,7 @@ class RecipientController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Recipient $recipient)
+    public function destroy(Expensetype $expensetype)
     {
         //
     }

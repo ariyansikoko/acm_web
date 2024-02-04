@@ -1,12 +1,11 @@
 @extends('layouts.main')
 
 @section('body')
-    <h1 class="mb-4">Detail Proyek</h1>
+    <h1 class="mb-4 text-center">Detail Proyek</h1>
     <table class="table table-hover table-striped-columns table-bordered">
         <tr>
             <td>Nama Pekerjaan</td>
-            <td><a href="/pengeluaran?project={{ $project->slug }}" class="text-decoration-none">{{ $project->title }}</a>
-            </td>
+            <td>{{ $project->title }}</td>
         </tr>
         <tr>
             <td>Tanggal Input</td>
@@ -51,5 +50,5 @@
             <td>{{ $project->boq_desc }}</td>
         </tr>
     </table>
-    <a href="/proyek">Kembali</a>
+    <a class="btn btn-primary" href="/proyek">Kembali</a>
 @endsection

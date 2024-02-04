@@ -18,9 +18,6 @@
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('proyek') ? 'active' : '' }}" href="/proyek">Proyek</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('penerima') ? 'active' : '' }}" href="/penerima">Recipient</a>
-                    </li>
                 @endauth
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="/about">About</a>

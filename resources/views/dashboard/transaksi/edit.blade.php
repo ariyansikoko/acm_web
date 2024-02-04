@@ -6,18 +6,9 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="POST" action="/dashboard/pengeluaran/{{ $transaksi->expense_id }}" class="mb-5"
-            enctype="multipart/form-data">
+        <form method="POST" action="/dashboard/pengeluaran/{{ $transaksi->id }}" class="mb-5" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="mb-3">
-                <label for="expense_id" class="form-label">ID Pengeluaran</label>
-                <input type="text" class="form-control" @error('expense_id') is-invalid @enderror id="expense_id"
-                    name="expense_id" required value="{{ old('expense_id', $transaksi->expense_id) }}" autofocus>
-                @error('expense_id')
-                    <div class="text-danger"><small>{{ $message }}</small></div>
-                @enderror
-            </div>
             <div class="mb-3">
                 <label for="project_id" class="form-label">Nama Proyek</label>
                 <select class="form-select" name="project_id">
@@ -43,10 +34,10 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="requested_at" class="form-label">Tanggal</label>
-                <input type="date" class="form-control" id="requested_at" name="requested_at"
-                    value="{{ old('requested_at', $transaksi->requested_at) }}">
-                @error('requested_at')
+                <label for="transaction_date" class="form-label">Tanggal</label>
+                <input type="date" class="form-control" id="transaction_date" name="transaction_date"
+                    value="{{ old('transaction_date', $transaksi->transaction_date) }}">
+                @error('transaction_date')
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
             </div>
@@ -67,12 +58,16 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="type" class="form-label">Jenis Biaya</label>
-                <input type="text" class="form-control" @error('type') is-invalid @enderror id="type" name="type"
-                    required value="{{ old('type', $transaksi->type) }}">
-                @error('type')
-                    <div class="text-danger"><small>{{ $message }}</small></div>
-                @enderror
+                <label for="expensetype_id" class="form-label">Jenis Biaya</label>
+                <select class="form-select" name="expensetype_id">
+                    @foreach ($expensetypes as $item)
+                        @if (old('expensetype_id', $transaksi->expensetype_id) == $item->id)
+                            <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                        @else
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Deskripsi</label>

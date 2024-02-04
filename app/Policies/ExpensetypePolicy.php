@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Transaksi;
+use App\Models\Expensetype;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class TransaksiPolicy
+class ExpensetypePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class TransaksiPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Transaksi $transaksi): bool
+    public function view(User $user, Expensetype $expensetype): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class TransaksiPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Transaksi $transaksi): bool
+    public function update(User $user, Expensetype $expensetype): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class TransaksiPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Transaksi $transaksi): bool
+    public function delete(User $user, Expensetype $expensetype): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class TransaksiPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Transaksi $transaksi): bool
+    public function restore(User $user, Expensetype $expensetype): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class TransaksiPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Transaksi $transaksi): bool
+    public function forceDelete(User $user, Expensetype $expensetype): bool
     {
         //
     }

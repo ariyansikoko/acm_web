@@ -7,9 +7,9 @@
     <div class="mb-3">
         <a href="/dashboard/pengeluaran" class="btn btn-success">
             <i class="bi bi-caret-left-fill"></i> Kembali</a>
-        <a href="/dashboard/pengeluaran/{{ $transaksi->expense_id }}/edit" class="btn btn-warning">
+        <a href="/dashboard/pengeluaran/{{ $transaksi->id }}/edit" class="btn btn-warning">
             <i class="bi bi-pencil-square"></i> Edit</a>
-        <form action="/dashboard/pengeluaran/{{ $transaksi->expense_id }}" method="POST" class="d-inline">
+        <form action="/dashboard/pengeluaran/{{ $transaksi->id }}" method="POST" class="d-inline">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">
@@ -42,7 +42,7 @@
         </tr>
         <tr>
             <td>Jenis Biaya</td>
-            <td>{{ $transaksi->type }}</td>
+            <td>{{ $transaksi->expensetype->name }}</td>
         </tr>
         <tr>
             <td>Deskripsi</td>

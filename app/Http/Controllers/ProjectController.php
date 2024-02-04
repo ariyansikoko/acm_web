@@ -15,32 +15,8 @@ class ProjectController extends Controller
     {
         return view('proyek', [
             'title' => 'ACM | Projek',
-            'project' => Project::latest()->filter(request(['search']))->get(),
+            'project' => Project::latest()->get(),
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreProjectRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Project $project)
-    {
-        //
     }
 
     public function detail(Project $project)
@@ -49,29 +25,5 @@ class ProjectController extends Controller
             'title' => 'Project Details',
             'project' => $project,
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Project $project)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateProjectRequest $request, Project $project)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Project $project)
-    {
-        //
     }
 }

@@ -14,10 +14,9 @@
 
     <div class="table-responsive small overflow-auto">
         <a href="/dashboard/pengeluaran/create" class="btn btn-primary mb-3">Tambah Transaksi Baru</a>
-        <table class="table table-striped table-sm align-middle table-hover">
+        <table class="table table-striped table-sm align-middle table-hover" id="dataTable">
             <thead>
                 <tr class="align-middle">
-                    <th scope="col">#</th>
                     <th scope="col">Tanggal</th>
                     <th scope="col">Nama Proyek</th>
                     <th scope="col">Penerima</th>
@@ -31,24 +30,26 @@
             <tbody>
                 @foreach ($transaksi as $post)
                     <tr>
-                        <th scope="col">{{ $loop->iteration }}</th>
                         <td>{{ \Carbon\Carbon::parse($post->requested_at)->format('d M Y') }}</td>
                         <td>{{ $post->project->title }}</td>
                         <td>{{ $post->recipient->name }}</td>
                         <td>{{ formatRupiah($post->amount) }}</td>
                         <td>{{ $post->description }}</td>
                         <td>{{ $post->category }}</td>
-                        <td>{{ $post->type }}</td>
+                        <td>{{ $post->expensetype->name }}</td>
                         <td>
-                            <a href="/dashboard/pengeluaran/{{ $post->expense_id }}" class="btn btn-success btn-sm">
+                            <a href="/dashboard/pengeluaran/{{ $post->id }}" class="btn btn-success btn-sm"
+                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                 <i class="bi bi-eye"></i></a>
-                            <a href="/dashboard/pengeluaran/{{ $post->expense_id }}/edit" class="btn btn-warning btn-sm">
+                            <a href="/dashboard/pengeluaran/{{ $post->id }}/edit" class="btn btn-warning btn-sm"
+                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                 <i class="bi bi-pencil-square"></i></a>
-                            <form action="/dashboard/pengeluaran/{{ $post->expense_id }}" method="POST" class="d-inline">
+                            <form action="/dashboard/pengeluaran/{{ $post->id }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-sm" type="submit"
-                                    onclick="return confirm('Are you sure?')">
+                                    onclick="return confirm('Are you sure?')"
+                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>

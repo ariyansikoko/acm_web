@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Expensetype extends Model
 {
     use HasFactory;
 
@@ -14,10 +14,5 @@ class Project extends Model
     public function transaction()
     {
         return $this->hasMany(Transaction::class);
-    }
-
-    public function getRouteKeyName()
-    {
-        return 'project_id';
     }
 }

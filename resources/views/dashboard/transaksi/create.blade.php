@@ -9,21 +9,14 @@
         <form method="POST" action="/dashboard/pengeluaran" class="mb-5" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="expense_id" class="form-label">ID Pengeluaran</label>
-                <input type="text" class="form-control" @error('expense_id') is-invalid @enderror id="expense_id"
-                    name="expense_id" required value="{{ old('expense_id') }}" autofocus>
-                @error('expense_id')
-                    <div class="text-danger"><small>{{ $message }}</small></div>
-                @enderror
-            </div>
-            <div class="mb-3">
                 <label for="project_id" class="form-label">Nama Proyek</label>
-                <select class="form-select" name="project_id">
+                <select class="form-select" name="project_id" id="project_id">
                     @foreach ($projects as $project)
                         @if (old('project_id') == $project->id)
-                            <option value="{{ $project->id }}" selected>{{ $project->title }}</option>
+                            <option value="{{ $project->id }}" selected>{{ $project->project_id }} - {{ $project->title }}
+                            </option>
                         @else
-                            <option value="{{ $project->id }}">{{ $project->title }}</option>
+                            <option value="{{ $project->id }}">{{ $project->project_id }} - {{ $project->title }}</option>
                         @endif
                     @endforeach
                 </select>
@@ -41,10 +34,10 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="requested_at" class="form-label">Tanggal</label>
-                <input type="date" class="form-control" id="requested_at" name="requested_at"
-                    value="{{ old('requested_at') }}">
-                @error('requested_at')
+                <label for="transaction_date" class="form-label">Tanggal</label>
+                <input type="date" class="form-control" id="transaction_date" name="transaction_date"
+                    value="{{ old('transaction_date') }}">
+                @error('transaction_date')
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
             </div>
@@ -65,12 +58,17 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="type" class="form-label">Jenis Biaya</label>
-                <input type="text" class="form-control" @error('type') is-invalid @enderror id="type" name="type"
-                    required value="{{ old('type') }}">
-                @error('type')
-                    <div class="text-danger"><small>{{ $message }}</small></div>
-                @enderror
+                <label for="expensetype_id" class="form-label">Jenis Biaya</label>
+                <select class="form-select" name="expensetype_id">
+                    @foreach ($expensetypes as $item)
+                        @if (old('expensetype_id') == $item->id)
+                            <option value="{{ $item->id }}" selected>{{ $item->cost_id }} - {{ $item->name }}
+                            </option>
+                        @else
+                            <option value="{{ $item->id }}">{{ $item->cost_id }} - {{ $item->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Deskripsi</label>
@@ -80,4 +78,14 @@
             <button type="submit" class="btn btn-primary">Selesai</button>
         </form>
     </div>
+    <script>
+        $(document).ready(function() {
+            // Use Select2 for the project_id select element
+            $('#project_id').select2({
+                placeholder: 'Search for a project...',
+                allowClear: false,
+                theme: "bootstrap4",
+            });
+        });
+    </script>
 @endsection

@@ -11,6 +11,19 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
+    <div class="mb-3">
+        <a href="/dashboard/proyek" class="btn btn-success">
+            <i class="bi bi-caret-left-fill"></i> Kembali
+        </a> <a href="/dashboard/proyek/{{ $project->project_id }}/edit" class="btn btn-warning">
+            <i class="bi bi-pencil-square"></i> Edit</a>
+        <form action="/dashboard/proyek/{{ $project->project_id }}" method="POST" class="d-inline">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger" onclick="return confirm('Are you sure?')">
+                <i class="bi bi-trash"></i> Hapus
+            </button>
+        </form>
+    </div>
 
     <table class="table table-hover table-striped-columns table-bordered">
         <tr>
@@ -19,7 +32,7 @@
         </tr>
         <tr>
             <td>Tanggal Input</td>
-            <td>{{ $project->project_date }}</td>
+            <td>{{ \Carbon\Carbon::parse($project->project_date)->format('d M Y') }}</td>
         </tr>
         <tr>
             <td>Area Kerja</td>
@@ -47,7 +60,7 @@
                 @if ($project->boq_actual != 0)
                     {{ formatRupiah($project->boq_actual - $project->comcase) }}
                 @else
-                    {{ formatRupiah($project->boq_plan - $project->comcast) }}
+                    {{ formatRupiah($project->boq_plan - $project->comcase) }}
                 @endif
             </td>
         </tr>

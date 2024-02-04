@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class DashboardProjectController extends Controller

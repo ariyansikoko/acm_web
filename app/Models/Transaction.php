@@ -10,29 +10,7 @@ class Transaction extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $with = ['project', 'recipient'];
-
-    public function scopeFilter($query, array $filters)
-    {
-        $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->where('description', 'like', '%' . $search . '%')
-                ->orWhere('amount', 'like', '%' . $search . '%')
-                ->orWhere('type', 'like', '%' . $search . '%')
-                ->orWhere('category', 'like', '%' . $search . '%');
-        });
-
-        $query->when($filters['project'] ?? false, function ($query, $project) {
-            return $query->whereHas('project', function ($query) use ($project) {
-                $query->where('slug', $project);
-            });
-        });
-
-        $query->when($filters['recipient'] ?? false, function ($query, $recipient) {
-            return $query->whereHas('recipient', function ($query) use ($recipient) {
-                $query->where('slug', $recipient);
-            });
-        });
-    }
+    protected $with = ['project', 'recipient', 'expensetype'];
 
     public function project()
     {
@@ -44,8 +22,8 @@ class Transaction extends Model
         return $this->belongsTo(Recipient::class);
     }
 
-    public function getRouteKeyName()
+    public function expensetype()
     {
-        return 'expense_id';
+        return $this->belongsTo(Expensetype::class);
     }
 }

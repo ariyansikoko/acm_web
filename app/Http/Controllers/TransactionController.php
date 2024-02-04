@@ -13,19 +13,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $title = '';
-        if (request('project')) {
-            $project = Project::firstWhere('slug', request('project'));
-            $title = ': ' . $project->title;
-        }
-        if (request('recipient')) {
-            $recipient = Recipient::firstWhere('slug', request('recipient'));
-            $title = ' oleh ' . $recipient->name;
-        }
-
         return view('transaksi', [
-            'title' => 'Data Pengeluaran Proyek' . $title,
-            'transaksi' => Transaction::latest()->filter(request(['search', 'project', 'recipient']))->paginate(20)->withQueryString(),
+            'title' => 'ACM | Transaksi',
+            'transaksi' => Transaction::latest()->get(),
         ]);
     }
 

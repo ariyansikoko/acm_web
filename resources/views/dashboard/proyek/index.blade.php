@@ -18,13 +18,13 @@
         </div>
     @endif
 
-    <div class="table-responsive small">
+    <div class="table table-responsive small">
         <a href="/dashboard/proyek/create" class="btn btn-primary mb-3">Tambah Proyek Baru</a>
-        <table class="table table-striped table-sm align-middle table-hover">
+        <table class="table table-striped align-middle table-hover" id="dataTable">
             <thead>
                 <tr class="align-middle">
-                    <th scope="col">#</th>
                     <th scope="col">Tanggal</th>
+                    <th scope="col">ID</th>
                     <th scope="col">EP</th>
                     <th scope="col">Area<br>Kerja</th>
                     <th scope="col">Jenis<br>Proyek</th>
@@ -34,15 +34,15 @@
                     <th scope="col">Comcase</th>
                     <th scope="col">BOQ-Comcase</th>
                     <th scope="col">BOQ Subcon</th>
-                    <th scope="col">Keterangan BOQ</th>
+                    {{-- <th scope="col">Keterangan BOQ</th> --}}
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($project as $post)
                     <tr>
-                        <th scope="col">{{ $loop->iteration }}</th>
                         <td>{{ \Carbon\Carbon::parse($post->project_date)->format('d M Y') }}</td>
+                        <td>{{ $post->project_id }}</td>
                         <td>{{ $post->episode }}</td>
                         <td>{{ $post->location }}</td>
                         <td>{{ $post->type }}</td>
@@ -58,16 +58,19 @@
                             @endif
                         </td>
                         <td>{{ formatRupiah($post->boq_subcon) }}</td>
-                        <td>{{ $post->boq_desc }}</td>
+                        {{-- <td>{{ $post->boq_desc }}</td> --}}
                         <td>
-                            <a href="/dashboard/proyek/{{ $post->project_id }}" class="btn btn-success btn-sm">
+                            <a href="/dashboard/proyek/{{ $post->project_id }}" class="btn btn-success btn-sm"
+                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                 <i class="bi bi-eye"></i>
-                            </a> <a href="/dashboard/proyek/{{ $post->project_id }}/edit" class="btn btn-warning btn-sm">
+                            </a> <a href="/dashboard/proyek/{{ $post->project_id }}/edit" class="btn btn-warning btn-sm"
+                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                 <i class="bi bi-pencil-square"></i></a>
                             <form action="/dashboard/proyek/{{ $post->project_id }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
+                                <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"
+                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>
