@@ -25,8 +25,8 @@ class DashboardTransactionController extends Controller
      */
     public function create()
     {
-        $project = Project::orderBy('title')->get();
-        $recipient = Recipient::orderBy('name')->get();
+        $project = Project::orderBy('title')->where('status', 1)->get();
+        $recipient = Recipient::orderBy('name')->where('isActive', 1)->get();
         $expensetype = Expensetype::orderBy('cost_id')->get();
 
         return view('dashboard.transaksi.create', [

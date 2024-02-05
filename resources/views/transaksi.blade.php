@@ -1,37 +1,35 @@
 @extends('layouts.main')
 
 @section('body')
-    <h1 class="mb-4 text-center">Daftar Transaksi</h1>
+    <h2 class="mb-4">Daftar Transaksi</h2>
 
-    <div class="mb-4">
+    <div class="mb-4 small">
         <table class="table table-striped table-hover align-middle small" id="dataTable">
             <thead>
                 <tr>
                     <th scope="col">Tanggal</th>
+                    <th scope="col">Kode Proyek</th>
                     <th scope="col">Nama Proyek</th>
                     <th scope="col">Penerima</th>
-                    <th scope="col">Pengeluaran/Debit</th>
+                    <th scope="col">Kasbon</th>
                     <th scope="col">Deskripsi</th>
                     <th scope="col">Kategori Biaya</th>
                     <th scope="col">Jenis Biaya</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Episode</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($transaksi as $post)
                     <tr>
-                        <td>{{ \Carbon\Carbon::parse($post->requested_at)->format('d M Y') }}</td>
-                        {{-- <td>{{ $post->requested_at }}</td> --}}
-                        <td>{{ $post->project->title }}</td>
+                        <td class="no-wrap">{{ \Carbon\Carbon::parse($post->transaction_date)->format('d M Y') }}</td>
+                        <td>{{ $post->project->project_id }}</td>
+                        <td><b>{{ $post->project->title }}</b></td>
                         <td>{{ $post->recipient->name }}</td>
-                        <td>{{ formatRupiah($post->amount) }}</td>
+                        <td class="no-wrap">{{ formatRupiah($post->amount) }}</td>
                         <td>{{ $post->description }}</td>
                         <td>{{ $post->category }}</td>
                         <td>{{ $post->expensetype->name }}</td>
-                        <td>
-                            <a href="/pengeluaran/{{ $post->expense_id }}" class="btn btn-sm btn-success"><i
-                                    class="bi bi-eye"></i></a>
-                        </td>
+                        <td>{{ $post->project->episode }}</td>
                     </tr>
                 @endforeach
             </tbody>

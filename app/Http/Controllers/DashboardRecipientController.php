@@ -63,18 +63,17 @@ class DashboardRecipientController extends Controller
      */
     public function update(Request $request, Recipient $penerima)
     {
-        $rules = [];
-
-        if ($request->slug != $penerima->slug) {
-            $rules['name'] = 'required|unique:recipients';
-        }
+        $rules = [
+            'isActive' => 'required|boolean',
+            'name' => 'required'
+        ];
 
         $validated = $request->validate($rules);
 
         Recipient::where('id', $penerima->id)
             ->update($validated);
 
-        return redirect('dashboard/penerima')->with('success', 'Data berhasil diubah!');
+        return redirect('dashboard/penerima')->with('success', 'Data penerima berhasil diubah!');
     }
 
     /**
@@ -87,12 +86,5 @@ class DashboardRecipientController extends Controller
         }
         Recipient::destroy($penerima->id);
         return redirect('dashboard/penerima')->with('success', 'Data penerima berhasil dihapus.');
-    }
-
-    public function checkSlug(Request $request)
-    {
-        $slug = SlugService::createSlug(Recipient::class, 'slug', $request->name);
-
-        return response()->json(['slug' => $slug]);
     }
 }

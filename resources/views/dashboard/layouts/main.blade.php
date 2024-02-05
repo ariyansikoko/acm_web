@@ -12,7 +12,6 @@
 
     <!-- Custom styles for this template -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <!-- DataTables -->
     <link rel="stylesheet" type="text/css"
@@ -45,6 +44,10 @@
         #dataTable td {
             padding: 3px;
         }
+
+        .no-wrap {
+            white-space: nowrap;
+        }
     </style>
 
     <link href="/css/dashboard.css" rel="stylesheet">
@@ -65,7 +68,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="/js/dashboard.js"></script>
 
     <script>
@@ -73,7 +75,7 @@
             $('#dataTable').DataTable({
                 "columnDefs": [{
                     "type": "date-eu",
-                    "targets": 0, // Assuming the date column is the second column (index 1)
+                    "targets": 1, // Assuming the date column is the second column (index 1)
                     "render": function(data, type, row, meta) {
                         if (type === 'sort') {
                             // Convert the date to a format that can be sorted naturally

@@ -12,8 +12,9 @@ class DashboardProjectController extends Controller
      */
     public function index()
     {
+        $project = Project::latest()->get();
         return view('dashboard.proyek.index', [
-            'project' => Project::all(),
+            'project' => $project,
         ]);
     }
 
@@ -31,17 +32,19 @@ class DashboardProjectController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'project_id' => 'required|unique:projects',
+            'project_id' => 'required|unique:projects|digits:8',
+            'client' => 'required',
             'project_date' => 'required|date',
             'episode' => 'required',
             'location' => 'required',
             'type' => 'required',
             'title' => 'required',
-            'boq_plan' => 'numeric|integer',
-            'boq_actual' => 'numeric|integer',
-            'comcase' => 'numeric|integer',
-            'boq_subcon' => 'numeric|integer',
+            'boq_plan' => 'nullable|numeric|integer',
+            'boq_actual' => 'nullable|numeric|integer',
+            'comcase' => 'nullable|numeric|integer',
+            'boq_subcon' => 'nullable|numeric|integer',
             'boq_desc' => 'max:255',
+            'no_po' => 'nullable|integer',
         ]);
 
         Project::create($validated);
@@ -79,15 +82,18 @@ class DashboardProjectController extends Controller
             'location' => 'required',
             'type' => 'required',
             'title' => 'required',
-            'boq_plan' => 'numeric|integer',
-            'boq_actual' => 'numeric|integer',
-            'comcase' => 'numeric|integer',
-            'boq_subcon' => 'numeric|integer',
+            'boq_plan' => 'nullable|numeric|integer',
+            'boq_actual' => 'nullable|numeric|integer',
+            'comcase' => 'nullable|numeric|integer',
+            'boq_subcon' => 'nullable|numeric|integer',
             'boq_desc' => 'max:255',
+            'no_po' => 'nullable|integer',
+            'status' => 'required|boolean',
+            'close_date' => 'required|date',
         ];
 
         if ($request->project_id != $proyek->project_id) {
-            $rules['project_id'] = 'required|unique:projects|digits:5';
+            $rules['project_id'] = 'required|unique:projects|digits:8';
         }
 
         $validated = $request->validate($rules);

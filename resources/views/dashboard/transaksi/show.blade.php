@@ -18,35 +18,37 @@
         </form>
     </div>
 
-    <table class="table table-hover table-striped-columns table-bordered">
-        <tr>
-            <td>Nama Project</td>
-            <td>{{ $transaksi->project->title }}
-            </td>
-        </tr>
-        <tr>
-            <td>Tanggal</td>
-            <td>{{ \Carbon\Carbon::parse($transaksi->requested_at)->format('d M Y') }}</td>
-        </tr>
-        <tr>
-            <td>Penerima</td>
-            <td>{{ $transaksi->recipient->name }}</td>
-        </tr>
-        <tr>
-            <td>Pengeluaran/Debit</td>
-            <td>{{ formatRupiah($transaksi->amount) }}</td>
-        </tr>
-        <tr>
-            <td>Kategori Biaya</td>
-            <td>{{ $transaksi->category }}</td>
-        </tr>
-        <tr>
-            <td>Jenis Biaya</td>
-            <td>{{ $transaksi->expensetype->name }}</td>
-        </tr>
-        <tr>
-            <td>Deskripsi</td>
-            <td>{{ $transaksi->description }}</td>
-        </tr>
-    </table>
+    <div class="col-md-8">
+        <table class="table table-hover table-striped-columns table-bordered">
+            <tr>
+                <td>Nama Project</td>
+                <td>{{ $transaksi->project->title }}
+                </td>
+            </tr>
+            <tr>
+                <td>Tanggal</td>
+                <td>{{ \Carbon\Carbon::parse($transaksi->requested_at)->format('D, d M Y') }}</td>
+            </tr>
+            <tr>
+                <td>Penerima</td>
+                <td>{{ $transaksi->recipient->name }}</td>
+            </tr>
+            <tr>
+                <td>Pengeluaran/Debit</td>
+                <td>{{ formatRupiah($transaksi->amount) }}</td>
+            </tr>
+            <tr>
+                <td>Kategori Biaya</td>
+                <td>{{ $transaksi->category }}</td>
+            </tr>
+            <tr>
+                <td>Jenis Biaya</td>
+                <td>{{ $transaksi->expensetype->name }}</td>
+            </tr>
+            <tr>
+                <td>Deskripsi</td>
+                <td>{{ $transaksi->description }}</td>
+            </tr>
+        </table>
+    </div>
 @endsection

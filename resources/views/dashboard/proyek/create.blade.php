@@ -17,8 +17,12 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label for="client" class="form-label">Klien</label>
+                <input type="text" class="form-control" id="client" name="client" required value="TA">
+            </div>
+            <div class="mb-3">
                 <label for="project_date" class="form-label">Tanggal</label>
-                <input type="datetime-local" class="form-control" id="project_date" name="project_date"
+                <input type="date" class="form-control" id="project_date" name="project_date"
                     value="{{ old('project_date') }}">
                 @error('project_date')
                     <div class="text-danger"><small>{{ $message }}</small></div>
@@ -26,7 +30,7 @@
             </div>
             <div class="mb-3">
                 <label for="episode" class="form-label">Episode</label>
-                <input type="text" class="form-control" @error('episode') is-invalid @enderror id="episode"
+                <input type="number" class="form-control" @error('episode') is-invalid @enderror id="episode"
                     name="episode" required value="{{ old('episode') }}">
                 @error('episode')
                     <div class="text-danger"><small>{{ $message }}</small></div>
@@ -58,7 +62,7 @@
             </div>
             <div class="mb-3">
                 <label for="boq_plan" class="form-label">Nilai BOQ Plan</label>
-                <input type="text" class="form-control" @error('boq_plan') is-invalid @enderror id="boq_plan"
+                <input type="number" class="form-control" @error('boq_plan') is-invalid @enderror id="boq_plan"
                     name="boq_plan" required value="{{ old('boq_plan') }}">
                 @error('boq_plan')
                     <div class="text-danger"><small>{{ $message }}</small></div>
@@ -66,7 +70,7 @@
             </div>
             <div class="mb-3">
                 <label for="boq_actual" class="form-label">Nilai BOQ Aktual</label>
-                <input type="text" class="form-control" @error('boq_actual') is-invalid @enderror id="boq_actual"
+                <input type="number" class="form-control" @error('boq_actual') is-invalid @enderror id="boq_actual"
                     name="boq_actual" value="{{ old('boq_actual') }}">
                 @error('boq_actual')
                     <div class="text-danger"><small>{{ $message }}</small></div>
@@ -74,7 +78,7 @@
             </div>
             <div class="mb-3">
                 <label for="comcase" class="form-label">Nilai Comcase</label>
-                <input type="text" class="form-control" @error('comcase') is-invalid @enderror id="comcase"
+                <input type="number" class="form-control" @error('comcase') is-invalid @enderror id="comcase"
                     name="comcase" value="{{ old('comcase') }}">
                 @error('comcase')
                     <div class="text-danger"><small>{{ $message }}</small></div>
@@ -82,7 +86,7 @@
             </div>
             <div class="mb-3">
                 <label for="boq_subcon" class="form-label">Nilai BOQ Subcon</label>
-                <input type="text" class="form-control" @error('boq_subcon') is-invalid @enderror id="boq_subcon"
+                <input type="number" class="form-control" @error('boq_subcon') is-invalid @enderror id="boq_subcon"
                     name="boq_subcon" value="{{ old('boq_subcon') }}">
                 @error('boq_subcon')
                     <div class="text-danger"><small>{{ $message }}</small></div>
@@ -93,7 +97,15 @@
                 <input type="text" class="form-control" id="boq_desc" name="boq_desc"
                     value="{{ old('boq_desc') }}">
             </div>
-            <button type="submit" class="btn btn-primary">Selesai</button>
+            <div class="mb-3">
+                <label for="no_po" class="form-label">Nomor PO</label>
+                <input type="text" class="form-control" @error('no_po') is-invalid @enderror id="no_po"
+                    name="no_po" value="{{ old('no_po') }}">
+                @error('no_po')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
 @endsection

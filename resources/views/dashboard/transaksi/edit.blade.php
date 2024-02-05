@@ -11,12 +11,13 @@
             @method('PUT')
             <div class="mb-3">
                 <label for="project_id" class="form-label">Nama Proyek</label>
-                <select class="form-select" name="project_id">
+                <select class="form-select" name="project_id" id="project_id">
                     @foreach ($projects as $project)
                         @if (old('project_id', $transaksi->project_id) == $project->id)
-                            <option value="{{ $project->id }}" selected>{{ $project->title }}</option>
+                            <option value="{{ $project->id }}" selected>{{ $project->project_id }} - {{ $project->title }}
+                            </option>
                         @else
-                            <option value="{{ $project->id }}">{{ $project->title }}</option>
+                            <option value="{{ $project->id }}">{{ $project->project_id }} - {{ $project->title }}</option>
                         @endif
                     @endforeach
                 </select>
@@ -77,4 +78,14 @@
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
+    <script>
+        $(document).ready(function() {
+            // Use Select2 for the project_id select element
+            $('#project_id').select2({
+                placeholder: 'Search for a project...',
+                allowClear: false,
+                theme: "bootstrap4",
+            });
+        });
+    </script>
 @endsection

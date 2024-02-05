@@ -9,25 +9,25 @@
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard') ? 'active' : 'text-secondary' }}"
                         href="/dashboard">
-                        <i class="bi bi-house-fill"></i> Dashboard
+                        <span><i class="bi bi-house-fill"></i> Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/proyek*') ? 'active' : 'text-secondary' }}"
                         href="/dashboard/proyek">
-                        <i class="bi bi-cone-striped"></i> Proyek
+                        <span><i class="bi bi-cone-striped"></i> Proyek</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/pengeluaran*') ? 'active' : 'text-secondary' }}"
                         href="/dashboard/pengeluaran">
-                        <i class="bi bi-cash-coin"></i> Pengeluaran
+                        <span><i class="bi bi-cash-coin"></i> Pengeluaran</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/penerima*') ? 'active' : 'text-secondary' }}"
                         href="/dashboard/penerima">
-                        <i class="bi bi-people-fill"></i> Penerima
+                        <span><i class="bi bi-people-fill"></i> Penerima</span>
                     </a>
                 </li>
             </ul>
@@ -39,10 +39,10 @@
                     <span>Administrator</span>
                 </h6>
                 <ul class="nav flex-column mb-auto">
-                    <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/accounts') ? 'active' : '' }}"
-                            href="/dashboard/accounts">
-                            <i class="bi bi-person-circle"></i>Accounts Management
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/account*') ? 'active' : 'text-secondary' }}"
+                            href="/dashboard/account">
+                            <span><i class="bi bi-person-circle"></i> Accounts Manager</span>
                         </a>
                     </li>
                 </ul>
@@ -59,7 +59,7 @@
                     <form action="/logout" method="POST">
                         @csrf
                         <button type="submit" class="nav-link d-flex align-items-center gap-2 text-danger">
-                            <i class="bi bi-box-arrow-right"></i>Logout
+                            <span><i class="bi bi-box-arrow-right"></i> Logout</span>
                         </button>
                     </form>
                 </li>

@@ -75,7 +75,7 @@
                 <input type="text" class="form-control" id="description" name="description"
                     value="{{ old('description') }}">
             </div>
-            <button type="submit" class="btn btn-primary">Selesai</button>
+            <button type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
     <script>

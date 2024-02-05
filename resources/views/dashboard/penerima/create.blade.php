@@ -15,21 +15,7 @@
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
             </div>
-            <div class="mb-3">
-                <input type="hidden" class="form-control" id="slug" name="slug" disabled>
-            </div>
             <button type="submit" class="btn btn-primary">Tambah</button>
         </form>
     </div>
-
-    <script>
-        const name = document.querySelector('#name');
-        const slug = document.querySelector('#slug');
-
-        name.addEventListener('change', function() {
-            fetch('/dashboard/penerima/checkSlug?name=' + name.value)
-                .then(response => response.json())
-                .then(data => slug.value = data.slug)
-        });
-    </script>
 @endsection

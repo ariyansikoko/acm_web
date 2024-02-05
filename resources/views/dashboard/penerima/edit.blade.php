@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="POST" action="/dashboard/penerima/{{ $recipient->slug }} " class="mb-5" enctype="multipart/form-data">
+        <form method="POST" action="/dashboard/penerima/{{ $recipient->id }} " class="mb-5" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -16,6 +16,18 @@
                 @error('name')
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
+            </div>
+            <div class="mb-3">
+                <label for="isActive" class="form-label">Status</label>
+                <select class="form-select" name="isActive">
+                    @if (old('isActive', $recipient->isActive) == 1)
+                        <option value="1" selected>Aktif</option>
+                        <option value="0">Berhenti</option>
+                    @else
+                        <option value="1">Aktif</option>
+                        <option value="0" selected>Berhenti</option>
+                    @endif
+                </select>
             </div>
             <div class="mb-3">
                 <input type="hidden" class="form-control" id="slug" name="slug" disabled>

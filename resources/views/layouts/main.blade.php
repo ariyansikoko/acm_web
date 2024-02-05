@@ -23,22 +23,37 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/4.3.0/js/dataTables.fixedColumns.min.js">
+    </script>
 
+    {{-- select2 --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
     <style>
         #dataTable {
-            font-size: 14px;
+            font-size: 12px;
             margin-bottom: 10px;
             /* Adjust the font size */
         }
 
         #dataTable th,
         #dataTable td {
-            padding: 3px;
+            padding: 5px;
             /* Adjust the padding */
         }
 
         #dataTable_filter {
             margin-bottom: 20px;
+        }
+
+        .no-wrap {
+            white-space: nowrap;
+        }
+
+        .nav-link {
+            font-size: 18px;
         }
     </style>
 
@@ -87,6 +102,9 @@
                     'excel', 'pdf', 'print'
                 ],
                 pagingType: 'simple',
+                fixedColumns: {
+                    left: 5,
+                },
             });
         });
     </script>

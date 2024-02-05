@@ -1,47 +1,71 @@
 @extends('layouts.main')
 
 @section('body')
-    <h1 class="mb-4 text-center">Daftar Proyek</h1>
-
-    @if ($project->count())
-        <div class="mb-4">
-            <table class="table table-striped table-hover align-middle small" id="dataTable">
-                <thead>
+    <div class="d-flex justify-content-between">
+        <h2 class="mb-4">Daftar Proyek</h2>
+        <button class="btn btn-primary mb-3" id="toggleColumnsBtn">Toggle Kolom Lain</button>
+    </div>
+    <div class="mb-4 small">
+        <table class="table table-striped table-hover align-middle" id="dataTable">
+            <thead>
+                <tr class="align-middle">
+                    <th scope="col">Tanggal</th>
+                    <th scope="col" id="noProject" style="display:none">Kode Proyek</th>
+                    <th scope="col">Area Kerja</th>
+                    <th scope="col">Jenis Proyek</th>
+                    <th scope="col">Nama Pekerjaan</th>
+                    <th scope="col">Nilai BOQ Plan</th>
+                    <th scope="col">Nilai BOQ Aktual</th>
+                    <th scope="col">Nilai Comcase</th>
+                    <th scope="col">Nilai BOQ-Comcase</th>
+                    <th scope="col">Nilai BOQ Subcon</th>
+                    <th scope="col" id="noPO" style="display:none">No PO</th>
+                    <th scope="col" id="boqDesc" style="display:none">Keterangan BOQ</th>
+                    <th scope="col">EP</th>
+                    <th scope="col">Status Budget</th>
+                    <th scope="col">View</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($project as $post)
                     <tr>
-                        <th scope="col">Tanggal Input</th>
-                        <th scope="col">Area Kerja</th>
-                        <th scope="col">Jenis Proyek</th>
-                        <th scope="col">Nama Pekerjaan</th>
-                        <th scope="col">Nilai BOQ Plan</th>
-                        <th scope="col">Nilai BOQ Subcon</th>
-                        <th scope="col">Keterangan BOQ</th>
-                        <th scope="col">Action</th>
+                        <td class="no-wrap">{{ \Carbon\Carbon::parse($post->project_date)->format('d M Y') }}</td>
+                        <td id="noProject" style="display:none">{{ $post->project_id }}</td>
+                        <td>{{ $post['location'] }}</td>
+                        <td>{{ $post['type'] }}</td>
+                        <td><b>{{ $post['title'] }}</b></td>
+                        <td>{{ formatRupiah($post['boq_plan']) }}</td>
+                        <td>{{ formatRupiah($post->boq_actual) }}</td>
+                        <td>{{ formatRupiah($post->comcase) }}</td>
+                        @if ($post->boq_actual != 0)
+                            <td>{{ formatRupiah($post->boq_actual - $post->comcase) }}</td>
+                        @else
+                            <td>{{ formatRupiah($post->boq_plan - $post->comcase) }}</td>
+                        @endif
+                        <td>{{ formatRupiah($post['boq_subcon']) }}</td>
+                        <td id="noPO" style="display:none">{{ $post->no_po }}</td>
+                        <td id="boqDesc" style="display:none">{{ $post['boq_desc'] }}</td>
+                        <td>{{ $post['episode'] }}</td>
+                        @if ($post->status == 1)
+                            <td class="text-success">OPEN</td>
+                        @else
+                            <td class="text-danger">CLOSED</td>
+                        @endif
+                        <td>
+                            <a href="/proyek/{{ $post->project_id }}" class="btn btn-success btn-sm"><i
+                                    class="bi bi-list"></i></a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach ($project as $post)
-                        <tr>
-                            <td>{{ \Carbon\Carbon::parse($post->project_date)->format('d M Y') }}</td>
-                            <td>{{ $post['location'] }}</td>
-                            <td>{{ $post['type'] }}</td>
-                            <a href="/proyek/{{ $post->slug }}">
-                                <td>{{ $post['title'] }}</td>
-                            </a>
-                            <td>{{ formatRupiah($post['boq_plan']) }}</td>
-                            <td>{{ formatRupiah($post['boq_subcon']) }}</td>
-                            <td>{{ $post['boq_desc'] }}</td>
-                            <td>
-                                <a href="/proyek/{{ $post->project_id }}" class="btn btn-sm btn-success"><i
-                                        class="bi bi-eye"></i></a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    @else
-        <div class="col mt-5 text-center">
-            <h3>No Data Found.</h3>
-        </div>
-    @endif
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    <script>
+        $(document).ready(function() {
+            // Button click event to toggle column visibility
+            $("#toggleColumnsBtn").on("click", function() {
+                $("#noPO, #boqDesc, #noProject").toggle();
+            });
+        });
+    </script>
 @endsection

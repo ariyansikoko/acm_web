@@ -94,6 +94,34 @@
                 <input type="text" class="form-control" id="boq_desc" name="boq_desc"
                     value="{{ old('boq_desc', $project->boq_desc) }}">
             </div>
+            <div class="mb-3">
+                <label for="no_po" class="form-label">Nomor PO</label>
+                <input type="text" class="form-control" @error('no_po') is-invalid @enderror id="no_po"
+                    name="no_po" value="{{ old('no_po', $project->no_po) }}">
+                @error('no_po')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Status Budget Proyek</label>
+                <select class="form-select" name="status">
+                    @if (old('status', $project->status) == 1)
+                        <option value="1" selected>Open</option>
+                        <option value="0">Closed</option>
+                    @else
+                        <option value="1">Open</option>
+                        <option value="0" selected>Closed</option>
+                    @endif
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="close_date" class="form-label">Tanggal Tutup Budget</label>
+                <input type="date" class="form-control" id="close_date" name="close_date"
+                    value="{{ old('close_date', $project->close_date) }}">
+                @error('close_date')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
+            </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>

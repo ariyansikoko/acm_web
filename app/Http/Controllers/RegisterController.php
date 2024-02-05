@@ -9,6 +9,8 @@ class RegisterController extends Controller
 {
     public function index()
     {
+        $this->authorize('admin');
+
         return view('register.index', [
             'title' => 'Register'
         ]);
@@ -24,6 +26,6 @@ class RegisterController extends Controller
 
         User::create($validated);
 
-        return redirect('/dashboard')->with('success', 'Registration successful! Please login.');
+        return redirect('/dashboard/account')->with('success', 'Registrasi berhasil');
     }
 }

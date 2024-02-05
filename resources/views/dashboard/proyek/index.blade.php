@@ -23,54 +23,46 @@
         <table class="table table-striped align-middle table-hover" id="dataTable">
             <thead>
                 <tr class="align-middle">
+                    <th scope="col">Kode</th>
                     <th scope="col">Tanggal</th>
-                    <th scope="col">ID</th>
                     <th scope="col">EP</th>
-                    <th scope="col">Area<br>Kerja</th>
-                    <th scope="col">Jenis<br>Proyek</th>
+                    <th scope="col">Area Kerja</th>
+                    <th scope="col">Jenis Proyek</th>
                     <th scope="col">Nama Pekerjaan</th>
                     <th scope="col">BOQ Plan</th>
                     <th scope="col">BOQ Aktual</th>
-                    <th scope="col">Comcase</th>
-                    <th scope="col">BOQ-Comcase</th>
-                    <th scope="col">BOQ Subcon</th>
-                    {{-- <th scope="col">Keterangan BOQ</th> --}}
+                    <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($project as $post)
                     <tr>
+                        <td><b>{{ $post->project_id }}</b></td>
                         <td>{{ \Carbon\Carbon::parse($post->project_date)->format('d M Y') }}</td>
-                        <td>{{ $post->project_id }}</td>
                         <td>{{ $post->episode }}</td>
                         <td>{{ $post->location }}</td>
                         <td>{{ $post->type }}</td>
-                        <td>{{ $post->title }}</td>
+                        <td><b>{{ $post->title }}</b></td>
                         <td>{{ formatRupiah($post->boq_plan) }}</td>
-                        <td>{{ formatRupiah($post->boq_actual) }}</td>
-                        <td>{{ formatRupiah($post->comcase) }}</td>
-                        <td>
-                            @if ($post->boq_actual != 0)
-                                {{ formatRupiah($post->boq_actual - $post->comcase) }}
-                            @else
-                                {{ formatRupiah($post->boq_plan - $post->comcase) }}
-                            @endif
-                        </td>
-                        <td>{{ formatRupiah($post->boq_subcon) }}</td>
-                        {{-- <td>{{ $post->boq_desc }}</td> --}}
+                        <td class="text-primary">{{ formatRupiah($post->boq_actual) }}</td>
+                        @if ($post->status == 1)
+                            <td class="text-success"><b>OPEN</b></td>
+                        @else
+                            <td class="text-danger"><b>CLOSED</b></td>
+                        @endif
                         <td>
                             <a href="/dashboard/proyek/{{ $post->project_id }}" class="btn btn-success btn-sm"
-                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .75rem;">
                                 <i class="bi bi-eye"></i>
                             </a> <a href="/dashboard/proyek/{{ $post->project_id }}/edit" class="btn btn-warning btn-sm"
-                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .75rem;">
                                 <i class="bi bi-pencil-square"></i></a>
                             <form action="/dashboard/proyek/{{ $post->project_id }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"
-                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .75rem;">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>

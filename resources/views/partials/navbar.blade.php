@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg sticky-top" style="background-color:midnightblue" data-bs-theme="dark">
     <div class="container">
-        <a class="navbar-brand" href="/">ACM</a>
+        <a class="navbar-brand" href="/"><img src="logo.png" alt="" class="img rounded" height="36"
+                class="d-inline-block"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link  {{ Request::is('/') ? 'active' : '' }}"href="/">Home</a>
+                    <a class="nav-link  {{ Request::is('/') ? 'active' : '' }}" href="/">Home</a>
                 </li>
                 @auth
                     <li class="nav-item">
@@ -16,7 +17,7 @@
                             href="/pengeluaran">Pengeluaran</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('proyek') ? 'active' : '' }}" href="/proyek">Proyek</a>
+                        <a class="nav-link {{ Request::is('proyek*') ? 'active' : '' }}" href="/proyek">Proyek</a>
                     </li>
                 @endauth
                 <li class="nav-item">
