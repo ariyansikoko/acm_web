@@ -22,12 +22,18 @@
         <table class="table table-hover table-striped-columns table-bordered">
             <tr>
                 <td>Nama Project</td>
-                <td>{{ $transaksi->project->title }}
+                <td>{{ $transaksi->project->project_id }} - {{ $transaksi->project->title }}
+                    @if ($transaksi->project->status == 1)
+                        , <b class="text-success">OPEN</b>
+                    @else
+                        , <b class="text-danger">CLOSED</b>
+                    @endif
                 </td>
+
             </tr>
             <tr>
                 <td>Tanggal</td>
-                <td>{{ \Carbon\Carbon::parse($transaksi->requested_at)->format('D, d M Y') }}</td>
+                <td>{{ \Carbon\Carbon::parse($transaksi->transaction_date)->format('D, d M Y') }}</td>
             </tr>
             <tr>
                 <td>Penerima</td>

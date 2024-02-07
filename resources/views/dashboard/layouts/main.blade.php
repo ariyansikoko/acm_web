@@ -102,6 +102,7 @@
                     'excel', 'pdf', 'print'
                 ],
                 pagingType: 'simple',
+                "pageLength": 15
             });
         });
     </script>

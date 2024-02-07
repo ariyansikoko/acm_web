@@ -4,7 +4,7 @@
     <h1 class="text-center">Laporan Laba/Rugi</h1>
     <h3 class="my-4 text-center">{{ $header }}</h3>
     <div class="col-md-6 mx-auto">
-        <table class="table table-hover table-striped table-bordered small">
+        <table class="table table-hover table-striped table-bordered small py-1">
             <tr class="table-success">
                 <th>Investasi Episode</th>
                 <th>{{ $episode }}</th>
@@ -75,15 +75,18 @@
                     @endif
                 </td>
             </tr>
-            <tr class="table-danger">
+            @if ($project->boq_actual != 0)
+                @php
+                    $laba = $project->boq_actual - $totalbp - $totaldp;
+                @endphp
+            @else
+                @php
+                    $laba = $project->boq_plan - $totalbp - $totaldp;
+                @endphp
+            @endif
+            <tr class="{{ $laba > 0 ? 'table-success' : 'table-danger' }}">
                 <th>Laba/Rugi Sementara</th>
-                <td>
-                    @if ($project->boq_actual != 0)
-                        {{ formatRupiah($project->boq_actual - $totalbp - $totaldp) }}
-                    @else
-                        {{ formatRupiah($project->boq_plan - $totalbp - $totaldp) }}
-                    @endif
-                </td>
+                <td>{{ formatRupiah($laba) }}</td>
             </tr>
 
         </table>

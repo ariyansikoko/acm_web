@@ -2,7 +2,9 @@
 
 @section('body')
     <h2 class="mb-4">Daftar Transaksi</h2>
-
+    <div class="mb-4">
+        <a href="/dashboard/pengeluaran/create" class="btn btn-primary">Tambah Transaksi Baru</a>
+    </div>
     <div class="mb-4 small">
         <table class="table table-striped table-hover align-middle small" id="dataTable">
             <thead>

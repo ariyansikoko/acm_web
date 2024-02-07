@@ -53,7 +53,7 @@
         }
 
         .nav-link {
-            font-size: 18px;
+            font-size: 16px;
         }
     </style>
 
@@ -102,9 +102,7 @@
                     'excel', 'pdf', 'print'
                 ],
                 pagingType: 'simple',
-                fixedColumns: {
-                    left: 5,
-                },
+                "pageLength": 15,
             });
         });
     </script>

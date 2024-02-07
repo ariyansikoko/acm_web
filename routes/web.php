@@ -1,16 +1,16 @@
 <?php
 
+use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AdminAccountController;
 use App\Http\Controllers\DashboardProjectController;
 use App\Http\Controllers\DashboardRecipientController;
 use App\Http\Controllers\DashboardTransactionController;
-use App\Models\Project;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +33,8 @@ Route::get('/pengeluaran', [TransactionController::class, 'index'])->middleware(
 
 Route::get('/proyek', [ProjectController::class, 'index'])->middleware('auth');
 Route::get('/proyek/{project:project_id}', [ProjectController::class, 'summary'])->middleware('auth');
+
+Route::get('/laporan', [ReportController::class, 'index'])->middleware('auth');
 
 Route::get('/about', function () {
     return view('about', [

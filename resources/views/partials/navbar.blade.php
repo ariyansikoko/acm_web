@@ -14,10 +14,13 @@
                 @auth
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('pengeluaran*') ? 'active' : '' }}"
-                            href="/pengeluaran">Pengeluaran</a>
+                            href="/pengeluaran">Transaksi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('proyek*') ? 'active' : '' }}" href="/proyek">Proyek</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('laporan*') ? 'active' : '' }}" href="/laporan">Laporan</a>
                     </li>
                 @endauth
                 <li class="nav-item">
