@@ -94,8 +94,11 @@
             </div>
             <div class="mb-3">
                 <label for="boq_desc" class="form-label">Keterangan BOQ</label>
-                <input type="text" class="form-control" id="boq_desc" name="boq_desc"
+                <select type="text" class="form-select" id="boq_desc" name="boq_desc"
                     value="{{ old('boq_desc') }}">
+                    <option value="Sudah nilai rekon">Sudah nilai rekon</option>
+                    <option value="Belum fix nilai rekon" selected>Belum fix nilai rekon</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="no_po" class="form-label">Nomor PO</label>

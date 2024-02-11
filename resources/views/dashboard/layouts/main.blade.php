@@ -35,6 +35,11 @@
         href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
 
     <style>
+        #scrollX {
+            width: 100%;
+            overflow: auto;
+        }
+
         #dataTable {
             font-size: 12px;
             margin-bottom: 10px;
@@ -102,7 +107,8 @@
                     'excel', 'pdf', 'print'
                 ],
                 pagingType: 'simple',
-                "pageLength": 15
+                "pageLength": 15,
+                "order": [0, 'desc'],
             });
         });
     </script>

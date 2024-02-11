@@ -8,13 +8,13 @@
     <div class="mb-4">
         <a href="/dashboard/proyek/create" class="btn btn-primary">Tambah Proyek Baru</a>
     </div>
-    <div class="mb-4 small">
+    <div class="mb-4 small" id="scrollX">
         <table class="table table-striped table-hover align-middle" id="dataTable">
             <thead>
                 <tr class="align-middle">
                     <th scope="col">Tanggal</th>
                     <th scope="col">Kode Proyek</th>
-                    <th scope="col">Area Kerja</th>
+                    <th scope="col" class="text-center">Area Kerja</th>
                     <th scope="col">Jenis Proyek</th>
                     <th scope="col">Nama Pekerjaan</th>
                     <th scope="col">Nilai BOQ Plan</th>
@@ -25,7 +25,7 @@
                     <th scope="col" id="noPO" style="display:none">No PO</th>
                     <th scope="col" id="boqDesc" style="display:none">Keterangan BOQ</th>
                     <th scope="col">EP</th>
-                    <th scope="col">Status Budget</th>
+                    <th scope="col" class="text-center">Status Budget</th>
                     <th scope="col">View</th>
                 </tr>
             </thead>
@@ -34,7 +34,7 @@
                     <tr>
                         <td class="no-wrap">{{ \Carbon\Carbon::parse($post->project_date)->format('d M Y') }}</td>
                         <td><b>{{ $post->project_id }}</b></td>
-                        <td>{{ $post['location'] }}</td>
+                        <td class="text-center">{{ $post['location'] }}</td>
                         <td>{{ $post['type'] }}</td>
                         <td><b>{{ $post['title'] }}</b></td>
                         <td class="no-wrap">{{ formatRupiah($post['boq_plan']) }}</td>
@@ -48,11 +48,11 @@
                         <td class="no-wrap">{{ formatRupiah($post['boq_subcon']) }}</td>
                         <td id="noPO" style="display:none">{{ $post->no_po }}</td>
                         <td id="boqDesc" style="display:none">{{ $post['boq_desc'] }}</td>
-                        <td>{{ $post['episode'] }}</td>
+                        <td class="text-center">{{ $post['episode'] }}</td>
                         @if ($post->status == 1)
-                            <td class="text-success">OPEN</td>
+                            <td class="text-success text-center">OPEN</td>
                         @else
-                            <td class="text-danger">CLOSED</td>
+                            <td class="text-danger text-center">CLOSED</td>
                         @endif
                         <td>
                             <a href="/proyek/{{ $post->project_id }}" class="btn btn-success btn-sm"><i

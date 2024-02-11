@@ -22,7 +22,7 @@
         <table class="table table-hover table-striped-columns table-bordered">
             <tr>
                 <td>Nama Project</td>
-                <td>{{ $transaksi->project->project_id }} - {{ $transaksi->project->title }}
+                <td><b>{{ $transaksi->project->project_id }} - {{ $transaksi->project->title }}</b>
                     @if ($transaksi->project->status == 1)
                         , <b class="text-success">OPEN</b>
                     @else

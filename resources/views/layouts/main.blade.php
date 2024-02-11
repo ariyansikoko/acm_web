@@ -32,20 +32,26 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
     <style>
+        #scrollX {
+            width: 100%;
+            overflow: auto;
+            padding: 10px;
+        }
+
         #dataTable {
             font-size: 12px;
             margin-bottom: 10px;
-            /* Adjust the font size */
+        }
+
+        #dataTable-filter {
+            margin-bottom: 10px;
         }
 
         #dataTable th,
         #dataTable td {
-            padding: 5px;
-            /* Adjust the padding */
-        }
-
-        #dataTable_filter {
-            margin-bottom: 20px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            !important
         }
 
         .no-wrap {
@@ -53,7 +59,7 @@
         }
 
         .nav-link {
-            font-size: 16px;
+            font-size: 17px;
         }
     </style>
 
@@ -104,7 +110,6 @@
                 pagingType: 'simple',
                 "pageLength": 15,
                 "order": [0, 'desc'],
-
             });
         });
     </script>

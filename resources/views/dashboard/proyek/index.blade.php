@@ -18,7 +18,7 @@
         </div>
     @endif
 
-    <div class="table table-responsive small">
+    <div class="table table-responsive small" id="scrollX">
         <a href="/dashboard/proyek/create" class="btn btn-primary mb-3">Tambah Proyek Baru</a>
         <table class="table table-striped align-middle table-hover" id="dataTable">
             <thead>
@@ -31,6 +31,7 @@
                     <th scope="col">Nama Pekerjaan</th>
                     <th scope="col">BOQ Plan</th>
                     <th scope="col">BOQ Aktual</th>
+                    <th scope="col">Deskripsi</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -46,6 +47,7 @@
                         <td><b>{{ $post->title }}</b></td>
                         <td>{{ formatRupiah($post->boq_plan) }}</td>
                         <td class="text-primary">{{ formatRupiah($post->boq_actual) }}</td>
+                        <td>{{ $post->boq_desc }}</td>
                         @if ($post->status == 1)
                             <td class="text-success"><b>OPEN</b></td>
                         @else

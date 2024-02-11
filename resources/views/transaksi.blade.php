@@ -5,12 +5,12 @@
     <div class="mb-4">
         <a href="/dashboard/pengeluaran/create" class="btn btn-primary">Tambah Transaksi Baru</a>
     </div>
-    <div class="mb-4 small">
+    <div class="mb-4 small" id="scrollX">
         <table class="table table-striped table-hover align-middle small" id="dataTable">
             <thead>
                 <tr>
                     <th scope="col">Tanggal</th>
-                    <th scope="col">Kode Proyek</th>
+                    <th scope="col" class="text-center">Kode Proyek</th>
                     <th scope="col">Nama Proyek</th>
                     <th scope="col">Penerima</th>
                     <th scope="col">Kasbon</th>
@@ -31,7 +31,7 @@
                         <td>{{ $post->description }}</td>
                         <td>{{ $post->category }}</td>
                         <td>{{ $post->expensetype->name }}</td>
-                        <td>{{ $post->project->episode }}</td>
+                        <td class="text-center">{{ $post->project->episode }}</td>
                     </tr>
                 @endforeach
             </tbody>

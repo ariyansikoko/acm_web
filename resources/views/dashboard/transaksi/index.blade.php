@@ -12,12 +12,11 @@
         </div>
     @endif
 
-    <div class="table-responsive small overflow-auto">
+    <div class="table-responsive small overflow-auto" id="scrollX">
         <a href="/dashboard/pengeluaran/create" class="btn btn-primary mb-3">Tambah Transaksi Baru</a>
         <table class="table table-striped table-sm align-middle table-hover" id="dataTable">
             <thead>
                 <tr class="align-middle">
-                    <th scope="col">Kode Proyek</th>
                     <th scope="col">Tanggal</th>
                     <th scope="col">Nama Proyek</th>
                     <th scope="col">Penerima</th>
@@ -31,7 +30,6 @@
             <tbody>
                 @foreach ($transaksi as $post)
                     <tr>
-                        <td><b>{{ $post->project->project_id }}</b></td>
                         <td class="no-wrap">{{ \Carbon\Carbon::parse($post->transaction_date)->format('d M Y') }}</td>
                         <td><b>{{ $post->project->title }}</b></td>
                         <td>{{ $post->recipient->name }}</td>
