@@ -32,7 +32,7 @@ class DashboardProjectController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'project_id' => 'required|unique:projects|digits:8',
+            'project_id' => 'required|unique:projects|size:8',
             'client' => 'required',
             'project_date' => 'required|date',
             'episode' => 'required',

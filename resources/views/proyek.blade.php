@@ -33,7 +33,7 @@
                 @foreach ($project as $post)
                     <tr>
                         <td class="no-wrap">{{ \Carbon\Carbon::parse($post->project_date)->format('d M Y') }}</td>
-                        <td>{{ $post->project_id }}</td>
+                        <td><b>{{ $post->project_id }}</b></td>
                         <td>{{ $post['location'] }}</td>
                         <td>{{ $post['type'] }}</td>
                         <td><b>{{ $post['title'] }}</b></td>

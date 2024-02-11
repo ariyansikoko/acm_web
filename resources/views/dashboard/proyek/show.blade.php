@@ -42,7 +42,7 @@
             </tr>
             <tr>
                 <td>Nama Pekerjaan</td>
-                <td>{{ $project->title }}</td>
+                <td>{{ $project->project_id }} - {{ $project->title }}</td>
             </tr>
             <tr>
                 <td>Tanggal Input</td>

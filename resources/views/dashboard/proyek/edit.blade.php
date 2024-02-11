@@ -109,7 +109,9 @@
                         <option value="1" selected>Open</option>
                         <option value="0">Closed</option>
                     @else
-                        <option value="1">Open</option>
+                        @can('admin')
+                            <option value="1">Open</option>
+                        @endcan
                         <option value="0" selected>Closed</option>
                     @endif
                 </select>

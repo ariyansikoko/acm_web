@@ -103,6 +103,8 @@
                 ],
                 pagingType: 'simple',
                 "pageLength": 15,
+                "order": [0, 'desc'],
+
             });
         });
     </script>
