@@ -4,20 +4,20 @@
     <h1 class="text-center">Laporan Laba/Rugi</h1>
     <h3 class="my-4 text-center">{{ $header }}</h3>
     <div class="col-md-6 mx-auto">
-        <table class="table table-hover table-striped table-bordered small py-1">
-            <tr class="table-success">
+        <table class="table table-hover table-bordered small py-1">
+            <tr class="table-dark">
                 <th>Investasi Episode</th>
                 <th>{{ $episode }}</th>
             </tr>
-            <tr class="table-success">
+            <tr class="table-primary">
                 <th>Total Nilai BOQ ALL</th>
                 <td>{{ formatRupiah($projectall->sum('boq_plan')) }}</td>
             </tr>
-            <tr class="table-success">
+            <tr class="table-primary">
                 <th>Total Pengeluaran ALL</th>
                 <td>{{ formatRupiah($totalamount) }}</td>
             </tr>
-            <tr class="table-success">
+            <tr class="table-primary">
                 <th>Persentase ALL</th>
                 <td>{{ formatPercent(($totalamount / $projectall->sum('boq_plan')) * 100) }}</td>
             </tr>
@@ -37,15 +37,15 @@
                 <th>Nilai BOQ Subcon</th>
                 <td>{{ formatRupiah($project->boq_subcon) }}</td>
             </tr>
-            <tr class="table-info">
+            <tr class="table-secondary">
                 <th>Total Pengambilan (DP Subcon)</th>
                 <td>{{ formatRupiah($totaldp) }}</td>
             </tr>
-            <tr class="table-info">
+            <tr class="table-secondary">
                 <th>Sisa Pengambilan</th>
                 <td>{{ formatRupiah($project->boq_subcon - $totaldp) }}</td>
             </tr>
-            <tr class="table-info">
+            <tr class="table-secondary">
                 <th>Persentase Pengambilan</th>
                 <td>
                     @if ($project->boq_subcon)
@@ -55,7 +55,7 @@
                     @endif
                 </td>
             </tr>
-            <tr class="table-info">
+            <tr class="table-secondary">
                 <th>Persentase Pengambilan dari BOQ</th>
                 <td>
                     @if ($project->boq_actual != 0)
@@ -65,7 +65,7 @@
                     @endif
                 </td>
             </tr>
-            <tr class="table-info">
+            <tr class="table-secondary">
                 <th>Persentase Biaya Perusahaan</th>
                 <td>
                     @if ($project->boq_actual != 0)
@@ -78,15 +78,21 @@
             @if ($project->boq_actual != 0)
                 @php
                     $laba = $project->boq_actual - $totalbp - $totaldp;
+                    $persentase = ($laba / $project->boq_actual) * 100;
                 @endphp
             @else
                 @php
                     $laba = $project->boq_plan - $totalbp - $totaldp;
+                    $persentase = ($laba / $project->boq_plan) * 100;
                 @endphp
             @endif
             <tr class="{{ $laba > 0 ? 'table-success' : 'table-danger' }}">
                 <th>Laba/Rugi Sementara</th>
                 <td>{{ formatRupiah($laba) }}</td>
+            </tr>
+            <tr class="{{ $laba > 0 ? 'table-success' : 'table-danger' }}">
+                <th>Persentase Laba/Rugi</th>
+                <td>{{ formatPercent($persentase) }}</td>
             </tr>
 
         </table>
@@ -106,7 +112,7 @@
                         <tr>
                             <td>{{ $item->name }}</td>
                             @if (in_array($item->name, $filter))
-                                <td>0</td>
+                                <td>Rp 0</td>
                                 <td>
                                     {{ formatRupiah($transaction->where('expensetype_id', $item->id)->sum('amount')) }}
                                 </td>
@@ -114,7 +120,7 @@
                                 <td>
                                     {{ formatRupiah($transaction->where('expensetype_id', $item->id)->sum('amount')) }}
                                 </td>
-                                <td>0</td>
+                                <td>Rp 0</td>
                             @endif
                         </tr>
                     @endif
