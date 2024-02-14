@@ -106,9 +106,6 @@
             "pageLength": 15,
             "order": [0, 'desc'],
         });
-
-        table.buttons().container()
-            .appendTo('#example_wrapper .col-md-6:eq(0)');
     </script>
 
 </body>

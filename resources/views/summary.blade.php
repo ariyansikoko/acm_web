@@ -1,6 +1,13 @@
 @extends('layouts.main')
 
 @section('body')
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Laporan Laba/Rugi</h2>
+        <button type="button" class="btn btn-primary" id="modalOpen" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Tambah Transaksi</a>
+        </button>
+    </div>
+
     <div class="justify-content-center">
         @if (session()->has('success'))
             <div class="alert alert-success col-lg-8 alert-dismissible fade show" role="alert">
@@ -16,13 +23,10 @@
         @endif
     </div>
 
-    <h1 class="text-center">Laporan Laba/Rugi</h1>
     <h3 class="my-4 text-center">{{ $header }}</h3>
 
     <div class="text-center mb-3">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Tambah Transaksi</a>
-        </button>
+
     </div>
 
     @include('partials.addTransaction')
@@ -160,10 +164,10 @@
             </tbody>
         </table>
     </div>
-    <a class="btn btn-primary" href="/proyek">Kembali</a>
+    <a class="btn btn-primary mb-4" href="/proyek">Kembali</a>
 
     <script>
-        $(".btn-primary").on("click", function() {
+        $("#modalOpen").on("click", function() {
             // Open the modal
             $('#exampleModal').modal('show');
         });

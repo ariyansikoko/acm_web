@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
@@ -21,7 +22,13 @@ class RegisterController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:255|unique:users',
             'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:6|max:255'
+            'password' => [
+                'required',
+                Password::min(6)
+                    ->mixedCase()
+                    ->numbers()
+                    ->uncompromised(),
+            ],
         ]);
 
         User::create($validated);

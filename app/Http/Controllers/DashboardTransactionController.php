@@ -20,7 +20,7 @@ class DashboardTransactionController extends Controller
         $expensetype = Expensetype::orderBy('cost_id')->get();
 
         return view('dashboard.transaksi.index', [
-            'transaksi' => Transaction::all(),
+            'transaksi' => Transaction::orderBy('transaction_date', 'desc')->get(),
             'projects' => $project,
             'recipients' => $recipient,
             'expensetypes' => $expensetype,
@@ -60,7 +60,7 @@ class DashboardTransactionController extends Controller
 
         Transaction::create($validated);
 
-        return redirect('dashboard/pengeluaran')->with('success', 'Data berhasil ditambahkan.');
+        return redirect()->back()->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
