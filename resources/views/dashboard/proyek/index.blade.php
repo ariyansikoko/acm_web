@@ -3,6 +3,7 @@
 @section('body')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Daftar Proyek</h1>
+        <a href="/dashboard/proyek/create" class="btn btn-primary">Tambah Proyek Baru</a>
     </div>
 
     @if (session()->has('success'))
@@ -18,13 +19,12 @@
         </div>
     @endif
 
-    <div class="table table-responsive small" id="scrollX">
-        <a href="/dashboard/proyek/create" class="btn btn-primary mb-3">Tambah Proyek Baru</a>
+    <div class="table table-responsive small mt-3 mb-4" id="scrollX">
         <table class="table table-striped align-middle table-hover" id="dataTable">
             <thead>
                 <tr class="align-middle">
-                    <th scope="col">Kode</th>
                     <th scope="col">Tanggal</th>
+                    <th scope="col">Kode</th>
                     <th scope="col">EP</th>
                     <th scope="col">Area Kerja</th>
                     <th scope="col">Jenis Proyek</th>
@@ -39,8 +39,8 @@
             <tbody>
                 @foreach ($project as $post)
                     <tr>
-                        <td><b>{{ $post->project_id }}</b></td>
                         <td>{{ \Carbon\Carbon::parse($post->project_date)->format('d M Y') }}</td>
+                        <td><b>{{ $post->project_id }}</b></td>
                         <td>{{ $post->episode }}</td>
                         <td>{{ $post->location }}</td>
                         <td>{{ $post->type }}</td>

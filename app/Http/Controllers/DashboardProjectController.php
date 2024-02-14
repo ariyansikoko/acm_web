@@ -39,6 +39,7 @@ class DashboardProjectController extends Controller
             'location' => 'required',
             'type' => 'required',
             'title' => 'required',
+            'boq_plan' => 'numeric|integer',
             'boq_desc' => 'max:255',
             'no_po' => 'nullable|integer',
         ]);

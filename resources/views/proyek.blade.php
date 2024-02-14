@@ -1,12 +1,12 @@
 @extends('layouts.main')
 
 @section('body')
-    <div class="d-flex justify-content-between">
-        <h2 class="mb-4">Daftar Proyek</h2>
-        <button class="btn btn-info mb-3" id="toggleColumnsBtn">Toggle Kolom Lain</button>
-    </div>
-    <div class="mb-4">
-        <a href="/dashboard/proyek/create" class="btn btn-primary">Tambah Proyek Baru</a>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Daftar Proyek</h2>
+        <div class="">
+            <button class="btn btn-info" id="toggleColumnsBtn">Toggle Kolom Lain</button>
+            <a href="/dashboard/proyek/create" class="btn btn-primary">Tambah Proyek Baru</a>
+        </div>
     </div>
     <div class="mb-4 small" id="scrollX">
         <table class="table table-striped table-hover align-middle" id="dataTable">
@@ -22,7 +22,7 @@
                     <th scope="col" id="noProject" style="display:none">Nilai Comcase</th>
                     <th scope="col">Nilai BOQ-Comcase</th>
                     <th scope="col">Nilai BOQ Subcon</th>
-                    <th scope="col" id="noPO" style="display:none">No PO</th>
+                    <th scope="col">No PO</th>
                     <th scope="col" id="boqDesc" style="display:none">Keterangan BOQ</th>
                     <th scope="col">EP</th>
                     <th scope="col" class="text-center">Status Budget</th>
@@ -46,7 +46,7 @@
                             <td class="no-wrap">{{ formatRupiah($post->boq_plan - $post->comcase) }}</td>
                         @endif
                         <td class="no-wrap">{{ formatRupiah($post['boq_subcon']) }}</td>
-                        <td id="noPO" style="display:none">{{ $post->no_po }}</td>
+                        <td>{{ $post->no_po }}</td>
                         <td id="boqDesc" style="display:none">{{ $post['boq_desc'] }}</td>
                         <td class="text-center">{{ $post['episode'] }}</td>
                         @if ($post->status == 1)
@@ -54,7 +54,7 @@
                         @else
                             <td class="text-danger text-center">CLOSED</td>
                         @endif
-                        <td>
+                        <td class="no-wrap">
                             <a href="/proyek/{{ $post->project_id }}" class="btn btn-success btn-sm"><i
                                     class="bi bi-list"></i></a>
                         </td>
@@ -67,7 +67,7 @@
         $(document).ready(function() {
             // Button click event to toggle column visibility
             $("#toggleColumnsBtn").on("click", function() {
-                $("#noPO, #boqDesc, #noProject").toggle();
+                $("#boqDesc, #noProject").toggle();
             });
         });
     </script>

@@ -33,6 +33,7 @@ Route::get('/pengeluaran', [TransactionController::class, 'index'])->middleware(
 
 Route::get('/proyek', [ProjectController::class, 'index'])->middleware('auth');
 Route::get('/proyek/{project:project_id}', [ProjectController::class, 'summary'])->middleware('auth');
+Route::post('/proyek/{project:project_id}/create', [ProjectController::class, 'storeTransaction'])->middleware('auth');
 
 Route::get('/laporan', [ReportController::class, 'index'])->middleware('auth');
 

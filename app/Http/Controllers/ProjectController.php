@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Expensetype;
+use App\Models\Recipient;
 use App\Models\Transaction;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
@@ -16,7 +18,7 @@ class ProjectController extends Controller
     {
         return view('proyek', [
             'title' => 'ACM | Projek',
-            'project' => Project::all(),
+            'project' => Project::orderBy('project_date', 'desc')->get(),
         ]);
     }
 
@@ -48,6 +50,25 @@ class ProjectController extends Controller
             'projectall' => $projectall,
             'project' => $project,
             'totalamount' => $totalAmount,
+            'recipients' => Recipient::where('isActive', 1)->get(),
+            'expensetypes' => Expensetype::orderBy('cost_id')->get(),
         ]);
+    }
+
+    public function storeTransaction(Request $request)
+    {
+        $validated = $request->validate([
+            'project_id' => 'required',
+            'recipient_id' => 'required',
+            'transaction_date' => 'required|date',
+            'amount' => 'required|numeric|integer',
+            'category' => 'required',
+            'expensetype_id' => 'required',
+            'description' => 'required',
+        ]);
+
+        Transaction::create($validated);
+
+        return redirect()->back()->with('success', 'Transaksi untuk proyek ini berhasil ditambahkan.');
     }
 }

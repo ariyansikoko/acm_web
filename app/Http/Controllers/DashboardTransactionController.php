@@ -15,8 +15,15 @@ class DashboardTransactionController extends Controller
      */
     public function index()
     {
+        $project = Project::orderBy('project_id')->where('status', 1)->get();
+        $recipient = Recipient::orderBy('name')->where('isActive', 1)->get();
+        $expensetype = Expensetype::orderBy('cost_id')->get();
+
         return view('dashboard.transaksi.index', [
             'transaksi' => Transaction::all(),
+            'projects' => $project,
+            'recipients' => $recipient,
+            'expensetypes' => $expensetype,
         ]);
     }
 

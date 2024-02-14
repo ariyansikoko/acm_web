@@ -6,21 +6,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body mx-3">
-                <form method="POST" action="/dashboard/pengeluaran" enctype="multipart/form-data">
+                <!-- Your form for adding new data goes here -->
+                <form action="/proyek/{{ $project->project_id }}/create" method="post" enctype="multipart/form-data">
                     @csrf
+                    <!-- Add your form fields here -->
                     <div class="mb-3">
                         <label for="project_id" class="form-label">Nama Proyek</label>
-                        <select class="form-select" name="project_id" id="project_id">
-                            @foreach ($projects as $project)
-                                @if (old('project_id') == $project->id)
-                                    <option value="{{ $project->id }}" selected>
-                                        {{ $project->project_id . ' - ' . $project->title }}
-                                    </option>
-                                @else
-                                    <option value="{{ $project->id }}">
-                                        {{ $project->project_id . ' - ' . $project->title }}</option>
-                                @endif
-                            @endforeach
+                        <select class="form-select" name="project_id">
+                            <option value="{{ $project->id }}" selected>
+                                {{ $project->project_id . ' - ' . $project->title }}</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -79,25 +73,9 @@
                         <input type="text" class="form-control" id="description" name="description"
                             value="{{ old('description') }}">
                     </div>
-
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<script>
-    $('#project_id').each(function() {
-        $(this).select2({
-            theme: "bootstrap-5",
-            dropdownParent: $(this).parent(), // fix select2 search input focus bug
-        })
-    })
-
-    // fix select2 bootstrap modal scroll bug
-    $(document).on('select2:close', '#project_id', function(e) {
-        var evt = "scroll.select2"
-        $(e.target).parents().off(evt)
-        $(window).off(evt)
-    })
-</script>

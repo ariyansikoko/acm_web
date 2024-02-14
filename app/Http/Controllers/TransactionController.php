@@ -13,7 +13,7 @@ class TransactionController extends Controller
     {
         return view('transaksi', [
             'title' => 'ACM | Transaksi',
-            'transaksi' => Transaction::all(),
+            'transaksi' => Transaction::orderBy('transaction_date', 'desc')->get(),
         ]);
     }
 }

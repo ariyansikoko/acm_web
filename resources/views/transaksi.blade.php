@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
 @section('body')
-    <h2 class="mb-4">Daftar Transaksi</h2>
-    <div class="mb-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Daftar Transaksi</h2>
         <a href="/dashboard/pengeluaran/create" class="btn btn-primary">Tambah Transaksi Baru</a>
     </div>
     <div class="mb-4 small" id="scrollX">

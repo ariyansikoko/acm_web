@@ -1,7 +1,9 @@
 @extends('layouts.main')
 
 @section('body')
-    <h1 class="mb-4">Laporan Proyek</h1>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>Laporan Proyek</h2>
+    </div>
     <div class="mb-4 small" id="scrollX">
         <table class="table table-striped table-hover align-middle" id="dataTable">
             <thead>
