@@ -45,15 +45,9 @@
                                 $laba = $post->boq_plan - $biaya - $subcon;
                             @endphp
                         @endif
-                        @if ($laba >= 0)
-                            <td class="table-success no-wrap">
-                                {{ formatRupiah($laba) }}
-                            </td>
-                        @else
-                            <td class="table-danger no-wrap">
-                                {{ formatRupiah($laba) }}
-                            </td>
-                        @endif
+                        <td class="{{ $laba > 0 ? 'table-success' : 'table-danger' }} no-wrap">
+                            {{ formatRupiah($laba) }}
+                        </td>
 
                         <td class="text-center"> {{ $post->episode }}</td>
                         <td class="text-center">
@@ -68,4 +62,38 @@
             </tbody>
         </table>
     </div>
+    <script>
+        var table = new DataTable('#dataTable', {
+            "columnDefs": [{
+                "type": "date-eu",
+                "targets": 0, // Assuming the date column is the second column (index 1)
+                "render": function(data, type, row, meta) {
+                    if (type === 'sort') {
+                        // Convert the date to a format that can be sorted naturally
+                        return new Date(data).toISOString();
+                    }
+
+                    // Display the date in the "dd MMMM YYYY" format (full month name)
+                    const date = new Date(data);
+                    const day = date.toLocaleString('en-US', {
+                        day: '2-digit'
+                    });
+                    const month = date.toLocaleString('en-US', {
+                        month: 'short'
+                    });
+                    const year = date.toLocaleString('en-US', {
+                        year: 'numeric'
+                    });
+
+                    return `${day} ${month} ${year}`;
+                }
+            }],
+            "dom": '<"container-fluid"<"row"<"col"B><"col"f>>>rt<"container-fluid mt-4"<"row"<"col"i><"col"p>>>',
+            "buttons": [
+                'print', 'excel', 'pdf'
+            ],
+            "pageLength": 15,
+            "order": [0, 'desc'],
+        });
+    </script>
 @endsection

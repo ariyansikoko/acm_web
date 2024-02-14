@@ -31,7 +31,7 @@
 
     @include('partials.addTransaction')
     <div class="col-md-6 mx-auto">
-        <table class="table table-hover table-bordered small py-1">
+        <table class="table table-hover table-bordered table-striped-columns small py-1">
             <tr class="table-dark">
                 <th>Investasi Episode</th>
                 <th>{{ $episode }}</th>
@@ -125,7 +125,7 @@
         </table>
     </div>
     <div class="col-md-8 mx-auto">
-        <table class="table table-hover table-striped table-bordered small">
+        <table class="table table-hover table-striped-columns table-bordered small">
             <thead>
                 <tr>
                     <th scope="col"></th>

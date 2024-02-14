@@ -28,28 +28,26 @@
             <thead>
                 <tr>
                     <th scope="col">Tanggal</th>
-                    <th scope="col" class="text-center">Kode Proyek</th>
+                    <th scope="col" class="text-center no-wrap">Kode Proyek</th>
                     <th scope="col">Nama Proyek</th>
                     <th scope="col">Penerima</th>
                     <th scope="col">Kasbon</th>
                     <th scope="col">Deskripsi</th>
-                    <th scope="col">Kategori Biaya</th>
+                    <th scope="col" class="no-wrap">Kategori Biaya</th>
                     <th scope="col">Jenis Biaya</th>
-                    <th scope="col">Episode</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($transaksi as $post)
                     <tr>
                         <td class="no-wrap">{{ \Carbon\Carbon::parse($post->transaction_date)->format('d M Y') }}</td>
-                        <td>{{ $post->project->project_id }}</td>
+                        <td><b>{{ $post->project->project_id }}</b></td>
                         <td><b>{{ $post->project->title }}</b></td>
                         <td>{{ $post->recipient->name }}</td>
                         <td class="no-wrap">{{ formatRupiah($post->amount) }}</td>
                         <td>{{ $post->description }}</td>
                         <td>{{ $post->category }}</td>
                         <td>{{ $post->expensetype->name }}</td>
-                        <td class="text-center">{{ $post->project->episode }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -59,6 +57,40 @@
         $("#modalOpen").on("click", function() {
             // Open the modal
             $('#exampleModal').modal('show');
+        });
+    </script>
+    <script>
+        var table = new DataTable('#dataTable', {
+            "columnDefs": [{
+                "type": "date-eu",
+                "targets": 0, // Assuming the date column is the second column (index 1)
+                "render": function(data, type, row, meta) {
+                    if (type === 'sort') {
+                        // Convert the date to a format that can be sorted naturally
+                        return new Date(data).toISOString();
+                    }
+
+                    // Display the date in the "dd MMMM YYYY" format (full month name)
+                    const date = new Date(data);
+                    const day = date.toLocaleString('en-US', {
+                        day: '2-digit'
+                    });
+                    const month = date.toLocaleString('en-US', {
+                        month: 'short'
+                    });
+                    const year = date.toLocaleString('en-US', {
+                        year: 'numeric'
+                    });
+
+                    return `${day} ${month} ${year}`;
+                }
+            }],
+            "dom": '<"container-fluid"<"row"<"col"B><"col"f>>>rt<"container-fluid mt-4"<"row"<"col"i><"col"p>>>',
+            "buttons": [
+                'print', 'excel', 'pdf'
+            ],
+            "pageLength": 15,
+            "order": [0, 'desc'],
         });
     </script>
 @endsection
