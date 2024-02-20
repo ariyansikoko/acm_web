@@ -12,7 +12,7 @@
         </div>
     @endif
     <div class="mb-3">
-        <a href="/dashboard/proyek" class="btn btn-success">
+        <a href="/dashboard/proyek" class="btn btn-primary">
             <i class="bi bi-caret-left-fill"></i> Kembali
         </a> <a href="/dashboard/proyek/{{ $project->project_id }}/edit" class="btn btn-warning">
             <i class="bi bi-pencil-square"></i> Edit</a>

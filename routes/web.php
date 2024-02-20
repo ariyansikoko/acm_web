@@ -11,6 +11,8 @@ use App\Http\Controllers\AdminAccountController;
 use App\Http\Controllers\DashboardProjectController;
 use App\Http\Controllers\DashboardRecipientController;
 use App\Http\Controllers\DashboardTransactionController;
+use App\Http\Controllers\DashboardEmployeeController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,4 +62,5 @@ Route::get('/dashboard', function () {
 Route::resource('/dashboard/pengeluaran', DashboardTransactionController::class)->middleware('auth');
 Route::resource('/dashboard/proyek', DashboardProjectController::class)->middleware('auth');
 Route::resource('/dashboard/penerima', DashboardRecipientController::class)->except('show')->middleware('auth');
-Route::resource('/dashboard/account', AdminAccountController::class)->except('show')->middleware('is_admin');
+Route::resource('/dashboard/account', AdminAccountController::class)->except(['show', 'create', 'store'])->middleware('is_admin');
+Route::resource('/dashboard/karyawan', DashboardEmployeeController::class)->middleware('is_admin');

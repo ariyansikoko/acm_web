@@ -40,6 +40,14 @@
                 </h6>
                 <ul class="nav flex-column mb-auto">
                     <li class="nav-item d-flex align-items-center">
+                        <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/karyawan*') ? 'active' : 'text-secondary' }}"
+                            href="/dashboard/karyawan">
+                            <span><i class="bi bi-person-vcard"></i> Karyawan</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav flex-column mb-auto">
+                    <li class="nav-item d-flex align-items-center">
                         <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/account*') ? 'active' : 'text-secondary' }}"
                             href="/dashboard/account">
                             <span><i class="bi bi-person-circle"></i> Accounts Manager</span>

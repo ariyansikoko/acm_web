@@ -18,7 +18,7 @@
         </div>
     @endif
 
-    <div class="table-responsive small col-md-5">
+    <div class="table-responsive table-sm small col-md-5">
         <a href="/dashboard/penerima/create" class="btn btn-primary mb-3">Tambah Penerima Baru</a>
         <table class="table table-striped table-sm align-middle table-hover">
             <thead>
