@@ -13,9 +13,21 @@
                     <a class="nav-link  {{ Request::is('/') ? 'active' : '' }}" href="/">Home</a>
                 </li>
                 @auth
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link {{ Request::is('pengeluaran*') ? 'active' : '' }}"
                             href="/pengeluaran">Transaksi</a>
+                    </li> --}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Transaksi
+                        </a>
+                        <ul class="dropdown-menu" data-bs-theme="light">
+                            <li><a class="dropdown-item" href="/pengeluaran">TA</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Icon+</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('proyek*') ? 'active' : '' }}" href="/proyek">Proyek</a>

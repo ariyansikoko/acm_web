@@ -71,4 +71,35 @@ class ProjectController extends Controller
 
         return redirect()->back()->with('success', 'Transaksi untuk proyek ini berhasil ditambahkan.');
     }
+
+    public function export(Project $project)
+    {
+        $transaction = Transaction::where('project_id', $project->id)->get();
+        $projectall = Project::where('episode', $project->episode)->get();
+        $totalbiaya = Transaction::where('project_id', $project->id)->where('category', 'Biaya Perusahaan')->sum('amount');
+        $totalsubcon = Transaction::where('project_id', $project->id)->where('category', 'DP Subcon')->sum('amount');
+
+        $dpsubcon = ['B Upah Tukang', 'B Upah KU', 'B Upah & Honorer', 'B Penyambungan'];
+
+        $episode = $project->episode;
+
+        $totalAmount = DB::table('transactions')
+            ->join('projects', 'transactions.project_id', '=', 'projects.id')
+            ->where('projects.episode', $episode)
+            ->sum('transactions.amount');
+
+        return view('exportPDF', [
+            'title' => 'ACM | Export',
+            'header' => 'Nama Proyek: ' . $project->title,
+            'transaction' => $transaction,
+            'type' => Expensetype::all(),
+            'totalbp' => $totalbiaya,
+            'totaldp' => $totalsubcon,
+            'filter' => $dpsubcon,
+            'episode' => $episode,
+            'projectall' => $projectall,
+            'project' => $project,
+            'totalamount' => $totalAmount,
+        ]);
+    }
 }

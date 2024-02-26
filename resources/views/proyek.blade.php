@@ -21,7 +21,7 @@
                     <th scope="col">Nilai BOQ Subcon</th>
                     <th scope="col">No PO</th>
                     <th scope="col">Keterangan BOQ</th>
-                    <th scope="col">EP</th>
+                    <th scope="col" class="text-center">EP</th>
                     <th scope="col" class="text-center">Status Budget</th>
                     <th scope="col">View</th>
                 </tr>
@@ -30,8 +30,8 @@
                 @foreach ($project as $post)
                     <tr>
                         <td class="no-wrap">{{ \Carbon\Carbon::parse($post->project_date)->format('d M Y') }}</td>
-                        <td><b>{{ $post->project_id }}</b></td>
-                        <td class="text-center">{{ $post['location'] }}</td>
+                        <td class="text-center"><b>{{ $post->project_id }}</b></td>
+                        <td>{{ $post['location'] }}</td>
                         <td>{{ $post['type'] }}</td>
                         <td><b>{{ $post['title'] }}</b></td>
                         <td class="no-wrap">{{ formatRupiah($post['boq_plan']) }}</td>
@@ -45,15 +45,17 @@
                         <td class="no-wrap">{{ formatRupiah($post['boq_subcon']) }}</td>
                         <td>{{ $post->no_po }}</td>
                         <td>{{ $post['boq_desc'] }}</td>
-                        <td class="text-center">{{ $post['episode'] }}</td>
+                        <td>{{ $post['episode'] }}</td>
                         @if ($post->status == 1)
                             <td class="text-success text-center">OPEN</td>
                         @else
                             <td class="text-danger text-center">CLOSED</td>
                         @endif
                         <td class="no-wrap">
-                            <a href="/proyek/{{ $post->project_id }}" class="btn btn-success btn-sm"><i
-                                    class="bi bi-list"></i></a>
+                            <a href="/proyek/{{ $post->project_id }}" class="btn btn-success btn-sm"
+                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                                Summary
+                            </a>
                         </td>
                     </tr>
                 @endforeach
@@ -87,7 +89,7 @@
                     }
                 },
                 {
-                    targets: [8, 10, 11],
+                    targets: [3, 7, 8, 11],
                     visible: false,
                 },
             ],

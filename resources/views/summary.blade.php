@@ -3,9 +3,12 @@
 @section('body')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h2>Laporan Laba/Rugi</h2>
-        <button type="button" class="btn btn-primary" id="modalOpen" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Tambah Transaksi</a>
-        </button>
+        <div class="">
+            <a href="/proyek/{{ $project->project_id }}/export" target="_blank" class="btn btn-info">Export PDF</a>
+            <button type="button" class="btn btn-primary" id="modalOpen" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Tambah Transaksi</a>
+            </button>
+        </div>
     </div>
 
     <div class="justify-content-center">
@@ -73,7 +76,7 @@
                 <td>{{ formatRupiah($project->boq_subcon - $totaldp) }}</td>
             </tr>
             <tr class="table-secondary">
-                <th>Persentase Pengambilan</th>
+                <th>Persentase Sisa Pengambilan</th>
                 <td>
                     @if ($project->boq_subcon)
                         {{ formatPercent((($project->boq_subcon - $totaldp) / $project->boq_subcon) * 100) }}

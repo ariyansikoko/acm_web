@@ -11,5 +11,5 @@ function formatRupiah($nominal)
 
 function formatPercent($nominal)
 {
-    return number_format($nominal, 0, '', '') . "%";
+    return number_format($nominal, 2, ',', '') . "%";
 }
