@@ -131,7 +131,7 @@
         <table class="table table-hover table-striped-columns table-bordered table-sm small">
             <thead>
                 <tr>
-                    <th scope="col"></th>
+                    <th scope="col">Deskripsi</th>
                     <th scope="col">Biaya Perusahaan</th>
                     <th scope="col">DP Subcon</th>
                 </tr>
@@ -141,17 +141,12 @@
                     @if ($transaction->where('expensetype_id', $item->id)->sum('amount') != 0)
                         <tr>
                             <td>{{ $item->name }}</td>
-                            @if (in_array($item->name, $filter))
-                                <td>Rp 0</td>
-                                <td>
-                                    {{ formatRupiah($transaction->where('expensetype_id', $item->id)->sum('amount')) }}
-                                </td>
-                            @else
-                                <td>
-                                    {{ formatRupiah($transaction->where('expensetype_id', $item->id)->sum('amount')) }}
-                                </td>
-                                <td>Rp 0</td>
-                            @endif
+                            <td>
+                                {{ formatRupiah($transaction->where('expensetype_id', $item->id)->where('category', 'Biaya Perusahaan')->sum('amount')) }}
+                            </td>
+                            <td>
+                                {{ formatRupiah($transaction->where('expensetype_id', $item->id)->where('category', 'DP Subcon')->sum('amount')) }}
+                            </td>
                         </tr>
                     @endif
                 @endforeach
