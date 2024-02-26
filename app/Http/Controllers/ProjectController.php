@@ -89,7 +89,7 @@ class ProjectController extends Controller
             ->sum('transactions.amount');
 
         return view('exportPDF', [
-            'title' => 'ACM | Export',
+            'title' => 'Laporan Proyek ' . $project->title,
             'header' => 'Nama Proyek: ' . $project->title,
             'transaction' => $transaction,
             'type' => Expensetype::all(),

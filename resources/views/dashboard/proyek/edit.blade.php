@@ -43,11 +43,19 @@
             </div>
             <div class="mb-3">
                 <label for="type" class="form-label">Jenis Proyek</label>
-                <input type="text" class="form-control" @error('type') is-invalid @enderror id="type" name="type"
-                    required value="{{ old('type', $project->type) }}">
-                @error('type')
-                    <div class="text-danger"><small>{{ $message }}</small></div>
-                @enderror
+                <select type="text" class="form-select" id="type" name="type">
+                    <option value="HEM" {{ $project->type == 'HEM' ? 'selected' : '' }}>HEM</option>
+                    <option value="MATR" {{ $project->type == 'MATR' ? 'selected' : '' }}>MATR</option>
+                    <option value="MTEL" {{ $project->type == 'MTEL' ? 'selected' : '' }}>MTEL</option>
+                    <option value="NODE B" {{ $project->type == 'NODE B' ? 'selected' : '' }}>NODE B</option>
+                    <option value="PT2NS" {{ $project->type == 'PT2NS' ? 'selected' : '' }}>PT2NS</option>
+                    <option value="PSB" {{ $project->type == 'PSB' ? 'selected' : '' }}>PSB</option>
+                    <option value="QE" {{ $project->type == 'QE' ? 'selected' : '' }}>QE</option>
+                    <option value="STTF" {{ $project->type == 'STTF' ? 'selected' : '' }}>STTF</option>
+                    <option value="TBG" {{ $project->type == 'TBG' ? 'selected' : '' }}>TBG</option>
+                    <option value="GAMAS" {{ $project->type == 'GAMAS' ? 'selected' : '' }}>GAMAS</option>
+                    <option value="MAINT" {{ $project->type == 'MAINT' ? 'selected' : '' }}>MAINT</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="title" class="form-label">Nama Pekerjaan</label>

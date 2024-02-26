@@ -86,8 +86,11 @@ class DashboardProjectController extends Controller
             'boq_desc' => 'max:255',
             'no_po' => 'nullable|integer',
             'status' => 'required|boolean',
-            'close_date' => 'required|date',
         ];
+
+        if ($request->status != 1) {
+            $rules['close_date'] = 'required|date';
+        }
 
         if ($request->project_id != $proyek->project_id) {
             $rules['project_id'] = 'required|unique:projects|digits:8';
