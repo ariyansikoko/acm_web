@@ -39,15 +39,15 @@
                 <th>Investasi Episode</th>
                 <th>{{ $episode }}</th>
             </tr>
-            <tr class="table-primary">
+            <tr class="table-secondary">
                 <th>Total Nilai BOQ ALL</th>
                 <td>{{ formatRupiah($projectall->sum('boq_plan')) }}</td>
             </tr>
-            <tr class="table-primary">
+            <tr class="table-secondary">
                 <th>Total Pengeluaran ALL</th>
                 <td>{{ formatRupiah($totalamount) }}</td>
             </tr>
-            <tr class="table-primary">
+            <tr class="table-secondary">
                 <th>Persentase ALL</th>
                 <td>{{ formatPercent(($totalamount / $projectall->sum('boq_plan')) * 100) }}</td>
             </tr>
@@ -67,15 +67,15 @@
                 <th>Nilai BOQ Subcon</th>
                 <td>{{ formatRupiah($project->boq_subcon) }}</td>
             </tr>
-            <tr class="table-secondary">
+            <tr class="table-info">
                 <th>Total Pengambilan (DP Subcon)</th>
                 <td>{{ formatRupiah($totaldp) }}</td>
             </tr>
-            <tr class="table-secondary">
+            <tr class="table-info">
                 <th>Sisa Pengambilan</th>
                 <td>{{ formatRupiah($project->boq_subcon - $totaldp) }}</td>
             </tr>
-            <tr class="table-secondary">
+            <tr class="table-info">
                 <th>Persentase Sisa Pengambilan</th>
                 <td>
                     @if ($project->boq_subcon)
@@ -85,7 +85,7 @@
                     @endif
                 </td>
             </tr>
-            <tr class="table-secondary">
+            <tr class="table-info">
                 <th>Persentase Pengambilan dari BOQ</th>
                 <td>
                     @if ($project->boq_actual != 0)
@@ -95,7 +95,7 @@
                     @endif
                 </td>
             </tr>
-            <tr class="table-secondary">
+            <tr class="table-info">
                 <th>Persentase Biaya Perusahaan</th>
                 <td>
                     @if ($project->boq_actual != 0)

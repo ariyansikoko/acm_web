@@ -15,13 +15,15 @@
         }
 
         @media print {
-            .print-header {
-                page-break-before: always;
+
+            .print-header,
+            .print-table {
                 width: 100%;
+                page-break-inside: avoid;
+                /* Prevent breaking within headers and tables */
             }
 
             .print-table {
-                width: 100%;
                 page-break-after: auto;
                 /* Allow the first table to break across pages when necessary */
             }
@@ -141,9 +143,9 @@
 
             </table>
         </div>
-        <div class="col-md-6 mx-auto">
-            <h5 class="text-center my-4 print-header">Rincian Transaksi</h5>
-            <table class="table table-bordered table-sm small border-dark print-table">
+        <div class="col-md-6 mx-auto print-table">
+            <h5 class="text-center my-4">Rincian Transaksi</h5>
+            <table class="table table-bordered table-sm small border-dark">
                 <thead>
                     <tr>
                         <th scope="col">Deskripsi</th>
