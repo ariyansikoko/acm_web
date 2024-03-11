@@ -77,9 +77,12 @@
                     </option>
                     <option value="Administrasi" {{ old('department') == 'Administrasi' ? 'selected' : '' }}>
                         Administrasi</option>
+                    <option value="Finance" {{ old('department') == 'Finance' ? 'selected' : '' }}>Finance</option>
                     <option value="HRD" {{ old('department') == 'HRD' ? 'selected' : '' }}>HRD</option>
                     <option value="IT" {{ old('department') == 'IT' ? 'selected' : '' }}>IT</option>
                     <option value="Project" {{ old('department') == 'Project' ? 'selected' : '' }}>Project</option>
+                    <option value="Provisioning" {{ old('department') == 'Provisioning' ? 'selected' : '' }}>Provisioning
+                    </option>
                     <option value="Sales" {{ old('department') == 'Sales' ? 'selected' : '' }}>Sales</option>
                 </select>
             </div>

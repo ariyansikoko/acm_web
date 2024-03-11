@@ -36,12 +36,8 @@
                         <th scope="col">{{ $loop->iteration }}</th>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->email }}</td>
-                        @if ($item->isAdmin == 1)
-                            <td>Administrator</td>
-                        @else
-                            <td>User</td>
-                        @endif
-                        <td>
+                        <td>{{ $item->role }}</td>
+                        <td class="no-wrap">
                             </a> <a href="/dashboard/account/{{ $item->id }}/edit" class="btn btn-warning btn-sm">
                                 <i class="bi bi-pencil-square"></i></a>
                             <form action="/dashboard/account/{{ $item->id }}" method="POST" class="d-inline">

@@ -35,7 +35,7 @@ class AdminAccountController extends Controller
     public function update(Request $request, User $account)
     {
         $rules = [
-            'isAdmin' => 'required|boolean',
+            'role' => 'required',
             'name' => 'required',
             'email' => 'required|email:dns',
         ];

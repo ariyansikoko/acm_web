@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class isAdmin
+class isHRD
 {
     /**
      * Handle an incoming request.
@@ -19,7 +19,7 @@ class isAdmin
             abort(403);
         }
 
-        if (auth()->user()->role != 'Admin') {
+        if (auth()->user()->role != 'HRD' && auth()->user()->role != 'Admin') {
             abort(403);
         }
 

@@ -31,12 +31,11 @@
                     </a>
                 </li>
             </ul>
-
-            @can('admin')
+            @can('hrd')
                 <hr class="my-3">
                 <h6
                     class="sidebar-heading d-flex justify-content-between align-items-center px-3 mb-1 text-body-secondary text-uppercase">
-                    <span>Administrator</span>
+                    <span>Other</span>
                 </h6>
                 <ul class="nav flex-column mb-auto">
                     <li class="nav-item d-flex align-items-center">
@@ -46,6 +45,14 @@
                         </a>
                     </li>
                 </ul>
+            @endcan
+            @can('admin')
+                <hr class="my-3">
+                <h6
+                    class="sidebar-heading d-flex justify-content-between align-items-center px-3 mb-1 text-body-secondary text-uppercase">
+                    <span>Administrator</span>
+                </h6>
+
                 <ul class="nav flex-column mb-auto">
                     <li class="nav-item d-flex align-items-center">
                         <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/account*') ? 'active' : 'text-secondary' }}"

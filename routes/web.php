@@ -64,4 +64,4 @@ Route::resource('/dashboard/pengeluaran', DashboardTransactionController::class)
 Route::resource('/dashboard/proyek', DashboardProjectController::class)->middleware('auth');
 Route::resource('/dashboard/penerima', DashboardRecipientController::class)->except('show')->middleware('auth');
 Route::resource('/dashboard/account', AdminAccountController::class)->except(['show', 'create', 'store'])->middleware('is_admin');
-Route::resource('/dashboard/karyawan', DashboardEmployeeController::class)->middleware('is_admin');
+Route::resource('/dashboard/karyawan', DashboardEmployeeController::class)->middleware('is_hrd');

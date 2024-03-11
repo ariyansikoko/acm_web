@@ -26,7 +26,6 @@
                     <th scope="col">ID</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Tanggal Lahir</th>
-                    <th scope="col">Alamat Sekarang</th>
                     <th scope="col">No HP</th>
                     <th scope="col">Tanggal Mulai Kerja</th>
                     <th scope="col">Lokasi Kerja</th>
@@ -41,13 +40,12 @@
                         <td>{{ $post->employee_id }}</td>
                         <td>{{ $post->name }}</td>
                         <td>{{ \Carbon\Carbon::parse($post->birth_date)->format('d M') }}</td>
-                        <td>{{ $post->address }}</td>
                         <td>{{ $post->phone_number }}</td>
                         <td>{{ $post->start_date }}</td>
                         <td>{{ $post->work_location }}</td>
                         <td>{{ $post->department }}</td>
                         <td>{{ $post->position->title }}</td>
-                        <td>
+                        <td class="no-wrap">
                             <a href="/dashboard/karyawan/{{ $post->employee_id }}" class="btn btn-success btn-sm">
                                 <i class="bi bi-eye"></i>
                             </a> <a href="/dashboard/karyawan/{{ $post->employee_id }}/edit"

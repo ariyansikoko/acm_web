@@ -15,7 +15,7 @@ class DashboardEmployeeController extends Controller
     public function index()
     {
         return view('dashboard.karyawan.index', [
-            'employee' => Employee::all(),
+            'employee' => Employee::orderBy('name', 'asc')->get(),
         ]);
     }
 
@@ -52,7 +52,7 @@ class DashboardEmployeeController extends Controller
             'account_number' => 'nullable|numeric',
             'ktp_number' => 'required|numeric|digits:16',
             'bpjs' => 'nullable|numeric|digits:16',
-            'npwp' => 'nullable|numeric|digits:16',
+            'npwp' => 'nullable',
             'blood_type' => 'required',
             'emergency_contact' => 'nullable',
             'emergency_number' => 'nullable',
@@ -107,13 +107,13 @@ class DashboardEmployeeController extends Controller
             'image_ktp' => 'nullable|image|file|max:1024',
             'start_date' => 'nullable|date',
             'address' => 'nullable',
-            'phone_number' => 'nullable|numeric',
+            'phone_number' => 'nullable',
             'salary' => 'nullable|numeric',
             'bank_name' => 'nullable',
             'account_number' => 'nullable|numeric',
             'ktp_number' => 'nullable|numeric|digits:16',
             'bpjs' => 'nullable|numeric|digits:16',
-            'npwp' => 'nullable|numeric|digits:16',
+            'npwp' => 'nullable',
             'blood_type' => 'required',
             'emergency_contact' => 'nullable',
             'emergency_number' => 'nullable|numeric',

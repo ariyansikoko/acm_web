@@ -26,15 +26,11 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="isAdmin" class="form-label">Role</label>
-                <select class="form-select" name="isAdmin">
-                    @if (old('isAdmin', $accounts->isAdmin) == 1)
-                        <option value="1" selected>Administrator</option>
-                        <option value="0">User</option>
-                    @else
-                        <option value="1">Administrator</option>
-                        <option value="0" selected>User</option>
-                    @endif
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" name="role">
+                    <option value="Admin" {{ $accounts->role == 'Admin' ? 'selected' : '' }}>Administrator</option>
+                    <option value="HRD" {{ $accounts->role == 'HRD' ? 'selected' : '' }}>HRD</option>
+                    <option value="User" {{ $accounts->role == 'User' ? 'selected' : '' }}>User</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
