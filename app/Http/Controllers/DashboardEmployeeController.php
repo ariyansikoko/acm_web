@@ -35,24 +35,24 @@ class DashboardEmployeeController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'employee_id' => 'required|unique:employees|size:4',
+            'employee_id' => 'nullable|unique:employees|size:6',
             'name' => 'required|max:255',
-            'birth_date' => 'nullable|required|date',
+            'birth_date' => 'required|date',
             'department' => 'required',
             'position_id' => 'required',
             'work_location' => 'required',
             'ptkp_status' => 'required',
             'image_self' => 'nullable|image|file|max:1024',
             'image_ktp' => 'nullable|image|file|max:1024',
-            'start_date' => 'nullable|date',
-            'address' => 'nullable',
+            'start_date' => 'required|date',
+            'address' => 'required',
             'phone_number' => 'nullable',
             'salary' => 'nullable|numeric',
             'bank_name' => 'nullable',
             'account_number' => 'nullable|numeric',
-            'ktp_number' => 'nullable|numeric',
-            'bpjs' => 'nullable',
-            'npwp' => 'nullable',
+            'ktp_number' => 'required|numeric|digits:16',
+            'bpjs' => 'nullable|numeric|digits:16',
+            'npwp' => 'nullable|numeric|digits:16',
             'blood_type' => 'required',
             'emergency_contact' => 'nullable',
             'emergency_number' => 'nullable',
@@ -111,16 +111,16 @@ class DashboardEmployeeController extends Controller
             'salary' => 'nullable|numeric',
             'bank_name' => 'nullable',
             'account_number' => 'nullable|numeric',
-            'ktp_number' => 'nullable|numeric',
-            'bpjs' => 'nullable',
-            'npwp' => 'nullable',
+            'ktp_number' => 'nullable|numeric|digits:16',
+            'bpjs' => 'nullable|numeric|digits:16',
+            'npwp' => 'nullable|numeric|digits:16',
             'blood_type' => 'required',
             'emergency_contact' => 'nullable',
             'emergency_number' => 'nullable|numeric',
         ];
 
         if ($request->employee_id != $karyawan->employee_id) {
-            $rules['employee_id'] = 'required|unique:employees|digits:4';
+            $rules['employee_id'] = 'nullable|unique:employees|digits:4';
         }
 
         $validated = $request->validate($rules);
