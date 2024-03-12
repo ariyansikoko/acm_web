@@ -166,22 +166,27 @@
                     <option value="O" {{ old('blood_type') == 'O' ? 'selected' : '' }}>O</option>
                 </select>
             </div>
-            <div class="mb-3">
-                <label for="emergency_contact" class="form-label">Nama Kontak Emergency</label>
-                <input type="text" class="form-control" id="emergency_contact" name="emergency_contact"
-                    value="{{ old('emergency_contact') }}">
-                @error('emergency_contact')
-                    <div class="text-danger"><small>{{ $message }}</small></div>
-                @enderror
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="emergency_contact" class="form-label">Nama Kontak Emergency</label>
+                    <input type="text" class="form-control" id="emergency_contact" name="emergency_contact"
+                        value="{{ old('emergency_contact') }}">
+                    @error('emergency_contact')
+                        <div class="text-danger"><small>{{ $message }}</small></div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label for="emergency_number" class="form-label">Nomor Kontak Emergency</label>
+                    <input type="text" class="form-control" id="emergency_number" name="emergency_number"
+                        value="{{ old('emergency_number') }}">
+                    @error('emergency_number')
+                        <div class="text-danger"><small>{{ $message }}</small></div>
+                    @enderror
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="emergency_number" class="form-label">Nomor Kontak Emergency</label>
-                <input type="text" class="form-control" id="emergency_number" name="emergency_number"
-                    value="{{ old('emergency_number') }}">
-                @error('emergency_number')
-                    <div class="text-danger"><small>{{ $message }}</small></div>
-                @enderror
-            </div>
+
             <div class="mb-3">
                 <label for="image_self" class="form-label">Pas Foto (Max: 1MB)</label>
                 <img class="img-preview-pasfoto img-fluid mb-3 col-sm-3">

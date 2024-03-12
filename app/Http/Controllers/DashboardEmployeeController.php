@@ -118,7 +118,7 @@ class DashboardEmployeeController extends Controller
             'bpjs' => 'nullable|numeric|digits:11',
             'npwp' => array(
                 'nullable',
-                'regex:/^([\d]{2})[.]([\d]{3})[.]([\d]{3})[.][\d][-]([\d]{3})[.]([\d]{3})$/g'
+                'regex:/^([\d]{2})[.]([\d]{3})[.]([\d]{3})[.][\d][-]([\d]{3})[.]([\d]{3})$/'
             ),
             'blood_type' => 'required',
             'emergency_contact' => 'nullable',

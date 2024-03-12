@@ -12,7 +12,7 @@
             <div class="mb-3">
                 <label for="employee_id" class="form-label">ID Karyawan</label>
                 <input type="text" class="form-control" @error('employee_id') is-invalid @enderror id="employee_id"
-                    name="employee_id" required value="{{ old('employee_id', $karyawan->employee_id) }}" autofocus>
+                    name="employee_id" value="{{ old('employee_id', $karyawan->employee_id) }}" autofocus>
                 @error('employee_id')
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
@@ -146,14 +146,14 @@
             <div class="mb-3">
                 <label for="ptkp_status" class="form-label">Status PTKP</label>
                 <select type="text" class="form-select" id="ptkp_status" name="ptkp_status">
-                    <option value="K0" {{ $karyawan->ptkp_status == 'K/0' ? 'selected' : '' }}>K0</option>
-                    <option value="K1" {{ $karyawan->ptkp_status == 'K/1' ? 'selected' : '' }}>K1</option>
-                    <option value="K2" {{ $karyawan->ptkp_status == 'K/2' ? 'selected' : '' }}>K2</option>
-                    <option value="K3" {{ $karyawan->ptkp_status == 'K/3' ? 'selected' : '' }}>K3</option>
-                    <option value="TK0" {{ $karyawan->ptkp_status == 'TK/0' ? 'selected' : '' }}>TK0</option>
-                    <option value="TK1" {{ $karyawan->ptkp_status == 'TK/1' ? 'selected' : '' }}>TK1</option>
-                    <option value="TK2" {{ $karyawan->ptkp_status == 'TK/2' ? 'selected' : '' }}>TK2</option>
-                    <option value="TK3" {{ $karyawan->ptkp_status == 'TK/3' ? 'selected' : '' }}>TK3</option>
+                    <option value="K/0" {{ $karyawan->ptkp_status == 'K/0' ? 'selected' : '' }}>K/0</option>
+                    <option value="K/1" {{ $karyawan->ptkp_status == 'K/1' ? 'selected' : '' }}>K/1</option>
+                    <option value="K/2" {{ $karyawan->ptkp_status == 'K/2' ? 'selected' : '' }}>K/2</option>
+                    <option value="K/3" {{ $karyawan->ptkp_status == 'K/3' ? 'selected' : '' }}>K/3</option>
+                    <option value="TK/0" {{ $karyawan->ptkp_status == 'TK/0' ? 'selected' : '' }}>TK/0</option>
+                    <option value="TK/1" {{ $karyawan->ptkp_status == 'TK/1' ? 'selected' : '' }}>TK/1</option>
+                    <option value="TK/2" {{ $karyawan->ptkp_status == 'TK/2' ? 'selected' : '' }}>TK/2</option>
+                    <option value="TK/3" {{ $karyawan->ptkp_status == 'TK/3' ? 'selected' : '' }}>TK/3</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -165,21 +165,23 @@
                     <option value="O" {{ $karyawan->blood_type == 'O' ? 'selected' : '' }}>O</option>
                 </select>
             </div>
-            <div class="mb-3">
-                <label for="emergency_contact" class="form-label">Nama Kontak Emergency</label>
-                <input type="text" class="form-control" id="emergency_contact" name="emergency_contact"
-                    value="{{ old('emergency_contact', $karyawan->emergency_name) }}">
-                @error('emergency_contact')
-                    <div class="text-danger"><small>{{ $message }}</small></div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="emergency_number" class="form-label">Nomor Kontak Emergency</label>
-                <input type="text" class="form-control" id="emergency_number" name="emergency_number"
-                    value="{{ old('emergency_number', $karyawan->emergency_number) }}">
-                @error('emergency_number')
-                    <div class="text-danger"><small>{{ $message }}</small></div>
-                @enderror
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="emergency_contact" class="form-label">Nama Kontak Emergency</label>
+                    <input type="text" class="form-control" id="emergency_contact" name="emergency_contact"
+                        value="{{ old('emergency_contact', $karyawan->emergency_contact) }}">
+                    @error('emergency_contact')
+                        <div class="text-danger"><small>{{ $message }}</small></div>
+                    @enderror
+                </div>
+                <div class="col-md-6">
+                    <label for="emergency_number" class="form-label">Nomor Kontak Emergency</label>
+                    <input type="text" class="form-control" id="emergency_number" name="emergency_number"
+                        value="{{ old('emergency_number', $karyawan->emergency_number) }}">
+                    @error('emergency_number')
+                        <div class="text-danger"><small>{{ $message }}</small></div>
+                    @enderror
+                </div>
             </div>
             <div class="mb-3">
                 <label for="image_self" class="form-label">Pas Foto (Max: 1MB)</label>

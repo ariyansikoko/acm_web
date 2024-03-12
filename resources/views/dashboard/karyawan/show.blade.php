@@ -61,7 +61,7 @@
             </tr>
             <tr>
                 <th scope="row">Lokasi Kerja</th>
-                <td>{{ $employee->work_address }}</td>
+                <td>{{ $employee->work_location }}</td>
             </tr>
             <tr>
                 <th scope="row">Bagian</th>
