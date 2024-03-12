@@ -51,7 +51,7 @@ class DashboardEmployeeController extends Controller
             'bank_name' => 'nullable',
             'account_number' => 'nullable|numeric',
             'ktp_number' => 'required|numeric|digits:16',
-            'bpjs' => 'nullable|numeric|digits:16',
+            'bpjs' => 'nullable|numeric|digits:11',
             'npwp' => 'nullable',
             'blood_type' => 'required',
             'emergency_contact' => 'nullable',
@@ -97,7 +97,7 @@ class DashboardEmployeeController extends Controller
     public function update(Request $request, Employee $karyawan)
     {
         $rules = [
-            'name' => 'required',
+            'name' => 'required|max:50',
             'birth_date' => 'required|date',
             'department' => 'required',
             'position_id' => 'required',
@@ -105,22 +105,22 @@ class DashboardEmployeeController extends Controller
             'ptkp_status' => 'required',
             'image_self' => 'nullable|image|file|max:1024',
             'image_ktp' => 'nullable|image|file|max:1024',
-            'start_date' => 'nullable|date',
-            'address' => 'nullable',
+            'start_date' => 'required|date',
+            'address' => 'required',
             'phone_number' => 'nullable',
             'salary' => 'nullable|numeric',
             'bank_name' => 'nullable',
-            'account_number' => 'nullable|numeric',
-            'ktp_number' => 'nullable|numeric|digits:16',
-            'bpjs' => 'nullable|numeric|digits:16',
+            'account_number' => 'nullable',
+            'ktp_number' => 'required|digits:16',
+            'bpjs' => 'nullable|digits:11',
             'npwp' => 'nullable',
             'blood_type' => 'required',
             'emergency_contact' => 'nullable',
-            'emergency_number' => 'nullable|numeric',
+            'emergency_number' => 'nullable',
         ];
 
         if ($request->employee_id != $karyawan->employee_id) {
-            $rules['employee_id'] = 'nullable|unique:employees|digits:4';
+            $rules['employee_id'] = 'nullable|unique:employees|digits:6';
         }
 
         $validated = $request->validate($rules);

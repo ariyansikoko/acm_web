@@ -100,31 +100,49 @@
                 <label for="salary" class="form-label">Gaji</label>
                 <input type="text" class="form-control" id="salary" name="salary"
                     value="{{ old('salary', $karyawan->salary) }}">
+                @error('salary')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="bank_name" class="form-label">Nama Bank</label>
                 <input type="text" class="form-control" id="bank_name" name="bank_name"
                     value="{{ old('bank_name, $karyawan->bank_name') }}">
+                @error('bank_name')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="account_number" class="form-label">No Rekening</label>
                 <input type="text" class="form-control" id="account_number" name="account_number"
                     value="{{ old('account_number', $karyawan->account_number) }}">
+                @error('account_number')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="ktp_number" class="form-label">No KTP</label>
                 <input type="text" class="form-control" id="ktp_number" name="ktp_number"
                     value="{{ old('ktp_number', $karyawan->ktp_number) }}">
+                @error('ktp_number')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="bpjs" class="form-label">No BPJS</label>
                 <input type="text" class="form-control" id="bpjs" name="bpjs"
                     value="{{ old('bpjs', $karyawan->bpjs) }}">
+                @error('bpjs')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="npwp" class="form-label">NPWP</label>
                 <input type="text" class="form-control" id="npwp" name="npwp"
                     value="{{ old('npwp', $karyawan->npwp) }}">
+                @error('npwp')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="ptkp_status" class="form-label">Status PTKP</label>
@@ -152,11 +170,17 @@
                 <label for="emergency_contact" class="form-label">Nama Kontak Emergency</label>
                 <input type="text" class="form-control" id="emergency_contact" name="emergency_contact"
                     value="{{ old('emergency_contact', $karyawan->emergency_name) }}">
+                @error('emergency_contact')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="emergency_number" class="form-label">Nomor Kontak Emergency</label>
                 <input type="text" class="form-control" id="emergency_number" name="emergency_number"
                     value="{{ old('emergency_number', $karyawan->emergency_number) }}">
+                @error('emergency_number')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="image_self" class="form-label">Pas Foto (Max: 1MB)</label>
