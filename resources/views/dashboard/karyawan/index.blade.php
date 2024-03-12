@@ -39,19 +39,18 @@
                     <tr>
                         <td>{{ $post->employee_id }}</td>
                         <td>{{ $post->name }}</td>
-                        <td>{{ \Carbon\Carbon::parse($post->birth_date)->format('d M') }}</td>
+                        <td class="no-wrap">{{ \Carbon\Carbon::parse($post->birth_date)->format('d-M-Y') }}</td>
                         <td>{{ $post->phone_number }}</td>
-                        <td>{{ $post->start_date }}</td>
+                        <td class="no-wrap">{{ \Carbon\Carbon::parse($post->start_date)->format('d-M-Y') }}</td>
                         <td>{{ $post->work_location }}</td>
                         <td>{{ $post->department }}</td>
                         <td>{{ $post->position->title }}</td>
                         <td class="no-wrap">
-                            <a href="/dashboard/karyawan/{{ $post->employee_id }}" class="btn btn-success btn-sm">
+                            <a href="/dashboard/karyawan/{{ $post->id }}" class="btn btn-success btn-sm">
                                 <i class="bi bi-eye"></i>
-                            </a> <a href="/dashboard/karyawan/{{ $post->employee_id }}/edit"
-                                class="btn btn-warning btn-sm">
+                            </a> <a href="/dashboard/karyawan/{{ $post->id }}/edit" class="btn btn-warning btn-sm">
                                 <i class="bi bi-pencil-square"></i></a>
-                            <form action="/dashboard/karyawan/{{ $post->employee_id }}" method="POST" class="d-inline">
+                            <form action="/dashboard/karyawan/{{ $post->id }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">

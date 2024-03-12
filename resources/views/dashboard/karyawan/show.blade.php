@@ -7,9 +7,9 @@
     <div class="mb-3">
         <a href="/dashboard/karyawan" class="btn btn-primary">
             <i class="bi bi-caret-left-fill"></i> Kembali
-        </a> <a href="/dashboard/karyawan/{{ $employee->employee_id }}/edit" class="btn btn-warning">
+        </a> <a href="/dashboard/karyawan/{{ $employee->id }}/edit" class="btn btn-warning">
             <i class="bi bi-pencil-square"></i> Edit</a>
-        <form action="/dashboard/karyawan/{{ $employee->employee_id }}" method="POST" class="d-inline">
+        <form action="/dashboard/karyawan/{{ $employee->id }}" method="POST" class="d-inline">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger" onclick="return confirm('Are you sure?')">
@@ -49,7 +49,7 @@
             </tr>
             <tr>
                 <th scope="row">Alamat Sekarang</th>
-                <td>{{ $employee->home_address }}</td>
+                <td>{{ $employee->address }}</td>
             </tr>
             <tr>
                 <th scope="row">No HP</th>

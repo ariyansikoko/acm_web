@@ -6,8 +6,7 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="POST" action="/dashboard/karyawan/{{ $karyawan->employee_id }}" class="mb-5"
-            enctype="multipart/form-data">
+        <form method="POST" action="/dashboard/karyawan/{{ $karyawan->id }}" class="mb-5" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -147,14 +146,14 @@
             <div class="mb-3">
                 <label for="ptkp_status" class="form-label">Status PTKP</label>
                 <select type="text" class="form-select" id="ptkp_status" name="ptkp_status">
-                    <option value="K0" {{ $karyawan->ptkp_status == 'K0' ? 'selected' : '' }}>K0</option>
-                    <option value="K1" {{ $karyawan->ptkp_status == 'K1' ? 'selected' : '' }}>K1</option>
-                    <option value="K2" {{ $karyawan->ptkp_status == 'K2' ? 'selected' : '' }}>K2</option>
-                    <option value="K3" {{ $karyawan->ptkp_status == 'K3' ? 'selected' : '' }}>K3</option>
-                    <option value="TK0" {{ $karyawan->ptkp_status == 'TK0' ? 'selected' : '' }}>TK0</option>
-                    <option value="TK1" {{ $karyawan->ptkp_status == 'TK1' ? 'selected' : '' }}>TK1</option>
-                    <option value="TK2" {{ $karyawan->ptkp_status == 'TK2' ? 'selected' : '' }}>TK2</option>
-                    <option value="TK3" {{ $karyawan->ptkp_status == 'TK3' ? 'selected' : '' }}>TK3</option>
+                    <option value="K0" {{ $karyawan->ptkp_status == 'K/0' ? 'selected' : '' }}>K0</option>
+                    <option value="K1" {{ $karyawan->ptkp_status == 'K/1' ? 'selected' : '' }}>K1</option>
+                    <option value="K2" {{ $karyawan->ptkp_status == 'K/2' ? 'selected' : '' }}>K2</option>
+                    <option value="K3" {{ $karyawan->ptkp_status == 'K/3' ? 'selected' : '' }}>K3</option>
+                    <option value="TK0" {{ $karyawan->ptkp_status == 'TK/0' ? 'selected' : '' }}>TK0</option>
+                    <option value="TK1" {{ $karyawan->ptkp_status == 'TK/1' ? 'selected' : '' }}>TK1</option>
+                    <option value="TK2" {{ $karyawan->ptkp_status == 'TK/2' ? 'selected' : '' }}>TK2</option>
+                    <option value="TK3" {{ $karyawan->ptkp_status == 'TK/3' ? 'selected' : '' }}>TK3</option>
                 </select>
             </div>
             <div class="mb-3">

@@ -52,7 +52,10 @@ class DashboardEmployeeController extends Controller
             'account_number' => 'nullable|numeric',
             'ktp_number' => 'required|numeric|digits:16',
             'bpjs' => 'nullable|numeric|digits:11',
-            'npwp' => 'nullable',
+            'npwp' => array(
+                'nullable',
+                'regex:/^([\d]{2})[.]([\d]{3})[.]([\d]{3})[.][\d][-]([\d]{3})[.]([\d]{3})$/g'
+            ),
             'blood_type' => 'required',
             'emergency_contact' => 'nullable',
             'emergency_number' => 'nullable',
@@ -110,10 +113,13 @@ class DashboardEmployeeController extends Controller
             'phone_number' => 'nullable',
             'salary' => 'nullable|numeric',
             'bank_name' => 'nullable',
-            'account_number' => 'nullable',
-            'ktp_number' => 'required|digits:16',
-            'bpjs' => 'nullable|digits:11',
-            'npwp' => 'nullable',
+            'account_number' => 'nullable|numeric',
+            'ktp_number' => 'required|numeric|digits:16',
+            'bpjs' => 'nullable|numeric|digits:11',
+            'npwp' => array(
+                'nullable',
+                'regex:/^([\d]{2})[.]([\d]{3})[.]([\d]{3})[.][\d][-]([\d]{3})[.]([\d]{3})$/g'
+            ),
             'blood_type' => 'required',
             'emergency_contact' => 'nullable',
             'emergency_number' => 'nullable',

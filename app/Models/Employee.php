@@ -15,6 +15,6 @@ class Employee extends Model
 
     public function getRouteKeyName()
     {
-        return 'employee_id';
+        return 'id';
     }
 }

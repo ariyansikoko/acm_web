@@ -147,14 +147,14 @@
             <div class="mb-3">
                 <label for="ptkp_status" class="form-label">Status PTKP</label>
                 <select type="text" class="form-select" id="ptkp_status" name="ptkp_status">
-                    <option value="K0" {{ old('ptkp_status') == 'K0' ? 'selected' : '' }}>K0</option>
-                    <option value="K1" {{ old('ptkp_status') == 'K1' ? 'selected' : '' }}>K1</option>
-                    <option value="K2" {{ old('ptkp_status') == 'K2' ? 'selected' : '' }}>K2</option>
-                    <option value="K3" {{ old('ptkp_status') == 'K3' ? 'selected' : '' }}>K3</option>
-                    <option value="TK0" {{ old('ptkp_status') == 'TK0' ? 'selected' : '' }}>TK0</option>
-                    <option value="TK1" {{ old('ptkp_status') == 'TK1' ? 'selected' : '' }}>TK1</option>
-                    <option value="TK2" {{ old('ptkp_status') == 'TK2' ? 'selected' : '' }}>TK2</option>
-                    <option value="TK3" {{ old('ptkp_status') == 'TK3' ? 'selected' : '' }}>TK3</option>
+                    <option value="K0" {{ old('ptkp_status') == 'K/0' ? 'selected' : '' }}>K0</option>
+                    <option value="K1" {{ old('ptkp_status') == 'K/1' ? 'selected' : '' }}>K1</option>
+                    <option value="K2" {{ old('ptkp_status') == 'K/2' ? 'selected' : '' }}>K2</option>
+                    <option value="K3" {{ old('ptkp_status') == 'K/3' ? 'selected' : '' }}>K3</option>
+                    <option value="TK0" {{ old('ptkp_status') == 'TK/0' ? 'selected' : '' }}>TK0</option>
+                    <option value="TK1" {{ old('ptkp_status') == 'TK/1' ? 'selected' : '' }}>TK1</option>
+                    <option value="TK2" {{ old('ptkp_status') == 'TK/2' ? 'selected' : '' }}>TK2</option>
+                    <option value="TK3" {{ old('ptkp_status') == 'TK/3' ? 'selected' : '' }}>TK3</option>
                 </select>
             </div>
             <div class="mb-3">
