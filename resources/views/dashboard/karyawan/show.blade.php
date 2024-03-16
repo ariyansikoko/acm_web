@@ -6,36 +6,41 @@
     </div>
     <div class="mb-3">
         <a href="/dashboard/karyawan" class="btn btn-primary">
-            <i class="bi bi-caret-left-fill"></i> Kembali
-        </a> <a href="/dashboard/karyawan/{{ $employee->id }}/edit" class="btn btn-warning">
+            <i class="bi bi-caret-left-fill"></i> Kembali</a>
+        <a href="/dashboard/karyawan/{{ $employee->id }}/edit" class="btn btn-warning">
             <i class="bi bi-pencil-square"></i> Edit</a>
-        <form action="/dashboard/karyawan/{{ $employee->id }}" method="POST" class="d-inline">
-            @csrf
-            @method('DELETE')
-            <button class="btn btn-danger" onclick="return confirm('Are you sure?')">
-                <i class="bi bi-trash"></i> Hapus
-            </button>
-        </form>
+        @if ($employee->quit_status != 'Aktif')
+            <form action="/dashboard/karyawan/{{ $employee->id }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger" onclick="return confirm('Are you sure?')">
+                    <i class="bi bi-trash"></i> Hapus
+                </button>
+            </form>
+        @else
+            <a href="/dashboard/karyawan/{{ $employee->id }}/editStatus" class="btn btn-secondary">
+                <i class="bi bi-gear"></i> Edit Status</a>
+        @endif
     </div>
     <div class="col-md-7">
         <table class="table table-sm small">
-            <tr class="text-center align-bottom">
-                <td>
+            <tr class="align-bottom">
+                <td class="text-end">
                     @if ($employee->image_self)
                         <img src="{{ asset('storage/' . $employee->image_self) }}" alt="{{ $employee->name }}"
-                            style="max-height: 300px; width: auto">
+                            style="max-height: 150px; width: auto">
                     @else
                         <img src="/images/placeholderpasfoto.png" alt="{{ $employee->name }}"
-                            style="max-height: 300px; width: auto">
+                            style="max-height: 150px; width: auto">
                     @endif
                 </td>
                 <td>
                     @if ($employee->image_ktp)
                         <img src="{{ asset('storage/' . $employee->image_ktp) }}" alt="{{ $employee->name }}"
-                            style="max-height: 300px; width: auto">
+                            style="max-height: 150px; width: auto">
                     @else
                         <img src="/images/placeholderktp.jpg" alt="{{ $employee->name }}"
-                            style="max-height: 300px; width: auto">
+                            style="max-height: 150px; width: auto">
                     @endif
                 </td>
             </tr>

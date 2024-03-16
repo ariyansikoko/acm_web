@@ -34,7 +34,7 @@
                     <th scope="col">Lokasi Kerja</th>
                     <th scope="col">Bagian</th>
                     <th scope="col">Jabatan</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">View</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,13 +48,9 @@
                         <td>{{ $post->work_location }}</td>
                         <td>{{ $post->department }}</td>
                         <td>{{ $post->position->title }}</td>
-                        <td class="no-wrap">
+                        <td>
                             <a href="/dashboard/karyawan/{{ $post->id }}" class="btn btn-success btn-sm">
                                 <i class="bi bi-eye"></i>
-                            </a> <a href="/dashboard/karyawan/{{ $post->id }}/edit" class="btn btn-warning btn-sm">
-                                <i class="bi bi-pencil-square"></i></a>
-                            </a> <a href="/dashboard/karyawan/{{ $post->id }}/editStatus" class="btn btn-dark btn-sm">
-                                <i class="bi bi-gear"></i></a>
                         </td>
                     </tr>
                 @endforeach

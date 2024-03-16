@@ -32,7 +32,7 @@
                         <th scope="col">Lokasi Kerja</th>
                         <th scope="col">Bagian</th>
                         <th scope="col">Jabatan</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">View</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,15 +49,6 @@
                             <td class="no-wrap">
                                 <a href="/dashboard/karyawan/{{ $post->id }}" class="btn btn-success btn-sm">
                                     <i class="bi bi-eye"></i>
-                                </a> <a href="/dashboard/karyawan/{{ $post->id }}/edit" class="btn btn-warning btn-sm">
-                                    <i class="bi bi-pencil-square"></i></a>
-                                <form action="/dashboard/karyawan/{{ $post->id }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </form>
                             </td>
                         </tr>
                     @endforeach
