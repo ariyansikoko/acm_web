@@ -40,6 +40,16 @@
                 </td>
             </tr>
             <tr>
+                <th scope="row">Status</th>
+                @if ($employee->quit_status == 'Aktif')
+                    <td class="text-success"><b>Aktif</b></td>
+                @else
+                    <td><b class="text-danger">Berhenti</b>,
+                        {{ \Carbon\Carbon::parse($employee->quit_date)->format('d M Y') }}</td>
+                @endif
+
+            </tr>
+            <tr>
                 <th scope="row">Nama</th>
                 <td>{{ $employee->name }}</td>
             </tr>

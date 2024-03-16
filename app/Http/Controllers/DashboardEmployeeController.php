@@ -15,7 +15,15 @@ class DashboardEmployeeController extends Controller
     public function index()
     {
         return view('dashboard.karyawan.index', [
-            'employee' => Employee::orderBy('name', 'asc')->get(),
+            'employee' => Employee::where('quit_status', 'Aktif')->orderBy('name', 'asc')->get(),
+        ]);
+    }
+
+    public function quit()
+    {
+        $quit = ['PHK', 'MD'];
+        return view('dashboard.karyawan.quit', [
+            'employee' => Employee::whereIn('quit_status', $quit)->orderBy('name', 'asc')->get(),
         ]);
     }
 
@@ -94,6 +102,14 @@ class DashboardEmployeeController extends Controller
         ]);
     }
 
+    public function editStatus(Employee $karyawan)
+    {
+        return view('dashboard.karyawan.editStatus', [
+            'karyawan' => $karyawan,
+            'positions' => Position::all()
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -123,6 +139,8 @@ class DashboardEmployeeController extends Controller
             'blood_type' => 'required',
             'emergency_contact' => 'nullable',
             'emergency_number' => 'nullable',
+            'quit_status' => 'required',
+            'quit_date' => 'nullable|date',
         ];
 
         if ($request->employee_id != $karyawan->employee_id) {
@@ -165,6 +183,6 @@ class DashboardEmployeeController extends Controller
         }
 
         Employee::destroy($karyawan->id);
-        return redirect('dashboard/karyawan')->with('success', 'Data karyawan berhasil dihapus.');
+        return back()->with('success', 'Data karyawan berhasil dihapus.');
     }
 }

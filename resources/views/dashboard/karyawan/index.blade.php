@@ -3,7 +3,10 @@
 @section('body')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Daftar Karyawan</h1>
-        <a href="/dashboard/karyawan/create" class="btn btn-primary">Tambah Karyawan Baru</a>
+        <div class="">
+            <a href="/dashboard/karyawanNonaktif" class="btn btn-secondary">Daftar Karyawan Nonaktif</a>
+            <a href="/dashboard/karyawan/create" class="btn btn-primary">Tambah Karyawan Baru</a>
+        </div>
     </div>
 
     @if (session()->has('success'))
@@ -50,13 +53,8 @@
                                 <i class="bi bi-eye"></i>
                             </a> <a href="/dashboard/karyawan/{{ $post->id }}/edit" class="btn btn-warning btn-sm">
                                 <i class="bi bi-pencil-square"></i></a>
-                            <form action="/dashboard/karyawan/{{ $post->id }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </form>
+                            </a> <a href="/dashboard/karyawan/{{ $post->id }}/editStatus" class="btn btn-dark btn-sm">
+                                <i class="bi bi-gear"></i></a>
                         </td>
                     </tr>
                 @endforeach
