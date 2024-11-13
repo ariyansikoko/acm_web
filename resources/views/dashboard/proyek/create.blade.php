@@ -18,7 +18,11 @@
             </div>
             <div class="mb-3">
                 <label for="client" class="form-label">Klien</label>
-                <input type="text" class="form-control" id="client" name="client" required value="TA">
+                <select type="text" class="form-select" id="client" name="client">
+                    <option value="TA" {{ old('client') == 'TA' ? 'selected' : '' }}>TA</option>
+                    <option value="TBG" {{ old('client') == 'TBG' ? 'selected' : '' }}>TBG</option>
+                    <option value="TIS" {{ old('client') == 'TIS' ? 'selected' : '' }}>TIS</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="project_date" class="form-label">Tanggal</label>
@@ -37,10 +41,18 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="location" class="form-label">Area Kerja</label>
-                <input type="text" class="form-control" @error('location') is-invalid @enderror id="location"
-                    name="location" required value="{{ old('location') }}">
-                @error('location')
+                <label for="project_area" class="form-label">Area Kerja</label>
+                <input type="text" class="form-control" @error('project_area') is-invalid @enderror id="project_area"
+                    name="project_area" required value="{{ old('project_area') }}">
+                @error('project_area')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="project_location" class="form-label">Lokasi Proyek</label>
+                <input type="text" class="form-control" @error('project_location') is-invalid @enderror id="project_location"
+                    name="project_location" required value="{{ old('project_location') }}">
+                @error('project_location')
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
             </div>

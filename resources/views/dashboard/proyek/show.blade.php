@@ -49,8 +49,8 @@
                 <td>{{ \Carbon\Carbon::parse($project->project_date)->format('D, d M Y') }}</td>
             </tr>
             <tr>
-                <td>Area Kerja</td>
-                <td>{{ $project->location }}</td>
+                <td>Area Kerja, Lokasi Proyek</td>
+                <td>{{ $project->project_area}}{{ $project['project_location'] != null ? ',' : '' }} {{ $project['project_location'] }}</td>
             </tr>
             <tr>
                 <td>Jenis Proyek</td>
@@ -89,6 +89,10 @@
             <tr>
                 <td>Nomor PO</td>
                 <td>{{ $project->no_po }}</td>
+            </tr>
+            <tr>
+                <td>Catatan Khusus</td>
+                <td>{{ $project['note'] }}</td>
             </tr>
         </table>
     </div>

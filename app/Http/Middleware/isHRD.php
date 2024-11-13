@@ -19,7 +19,7 @@ class isHRD
             abort(403);
         }
 
-        if (auth()->user()->role != 'HRD' && auth()->user()->role != 'Admin') {
+        if (auth()->user()->role == "User") {
             abort(403);
         }
 

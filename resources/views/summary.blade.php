@@ -107,13 +107,13 @@
             </tr>
             @if ($project->boq_actual != 0)
                 @php
-                    $laba = $project->boq_actual - $totalbp - $totaldp;
-                    $persentase = ($laba / $project->boq_actual) * 100;
+                    $laba = $project->boq_actual - $totalbp - $totaldp + $project->comcase;
+                    $persentase = $laba / ($project->boq_actual + $project->comcase) * 100;
                 @endphp
             @else
                 @php
-                    $laba = $project->boq_plan - $totalbp - $totaldp;
-                    $persentase = ($laba / $project->boq_plan) * 100;
+                    $laba = $project->boq_plan - $totalbp - $totaldp + $project->comcase;
+                    $persentase = $laba / ($project->boq_plan + $project->comcase) * 100;
                 @endphp
             @endif
             <tr class="{{ $laba > 0 ? 'table-success' : 'table-danger' }}">
@@ -124,9 +124,15 @@
                 <th>Persentase Laba/Rugi</th>
                 <td>{{ formatPercent($persentase) }}</td>
             </tr>
-
+            @if ($project['note'] != null)
+            <tr>
+                <td colspan="2"><b>Catatan Khusus:<br>
+                </b>{{ $project['note'] }}</td>
+            </tr>
+            @endif
         </table>
     </div>
+
     <div class="col-md-8 mx-auto">
         <table class="table table-hover table-striped-columns table-bordered table-sm small">
             <thead>

@@ -24,7 +24,7 @@
                 @foreach ($project as $post)
                     <tr>
                         <td class="no-wrap">{{ \Carbon\Carbon::parse($post->project_date)->format('d M Y') }}</td>
-                        <td class="text-center">{{ $post->location }}</td>
+                        <td class="text-center">{{ $post['project_area']}}{{ $post['project_location'] != null ? ',' : '' }} {{ $post['project_location'] }}</td>
                         <td><b>{{ $post['title'] }}</b></td>
                         <td class="no-wrap">{{ formatRupiah($post['boq_plan']) }}</td>
                         <td class="no-wrap">{{ formatRupiah($post->boq_actual) }}</td>

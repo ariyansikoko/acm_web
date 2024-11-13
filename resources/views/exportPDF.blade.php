@@ -127,20 +127,15 @@
                 <tr">
                     <th>Laba/Rugi Sementara</th>
                     <td>{{ formatRupiah($laba) }}</td>
-                    </tr>
-                    <tr">
-                        <th>Persentase Laba/Rugi</th>
-                        <td>{{ formatPercent($persentase) }}</td>
-                        </tr>
-                        {{-- <tr class="{{ $laba > 0 ? 'table-success' : 'table-danger' }}">
-                    <th>Laba/Rugi Sementara</th>
-                    <td>{{ formatRupiah($laba) }}</td>
                 </tr>
-                <tr class="{{ $laba > 0 ? 'table-success' : 'table-danger' }}">
+                <tr">
                     <th>Persentase Laba/Rugi</th>
                     <td>{{ formatPercent($persentase) }}</td>
-                </tr> --}}
-
+                </tr>
+                <tr">
+                    <th>Catatan Khusus</th>
+                    <td>{{ $project['note'] }}</td>
+                </tr>
             </table>
         </div>
         <div class="col-md-6 mx-auto print-table">

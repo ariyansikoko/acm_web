@@ -62,11 +62,14 @@
                     <option value="Jambi" {{ $karyawan->work_location == 'Jambi' ? 'selected' : '' }}>Jambi</option>
                     <option value="Lampung" {{ $karyawan->work_location == 'Lampung' ? 'selected' : '' }}>Lampung</option>
                     <option value="Medan" {{ $karyawan->work_location == 'Medan' ? 'selected' : '' }}>Medan</option>
+                    <option value="Palembang" {{ $karyawan->work_location == 'Palembang' ? 'selected' : '' }}>Palembang
+                    </option>
                     <option value="Pekanbaru" {{ $karyawan->work_location == 'Pekanbaru' ? 'selected' : '' }}>Pekanbaru
                     </option>
                     <option value="RIDAR" {{ $karyawan->work_location == 'RIDAR' ? 'selected' : '' }}>RIDAR</option>
                     <option value="RIKEP" {{ $karyawan->work_location == 'RIKEP' ? 'selected' : '' }}>RIKEP</option>
                     <option value="SUMBAR" {{ $karyawan->work_location == 'SUMBAR' ? 'selected' : '' }}>SUMBAR</option>
+                    <option value="SUMSEL" {{ $karyawan->work_location == 'SUMSEL' ? 'selected' : '' }}>SUMSEL</option>
                     <option value="SUMUT" {{ $karyawan->work_location == 'SUMUT' ? 'selected' : '' }}>SUMUT</option>
                 </select>
             </div>
@@ -137,8 +140,10 @@
             </div>
             <div class="mb-3">
                 <label for="npwp" class="form-label">NPWP</label>
-                <input type="text" class="form-control" id="npwp" name="npwp"
-                    value="{{ old('npwp', $karyawan->npwp) }}">
+                <input type="text" class="form-control" id="formatted_code" oninput="formatCode()" maxlength="20"
+                    placeholder="XX.XXX.XXX.X-XXX.XXX" value="{{ old('npwp', $karyawan->npwp) }}">
+
+                <input type="hidden" id="npwp" name="npwp">
                 @error('npwp')
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
@@ -258,6 +263,25 @@
             oFReader.onload = function(oFREvent) {
                 imgPreviewKTP.src = oFREvent.target.result;
             }
+        }
+
+        function formatCode() {
+            let input = document.getElementById('formatted_code');
+            let rawValue = input.value.replace(/[.\-]/g, ''); // Remove existing dots and dashes
+            let formattedValue = '';
+
+            // Format based on the corrected pattern XX.XXX.XXX.X-XXX.XXX
+            if (rawValue.length > 0) formattedValue += rawValue.substring(0, 2);
+            if (rawValue.length > 2) formattedValue += '.' + rawValue.substring(2, 5);
+            if (rawValue.length > 5) formattedValue += '.' + rawValue.substring(5, 8);
+            if (rawValue.length > 8) formattedValue += '.' + rawValue.substring(8, 9);
+            if (rawValue.length > 9) formattedValue += '-' + rawValue.substring(9, 12);
+            if (rawValue.length > 12) formattedValue += '.' + rawValue.substring(12, 15);
+
+            input.value = formattedValue;
+
+            // Update the hidden input without formatting
+            document.getElementById('npwp').value = rawValue;
         }
     </script>
 @endsection

@@ -36,10 +36,14 @@ class DashboardProjectController extends Controller
             'client' => 'required',
             'project_date' => 'required|date',
             'episode' => 'required',
-            'location' => 'required',
+            'project_area' => 'required',
+            'project_location' => 'nullable',
             'type' => 'required',
             'title' => 'required',
             'boq_plan' => 'numeric|integer',
+            'boq_actual' => 'nullable|numeric|integer',
+            'comcase' => 'nullable|numeric|integer',
+            'boq_subcon' => 'nullable|numeric|integer',
             'boq_desc' => 'max:255',
             'no_po' => 'nullable|integer',
         ]);
@@ -75,8 +79,10 @@ class DashboardProjectController extends Controller
     {
         $rules = [
             'project_date' => 'required|date',
+            'client' => 'required',
             'episode' => 'required',
-            'location' => 'required',
+            'project_area' => 'required',
+            'project_location' => 'nullable',
             'type' => 'required',
             'title' => 'required',
             'boq_plan' => 'nullable|numeric|integer',
@@ -86,6 +92,7 @@ class DashboardProjectController extends Controller
             'boq_desc' => 'max:255',
             'no_po' => 'nullable|integer',
             'status' => 'required|boolean',
+            'note' => 'nullable',
         ];
 
         if ($request->status != 1) {

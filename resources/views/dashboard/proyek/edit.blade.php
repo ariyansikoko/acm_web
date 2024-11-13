@@ -18,6 +18,14 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label for="client" class="form-label">Klien</label>
+                <select type="text" class="form-select" id="client" name="client">
+                    <option value="TA" {{ $project->client == 'TA' ? 'selected' : '' }}>TA</option>
+                    <option value="TBG" {{ $project->client == 'TBG' ? 'selected' : '' }}>TBG</option>
+                    <option value="TIS" {{ $project->client == 'TIS' ? 'selected' : '' }}>TIS</option>
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="project_date" class="form-label">Tanggal</label>
                 <input type="date" class="form-control" id="project_date" name="project_date"
                     value="{{ old('project_date', $project->project_date) }}">
@@ -34,10 +42,18 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="location" class="form-label">Area Kerja</label>
-                <input type="text" class="form-control" @error('location') is-invalid @enderror id="location"
-                    name="location" required value="{{ old('location', $project->location) }}">
-                @error('location')
+                <label for="project_area" class="form-label">Area Kerja</label>
+                <input type="text" class="form-control" @error('project_area') is-invalid @enderror id="project_area"
+                    name="project_area" required value="{{ old('project_area', $project->project_area) }}">
+                @error('project_area')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="project_location" class="form-label">Lokasi Proyek</label>
+                <input type="text" class="form-control" @error('project_location') is-invalid @enderror id="project_location"
+                    name="project_location" value="{{ old('project_location', $project->project_location) }}">
+                @error('project_location')
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
             </div>
@@ -131,6 +147,14 @@
                         <option value="0" selected>Closed</option>
                     @endif
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="note" class="form-label">Catatan Khusus Proyek</label>
+                <input type="text" class="form-control" @error('note') is-invalid @enderror id="note"
+                    name="note" value="{{ old('note', $project->note) }}"></input>
+                @error('note')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="close_date" class="form-label">Tanggal Tutup Budget</label>

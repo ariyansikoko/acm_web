@@ -20,8 +20,8 @@
     @endif
 
     @if ($employee)
-        <div class="table table-responsive table-sm small mt-3 mb-4">
-            <table class="table table-striped align-middle table-hover">
+        <div class="table table-responsive mt-3 mb-4">
+            <table class="table table-striped align-middle table-hover table-sm small" id="tabelkaryawan">
                 <thead>
                     <tr class="align-middle">
                         <th scope="col">ID</th>
@@ -58,4 +58,37 @@
     @else
         <h5>Tidak Ada Data</h5>
     @endif
+
+    <script>
+        var table = new DataTable('#tabelkaryawan', {
+            "columnDefs": [{
+                "type": "date-eu",
+                "targets": [2, 4], // Assuming the date column is the second column (index 1)
+                "render": function(data, type, row, meta) {
+                    if (type === 'sort') {
+                        // Convert the date to a format that can be sorted naturally
+                        return new Date(data).toISOString();
+                    }
+
+                    // Display the date in the "dd MMMM YYYY" format (full month name)
+                    const date = new Date(data);
+                    const day = date.toLocaleString('en-US', {
+                        day: '2-digit'
+                    });
+                    const month = date.toLocaleString('en-US', {
+                        month: 'short'
+                    });
+                    const year = date.toLocaleString('en-US', {
+                        year: 'numeric'
+                    });
+
+                    return `${day} ${month} ${year}`;
+                }
+            }],
+            "dom": '<"container-fluid"<"row"<"col"><"col"f>>>t<"container-fluid mt-4"<"row"<"col"i><"col"p>>>',
+            "pagingType": 'numbers',
+            "pageLength": 15,
+            "order": [1, 'asc'],
+        });
+    </script>
 @endsection

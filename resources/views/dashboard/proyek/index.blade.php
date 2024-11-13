@@ -42,18 +42,18 @@
                         <td>{{ \Carbon\Carbon::parse($post->project_date)->format('d M Y') }}</td>
                         <td><b>{{ $post->project_id }}</b></td>
                         <td>{{ $post->episode }}</td>
-                        <td>{{ $post->location }}</td>
+                        <td>{{ $post->project_area}}{{ $post['project_location'] != null ? ',' : '' }} {{ $post['project_location'] }}</td>
                         <td>{{ $post->type }}</td>
-                        <td><b>{{ $post->title }}</b></td>
-                        <td>{{ formatRupiah($post->boq_plan) }}</td>
-                        <td class="text-primary">{{ formatRupiah($post->boq_actual) }}</td>
+                        <td style="width: 25%"><b>{{ $post->title }}</b></td>
+                        <td class="no-wrap">{{ formatRupiah($post->boq_plan) }}</td>
+                        <td class="text-primary no-wrap">{{ formatRupiah($post->boq_actual) }}</td>
                         <td>{{ $post->boq_desc }}</td>
                         @if ($post->status == 1)
                             <td class="text-success"><b>OPEN</b></td>
                         @else
                             <td class="text-danger"><b>CLOSED</b></td>
                         @endif
-                        <td>
+                        <td class="no-wrap">
                             <a href="/dashboard/proyek/{{ $post->project_id }}" class="btn btn-success btn-sm"
                                 style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .75rem;">
                                 <i class="bi bi-eye"></i>

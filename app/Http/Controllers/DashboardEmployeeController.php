@@ -60,10 +60,7 @@ class DashboardEmployeeController extends Controller
             'account_number' => 'nullable|numeric',
             'ktp_number' => 'required|numeric|digits:16',
             'bpjs' => 'nullable|numeric|digits:11',
-            'npwp' => array(
-                'nullable',
-                'regex:/^([\d]{2})[.]([\d]{3})[.]([\d]{3})[.][\d][-]([\d]{3})[.]([\d]{3})$/g'
-            ),
+            'npwp' => 'nullable',
             'blood_type' => 'required',
             'emergency_contact' => 'nullable',
             'emergency_number' => 'nullable',
@@ -132,10 +129,7 @@ class DashboardEmployeeController extends Controller
             'account_number' => 'nullable|numeric',
             'ktp_number' => 'required|numeric|digits:16',
             'bpjs' => 'nullable|numeric|digits:11',
-            'npwp' => array(
-                'nullable',
-                'regex:/^([\d]{2})[.]([\d]{3})[.]([\d]{3})[.][\d][-]([\d]{3})[.]([\d]{3})$/'
-            ),
+            'npwp' => 'nullable',
             'blood_type' => 'required',
             'emergency_contact' => 'nullable',
             'emergency_number' => 'nullable',
@@ -184,5 +178,14 @@ class DashboardEmployeeController extends Controller
 
         Employee::destroy($karyawan->id);
         return back()->with('success', 'Data karyawan berhasil dihapus.');
+    }
+
+    public function export(Employee $karyawan)
+    {
+        return view('dashboard.karyawan.print', [
+            'title' => 'Detail_Karyawan_' . $karyawan->employee_id,
+            'header' => 'Detail Karyawan',
+            'employee' => $karyawan,
+        ]);
     }
 }

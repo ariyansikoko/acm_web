@@ -12,24 +12,26 @@
                         <span><i class="bi bi-house-fill"></i> Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/proyek*') ? 'active' : 'text-secondary' }}"
-                        href="/dashboard/proyek">
-                        <span><i class="bi bi-cone-striped"></i> Proyek</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/pengeluaran*') ? 'active' : 'text-secondary' }}"
-                        href="/dashboard/pengeluaran">
-                        <span><i class="bi bi-cash-coin"></i> Pengeluaran</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/penerima*') ? 'active' : 'text-secondary' }}"
-                        href="/dashboard/penerima">
-                        <span><i class="bi bi-people-fill"></i> Penerima</span>
-                    </a>
-                </li>
+                @can('user')
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/proyek*') ? 'active' : 'text-secondary' }}"
+                            href="/dashboard/proyek">
+                            <span><i class="bi bi-cone-striped"></i> Proyek</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/pengeluaran*') ? 'active' : 'text-secondary' }}"
+                            href="/dashboard/pengeluaran">
+                            <span><i class="bi bi-cash-coin"></i> Pengeluaran</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/penerima*') ? 'active' : 'text-secondary' }}"
+                            href="/dashboard/penerima">
+                            <span><i class="bi bi-people-fill"></i> Penerima</span>
+                        </a>
+                    </li>
+                @endcan
             </ul>
             @can('hrd')
                 <hr class="my-3">
@@ -62,7 +64,6 @@
                     </li>
                 </ul>
             @endcan
-
 
             <hr class="my-3">
             <h6
