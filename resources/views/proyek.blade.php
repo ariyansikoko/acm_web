@@ -31,7 +31,8 @@
                     <tr>
                         <td class="no-wrap">{{ \Carbon\Carbon::parse($post->project_date)->format('d M Y') }}</td>
                         <td class="text-center"><b>{{ $post->project_id }}</b></td>
-                        <td>{{ $post['project_area']}}{{ $post['project_location'] != null ? ',' : '' }} {{ $post['project_location'] }}</td>
+                        <td>{{ $post['project_area'] }}{{ $post['project_location'] != null ? ',' : '' }}
+                            {{ $post['project_location'] }}</td>
                         <td>{{ $post['type'] }}</td>
                         <td><b>{{ $post['title'] }}</b></td>
                         <td class="no-wrap">{{ formatRupiah($post['boq_plan']) }}</td>
@@ -56,14 +57,15 @@
                                 <a href="/proyek/{{ $post->project_id }}" class="btn btn-success btn-sm"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                     <i class="bi bi-eye"></i>
-                                </a> <a href="/dashboard/proyek/{{ $post->project_id }}/edit" class="btn btn-warning btn-sm"
+                                </a> <a href="/dashboard/proyek/{{ $post->project_id }}/edit"
+                                    class="btn btn-warning btn-sm"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                     <i class="bi bi-pencil-square"></i></a>
                             @else
                                 <a href="/proyek/{{ $post->project_id }}" class="btn btn-success btn-sm"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                     Summary
-                            </a>
+                                </a>
                             @endif
                         </td>
                     </tr>
@@ -98,7 +100,7 @@
                     }
                 },
                 {
-                    targets: [3, 7, 8, 11],
+                    targets: [3, 7, 8, 10, 11, 13],
                     visible: false,
                 },
             ],

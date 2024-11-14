@@ -39,6 +39,10 @@
                 <th>Investasi Episode</th>
                 <th>{{ $episode }}</th>
             </tr>
+            <tr>
+                <th>Tanggal Proyek</th>
+                <th>{{ \Carbon\Carbon::parse($project->project_date)->format('d M Y') }}</th>
+            </tr>
             <tr class="table-secondary">
                 <th>Total Nilai BOQ ALL</th>
                 <td>{{ formatRupiah($projectall->sum('boq_plan')) }}</td>
@@ -108,12 +112,12 @@
             @if ($project->boq_actual != 0)
                 @php
                     $laba = $project->boq_actual - $totalbp - $totaldp + $project->comcase;
-                    $persentase = $laba / ($project->boq_actual + $project->comcase) * 100;
+                    $persentase = ($laba / ($project->boq_actual + $project->comcase)) * 100;
                 @endphp
             @else
                 @php
                     $laba = $project->boq_plan - $totalbp - $totaldp + $project->comcase;
-                    $persentase = $laba / ($project->boq_plan + $project->comcase) * 100;
+                    $persentase = ($laba / ($project->boq_plan + $project->comcase)) * 100;
                 @endphp
             @endif
             <tr class="{{ $laba > 0 ? 'table-success' : 'table-danger' }}">
@@ -125,10 +129,10 @@
                 <td>{{ formatPercent($persentase) }}</td>
             </tr>
             @if ($project['note'] != null)
-            <tr>
-                <td colspan="2"><b>Catatan Khusus:<br>
-                </b>{{ $project['note'] }}</td>
-            </tr>
+                <tr>
+                    <td colspan="2"><b>Catatan Khusus:<br>
+                        </b>{{ $project['note'] }}</td>
+                </tr>
             @endif
         </table>
     </div>

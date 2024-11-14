@@ -48,6 +48,10 @@
                     <th>{{ $episode }}</th>
                 </tr>
                 <tr>
+                    <th>Tanggal Proyek</th>
+                    <th>{{ \Carbon\Carbon::parse($project->project_date)->format('d M Y') }}</th>
+                </tr>
+                <tr>
                     <th>Total Nilai BOQ ALL</th>
                     <td>{{ formatRupiah($projectall->sum('boq_plan')) }}</td>
                 </tr>
@@ -115,27 +119,29 @@
                 </tr>
                 @if ($project->boq_actual != 0)
                     @php
-                        $laba = $project->boq_actual - $totalbp - $totaldp;
-                        $persentase = ($laba / $project->boq_actual) * 100;
+                        $laba = $project->boq_actual - $totalbp - $totaldp + $project->comcase;
+                        $persentase = ($laba / ($project->boq_actual + $project->comcase)) * 100;
                     @endphp
                 @else
                     @php
                         $laba = $project->boq_plan - $totalbp - $totaldp;
-                        $persentase = ($laba / $project->boq_plan) * 100;
+                        $persentase = ($laba / ($project->boq_plan + $project->comcase)) * 100;
                     @endphp
                 @endif
-                <tr">
+                <tr>
                     <th>Laba/Rugi Sementara</th>
                     <td>{{ formatRupiah($laba) }}</td>
                 </tr>
-                <tr">
+                <tr>
                     <th>Persentase Laba/Rugi</th>
                     <td>{{ formatPercent($persentase) }}</td>
                 </tr>
-                <tr">
-                    <th>Catatan Khusus</th>
-                    <td>{{ $project['note'] }}</td>
-                </tr>
+                @if ($project->note)
+                    <tr>
+                        <th>Catatan Khusus</th>
+                        <td>{{ $project['note'] }}</td>
+                    </tr>
+                @endif
             </table>
         </div>
         <div class="col-md-6 mx-auto print-table">
