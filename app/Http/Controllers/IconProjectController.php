@@ -99,7 +99,9 @@ class IconProjectController extends Controller
      */
     public function destroy(IconProject $proyek)
     {
-        $proyek->iconTransaction()->delete();
+        if ($proyek->iconTransaction()->count() > 0) {
+            return redirect('icon/proyek')->with('failed', 'Ada transaksi yang terhubung pada proyek ini.');
+        }
         IconProject::destroy($proyek->id);
         return redirect('icon/proyek')->with('success', 'Data berhasil dihapus.');
     }

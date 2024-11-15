@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\IconProject;
 use Illuminate\Http\Request;
 use App\Models\IconTransaction;
-use App\Models\IconProject;
+use Illuminate\Support\Facades\Storage;
 
 class IconTransactionController extends Controller
 {
@@ -85,6 +86,10 @@ class IconTransactionController extends Controller
      */
     public function destroy(IconProject $proyek, IconTransaction $transaksi)
     {
+        if ($transaksi->image_self) {
+            Storage::delete($transaksi->image);
+        }
+
         IconTransaction::destroy($transaksi->id);
         return redirect('icon/proyek/' . $proyek->id)->with('success', 'Data berhasil dihapus.');
     }
