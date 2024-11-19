@@ -2,62 +2,46 @@
 
 @section('body')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2>Laporan Proyek TA</h2>
+        <h2>Laporan Proyek Icon</h2>
     </div>
     <div class="mb-4 small" id="scrollX">
         <table class="table table-striped table-hover align-middle" id="dataTable">
             <thead>
                 <tr class="align-middle">
-                    <th scope="col">Tanggal</th>
-                    <th scope="col" class="text-center">Area Pekerjaan</th>
+                    <th scope="col">Tanggal Order</th>
+                    <th scope="col">Wilayah</th>
                     <th scope="col">Nama Pekerjaan</th>
-                    <th scope="col">Nilai BOQ Plan</th>
-                    <th scope="col">Nilai BOQ Aktual</th>
-                    <th scope="col">Biaya Perusahaan</th>
-                    <th scope="col">DP Subcon</th>
+                    <th scope="col">No PA</th>
+                    <th scope="col">PKB Awal</th>
+                    <th scope="col">PKB Akhir</th>
+                    <th scope="col">Total Pengeluaran</th>
                     <th scope="col">Laba/Rugi</th>
-                    <th scope="col">Episode</th>
-                    <th scope="col" class="text-center">Status Budget</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($project as $post)
                     <tr>
                         <td class="no-wrap">{{ \Carbon\Carbon::parse($post->project_date)->format('d M Y') }}</td>
-                        <td class="text-center">
-                            {{ $post['project_area'] }}{{ $post['project_location'] != null ? ',' : '' }}
-                            {{ $post['project_location'] }}</td>
+                        <td>{{ $post->location }}</td>
                         <td><b>{{ $post['title'] }}</b></td>
-                        <td class="no-wrap">{{ formatRupiah($post['boq_plan']) }}</td>
-                        <td class="no-wrap">{{ formatRupiah($post->boq_actual) }}</td>
+                        <td class="no-wrap">{{ $post->no_pa }}</td>
+                        <td class="no-wrap">{{ formatRupiah($post->pkb_initial) }}</td>
+                        <td class="no-wrap">{{ formatRupiah($post->pkb_final) }}</td>
                         @php
-                            $biaya = $post->transaction->where('category', 'Biaya Perusahaan')->sum('amount');
+                            $expense = $post->iconTransaction->sum('amount');
                         @endphp
-                        <td class="no-wrap">{{ formatRupiah($biaya) }}</td>
-                        @php
-                            $subcon = $post->transaction->where('category', 'DP Subcon')->sum('amount');
-                        @endphp
-                        <td class="no-wrap">{{ formatRupiah($subcon) }}</td>
-                        @if ($post->boq_actual != 0)
+                        <td class="no-wrap">{{ formatRupiah($expense) }}</td>
+                        @if ($post->pkb_final != 0)
                             @php
-                                $laba = $post->boq_actual - $biaya - $subcon;
+                                $laba = $post->pkb_final - $expense;
                             @endphp
                         @else
                             @php
-                                $laba = $post->boq_plan - $biaya - $subcon;
+                                $laba = $post->pkb_awal - $expense;
                             @endphp
                         @endif
                         <td class="{{ $laba > 0 ? 'table-success' : 'table-danger' }} no-wrap">
                             {{ formatRupiah($laba) }}
-                        </td>
-
-                        <td class="text-center"> {{ $post->episode }}</td>
-                        <td class="text-center">
-                            @if ($post->status == 1)
-                                <b class="text-success">OPEN</b>
-                            @else
-                                <b class="text-danger">CLOSED</b>
-                            @endif
                         </td>
                     </tr>
                 @endforeach

@@ -39,7 +39,8 @@ Route::get('/proyek/{project:project_id}', [ProjectController::class, 'summary']
 Route::get('/proyek/{project:project_id}/export', [ProjectController::class, 'export'])->middleware('auth');
 Route::post('/proyek/{project:project_id}/create', [ProjectController::class, 'storeTransaction'])->middleware('auth');
 
-Route::get('/laporan', [ReportController::class, 'index'])->middleware('auth');
+Route::get('/laporan/TA', [ReportController::class, 'indexTA'])->middleware('auth');
+Route::get('/laporan/Icon', [ReportController::class, 'indexIcon'])->middleware('auth');
 
 Route::get('/about', function () {
     return view('about', [

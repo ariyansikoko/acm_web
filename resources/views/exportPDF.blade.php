@@ -119,13 +119,13 @@
                 </tr>
                 @if ($project->boq_actual != 0)
                     @php
-                        $laba = $project->boq_actual - $totalbp - $totaldp + $project->comcase;
-                        $persentase = ($laba / ($project->boq_actual + $project->comcase)) * 100;
+                        $laba = $project->boq_actual - $totalbp - $totaldp;
+                        $persentase = ($laba / $project->boq_actual) * 100;
                     @endphp
                 @else
                     @php
                         $laba = $project->boq_plan - $totalbp - $totaldp;
-                        $persentase = ($laba / ($project->boq_plan + $project->comcase)) * 100;
+                        $persentase = ($laba / $project->boq_plan) * 100;
                     @endphp
                 @endif
                 <tr>

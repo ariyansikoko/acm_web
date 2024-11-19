@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2>Daftar Transaksi</h2>
+        <h2>Daftar Transaksi TA</h2>
         <button type="button" class="btn btn-primary" id="modalOpen" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Tambah Transaksi Baru</a>
         </button>

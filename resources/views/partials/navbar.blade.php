@@ -20,8 +20,7 @@
                         </li> --}}
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Transaksi
-                            </a>
+                                Transaksi</a>
                             <ul class="dropdown-menu" data-bs-theme="light">
                                 <li><a class="dropdown-item" href="/pengeluaran">TA</a></li>
                                 <li>
@@ -33,8 +32,16 @@
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('proyek*') ? 'active' : '' }}" href="/proyek">Proyek</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('laporan*') ? 'active' : '' }}" href="/laporan">Laporan</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">Laporan</a>
+                            <ul class="dropdown-menu" data-bs-theme="light">
+                                <li><a class="dropdown-item" href="/laporan/TA">TA</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/laporan/Icon">Icon</a></li>
+                            </ul>
                         </li>
                     @endcan
                 @endauth
