@@ -11,18 +11,34 @@
             enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="amount" class="form-label">Jumlah Pengeluaran</label>
-                <input type="number" class="form-control @error('amount') is-invalid @enderror" id="amount"
-                    name="amount" required value="{{ old('amount') }}">
-                @error('amount')
-                    <div class="text-danger"><small>{{ $message }}</small></div>
-                @enderror
-            </div>
-            <div class="mb-3">
                 <label for="no" class="form-label">Nomor Pengajuan</label>
                 <input type="text" class="form-control @error('no') is-invalid @enderror" id="no" name="no"
                     value="{{ old('no') }}">
                 @error('no')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="recipient" class="form-label">Penerima</label>
+                <input type="text" class="form-control @error('recipient') is-invalid @enderror" id="recipient"
+                    name="recipient" required value="{{ old('recipient') }}">
+                @error('recipient')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Kategori Pengeluaran</label>
+                <input type="text" class="form-control @error('category') is-invalid @enderror" id="category"
+                    name="category" required value="{{ old('category') }}">
+                @error('category')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="amount" class="form-label">Jumlah Pengeluaran</label>
+                <input type="number" class="form-control @error('amount') is-invalid @enderror" id="amount"
+                    name="amount" required value="{{ old('amount') }}">
+                @error('amount')
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
             </div>

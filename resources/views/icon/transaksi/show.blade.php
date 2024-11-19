@@ -19,12 +19,20 @@
     <div class="col-md-6 mx-auto mt-5">
         <table class="table table-striped-columns table-bordered border-dark">
             <tr>
-                <td>Jumlah Pengeluaran</td>
-                <td>{{ $transaksi->amount }}</td>
-            </tr>
-            <tr>
                 <td>Nomor Pengajuan</td>
                 <td>{{ $transaksi->no }}</td>
+            </tr>
+            <tr>
+                <td>Penerima</td>
+                <td>{{ $transaksi->recipient }}</td>
+            </tr>
+            <tr>
+                <td>Kategori</td>
+                <td>{{ $transaksi->category }}</td>
+            </tr>
+            <tr>
+                <td>Jumlah Pengeluaran</td>
+                <td>{{ $transaksi->amount }}</td>
             </tr>
             @if ($transaksi->image)
                 <tr class="text-center">

@@ -29,11 +29,11 @@
         <table class="table table-bordered small" id="dataTable">
             <thead class="table-secondary">
                 <tr>
-                    <th scope="col">No</th>
-                    <th scope="col" class="no-wrap">WILAYAH</th>
+                    <th scope="col">ID</th>
                     <th scope="col" class="no-wrap">TANGGAL</th>
-                    <th scope="col" class="no-wrap">NO PA</th>
+                    <th scope="col" class="no-wrap">WILAYAH</th>
                     <th scope="col" class="no-wrap">NAMA PEKERJAAN</th>
+                    <th scope="col" class="no-wrap">NO PA</th>
                     <th scope="col" class="no-wrap">NILAI PKB AWAL</th>
                     <th scope="col" class="no-wrap">NILAI PKB AKHIR</th>
                     <th scope="col" class="text-center">AKSI</th>
@@ -43,13 +43,13 @@
             <tbody>
                 @foreach ($projects as $project)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $project->location }}</td>
+                        <td>{{ $project->project_id }}</td>
                         <td class="no-wrap">{{ \Carbon\Carbon::parse($project->project_date)->format('d M Y') }}</td>
-                        <td>{{ $project->no_pa }}</td>
+                        <td>{{ $project->location }}</td>
                         <td><b><a href="/icon/proyek/{{ $project->id }}"
                                     style="color: #00008B;">{{ $project->title }}</a></b>
                         </td>
+                        <td>{{ $project->no_pa }}</td>
                         <td class="no-wrap text-end">{{ formatRupiah($project->pkb_initial) }}</td>
                         <td class="no-wrap text-end">{{ formatRupiah($project->pkb_final) }}</td>
                         <td class="no-wrap">
@@ -107,7 +107,7 @@
         var table = new DataTable('#dataTable', {
             "columnDefs": [{
                 "type": "date-eu",
-                "targets": 2, // Assuming the date column is the second column (index 1)
+                "targets": 1, // Assuming the date column is the second column (index 1)
                 "render": function(data, type, row, meta) {
                     if (type === 'sort') {
                         // Convert the date to a format that can be sorted naturally
@@ -131,7 +131,7 @@
             }],
             "dom": '<"container-fluid"<"row"<"col"><"col mb-3"f>>>rt<"container-fluid mt-4"<"row"<"col"i><"col"p>>>',
             "pageLength": 10,
-            "order": [0, 'asc'],
+            "order": [1, 'desc'],
         });
     </script>
 @endsection

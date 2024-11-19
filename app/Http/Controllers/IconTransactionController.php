@@ -35,6 +35,8 @@ class IconTransactionController extends Controller
     {
         $validated = $request->validate([
             'amount' => 'required',
+            'recipient' => 'nullable',
+            'category' => 'nullable',
             'no' => 'required|unique:icon_transactions',
             'image' => 'nullable|image|file|max:1024',
         ]);
@@ -45,6 +47,8 @@ class IconTransactionController extends Controller
 
         $transaksi = new IconTransaction([
             'amount' => $validated['amount'],
+            'recipient' => $validated['recipient'],
+            'category' => $validated['category'],
             'no' => $validated['no'],
             'image' => $validated['image'] ?? null,
         ]);

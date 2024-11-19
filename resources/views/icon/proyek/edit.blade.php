@@ -12,9 +12,17 @@
             @csrf
             @method('PUT')
             <div class="mb-3">
+                <label for="project_id" class="form-label">ID Proyek</label>
+                <input type="text" class="form-control @error('project_id') is-invalid @enderror" name="project_id"
+                    id="project_id" required value="{{ old('project_id', $project->project_id) }}">
+                @error('project_id')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
+            </div>
+            <div class="mb-3">
                 <label for="title" class="form-label">Nama Pekerjaan</label>
-                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title"
-                    required value="{{ old('title', $project->title) }}">
+                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
+                    id="title" required value="{{ old('title', $project->title) }}">
                 @error('title')
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror

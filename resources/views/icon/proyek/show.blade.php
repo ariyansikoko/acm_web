@@ -24,6 +24,10 @@
         <div class="col-md-8 mx-auto">
             <table class="table table-hover table-striped-columns table-bordered border-dark">
                 <tr>
+                    <td><b>ID PROYEK</b></td>
+                    <td>{{ $project->project_id }}</td>
+                </tr>
+                <tr>
                     <td><b>WILAYAH KERJA</b></td>
                     <td>{{ $project->location }}</td>
                 </tr>
@@ -46,6 +50,10 @@
                 <tr>
                     <td><b>PKB AKHIR</b></td>
                     <td class="no-wrap">{{ formatRupiah($project->pkb_final) }}</td>
+                </tr>
+                <tr>
+                    <td><b>TOTAL PENGELUARAN</b></td>
+                    <td class="no-wrap">{{ formatRupiah($totalexpense) }}</td>
                 </tr>
                 @php
                     $laba = $project->pkb_final - $totalexpense;
@@ -78,12 +86,14 @@
             </table>
         </div>
         <div class="col-md-5 mx-auto mb-5">
-            <h5 class="text-center">Pengeluaran</h5>
+            <h5 class="text-center">Rincian Pengeluaran</h5>
             <table class="table small" style="margin: 0">
                 <thead class="table-light">
                     <tr>
-                        <th scope="col">JUMLAH</th>
                         <th scope="col" class="no-wrap">NO PENGAJUAN</th>
+                        <th scope="col">PENERIMA</th>
+                        <th scope="col">KATEGORI</th>
+                        <th scope="col">JUMLAH</th>
                         <th scope="col" class="no-wrap">AKSI</th>
                     </tr>
                 </thead>
@@ -91,9 +101,11 @@
                     @if ($transactions->IsNotEmpty())
                         @foreach ($transactions as $transaction)
                             <tr>
-                                <td class="no-wrap">{{ formatRupiah($transaction['amount']) }}</td>
                                 <td>{{ $transaction['no'] }}</td>
-                                <td>
+                                <td class="no-wrap">{{ $transaction->recipient }}</td>
+                                <td class="no-wrap">{{ $transaction->category }}</td>
+                                <td class="no-wrap">{{ formatRupiah($transaction['amount']) }}</td>
+                                <td class="no-wrap">
                                     <a href="/icon/proyek/{{ $project->id }}/transaksi/{{ $transaction->id }}"
                                         class="btn btn-success btn-sm"
                                         style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .75rem;">

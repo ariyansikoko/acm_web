@@ -33,6 +33,7 @@ class IconProjectController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'project_id' => 'required',
             'title' => 'required',
             'location' => 'required',
             'project_date' => 'date|nullable',
@@ -77,6 +78,7 @@ class IconProjectController extends Controller
     public function update(Request $request, IconProject $proyek)
     {
         $rules = [
+            'project_id' => 'required',
             'title' => 'required',
             'location' => 'required',
             'project_date' => 'nullable|date',
