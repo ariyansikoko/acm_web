@@ -17,7 +17,7 @@
         </div>
     @endif
     @if (session()->has('failed'))
-        <div class="alert alert-danger col-lg-8 alert-dismissible fade show" role="alert">
+        <div class="alert alert-danger col-lg-8 alert-dismissible fade show mx-auto" role="alert">
             {{ session('failed') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>

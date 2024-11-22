@@ -4,10 +4,17 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h2>Detail Pekerjaan</h2>
         <div class="">
-            <a href="/icon/proyek/{{ $project->id }}/edit" class="btn btn-warning">
-                Edit Data Pekerjaan</a>
             <a href="/icon/proyek/{{ $project->id }}/transaksi/create" class="btn btn-success">
-                Tambah Pengeluaran Baru</a>
+                <i class="bi bi-currency-dollar"></i></a>
+            <a href="/icon/proyek/{{ $project->id }}/edit" class="btn btn-warning">
+                <i class="bi bi-pencil-square"></i></a>
+            <form action="/icon/proyek/{{ $project->id }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger" type="submit" onclick="return confirm('Apakah yakin ingin menghapus?')">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </form>
             <a href="/icon/proyek/" class="btn btn-info">
                 Kembali</a>
         </div>
@@ -16,6 +23,13 @@
     @if (session()->has('success'))
         <div class="alert alert-success col-lg-8 alert-dismissible fade show mx-auto" role="alert">
             {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if (session()->has('failed'))
+        <div class="alert alert-danger col-lg-8 alert-dismissible fade show mx-auto" role="alert">
+            {{ session('failed') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
@@ -110,10 +124,10 @@
                                         class="btn btn-success btn-sm"
                                         style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .75rem;">
                                         <i class="bi bi-eye"></i></a>
-                                    {{-- <a href="/icon/proyek/{{ $project->id }}/transaksi/{{ $transaction->id }}/edit"
+                                    <a href="/icon/proyek/{{ $project->id }}/transaksi/{{ $transaction->id }}/edit"
                                         class="btn btn-warning btn-sm"
-                                        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .75rem;">
-                                        <i class="bi bi-pencil-square"></i></a> --}}
+                                        style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .25rem; --bs-btn-font-size: .75rem;">
+                                        <i class="bi bi-pencil-square"></i></a>
                                     <form
                                         action="{{ route('icon_transaction.destroy', ['proyek' => $project->id, 'transaksi' => $transaction->id]) }}"
                                         method="POST" class="d-inline">

@@ -64,6 +64,8 @@ Route::get('/dashboard', function () {
 Route::resource('/icon/proyek', IconProjectController::class)->middleware('auth');
 Route::get('/icon/proyek/{proyek}/transaksi/create', [IconTransactionController::class, 'create'])->name('icon_transaction.create')->middleware('auth');
 Route::get('/icon/proyek/{proyek}/transaksi/{transaksi}', [IconTransactionController::class, 'show'])->name('icon_transaction.show')->middleware('auth');
+Route::get('/icon/proyek/{proyek}/transaksi/{transaksi}/edit', [IconTransactionController::class, 'edit'])->name('icon_transaction.edit')->middleware('auth');
+Route::put('/icon/proyek/{proyek}/transaksi/{transaksi}', [IconTransactionController::class, 'update'])->name('icon_transaction.update')->middleware('auth');
 Route::post('/icon/proyek/{proyek}/transaksi', [IconTransactionController::class, 'store'])->name('icon_transaction.store')->middleware('auth');
 Route::delete('/icon/proyek/{proyek}/transaksi/{transaksi}', [IconTransactionController::class, 'destroy'])->name('icon_transaction.destroy')->middleware('auth');
 
