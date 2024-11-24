@@ -25,8 +25,18 @@
         </div>
     @endif
 
-    <div class="col-md-6 mx-auto mt-5">
+    <div class="col-md-7 mx-auto mt-5">
         <table class="table table-striped-columns table-bordered border-dark">
+            <tr>
+                <td>Tanggal</td>
+                <td>
+                    @if ($transaksi->date)
+                        {{ \Carbon\Carbon::parse($transaction->date)->format('d M Y') }}
+                    @else
+                        -
+                    @endif
+                </td>
+            </tr>
             <tr>
                 <td>Nomor Pengajuan</td>
                 <td>{{ $transaksi->no }}</td>

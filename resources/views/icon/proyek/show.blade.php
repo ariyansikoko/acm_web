@@ -99,11 +99,12 @@
                 @endif
             </table>
         </div>
-        <div class="col-md-5 mx-auto mb-5">
+        <div class="col-md-6 mx-auto mb-5">
             <h5 class="text-center">Rincian Pengeluaran</h5>
-            <table class="table small" style="margin: 0">
+            <table class="table small table-hover" style="margin: 0">
                 <thead class="table-light">
                     <tr>
+                        <th scope="col" class="no-wrap">TANGGAL</th>
                         <th scope="col" class="no-wrap">NO PENGAJUAN</th>
                         <th scope="col">PENERIMA</th>
                         <th scope="col">KATEGORI</th>
@@ -115,6 +116,11 @@
                     @if ($transactions->IsNotEmpty())
                         @foreach ($transactions as $transaction)
                             <tr>
+                                <td class="no-wrap">
+                                    @if ($transaction->date)
+                                        {{ \Carbon\Carbon::parse($transaction->date)->format('d M Y') }}
+                                    @endif
+                                </td>
                                 <td>{{ $transaction['no'] }}</td>
                                 <td class="no-wrap">{{ $transaction->recipient }}</td>
                                 <td class="no-wrap">{{ $transaction->category }}</td>

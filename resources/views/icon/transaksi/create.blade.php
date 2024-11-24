@@ -49,6 +49,13 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label for="date" class="form-label">Tanggal</label>
+                <input type="date" class="form-control" id="date" name="date" value="{{ old('date') }}">
+                @error('date')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
+            </div>
+            <div class="mb-3">
                 <label for="note" class="form-label">Keterangan</label>
                 <input type="text" class="form-control @error('note') is-invalid @enderror" id="note" name="note"
                     value="{{ old('note') }}">

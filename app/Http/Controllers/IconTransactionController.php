@@ -39,6 +39,7 @@ class IconTransactionController extends Controller
             'category' => 'required',
             'no' => 'required|unique:icon_transactions',
             'note' => 'nullable',
+            'date' => 'nullable|date',
             'image' => 'nullable|image|file|max:1024',
             'image2' => 'nullable|image|file|max:1024',
         ]);
@@ -55,6 +56,7 @@ class IconTransactionController extends Controller
             'recipient' => $validated['recipient'],
             'category' => $validated['category'],
             'no' => $validated['no'],
+            'date' => $validated['date'],
             'note' => $validated['note'],
             'image' => $validated['image'] ?? null,
             'image2' => $validated['image2'] ?? null,
@@ -98,6 +100,7 @@ class IconTransactionController extends Controller
             'category' => 'required',
             'no' => 'required|unique:icon_transactions,no,' . $transaksi->id,
             'note' => 'nullable',
+            'date' => 'nullable|date',
         ];
 
         if ($request->hasFile('image')) {
@@ -122,6 +125,7 @@ class IconTransactionController extends Controller
             'recipient' => $validated['recipient'],
             'category' => $validated['category'],
             'no' => $validated['no'],
+            'date' => $validated['date'],
             'note' => $validated['note'],
             'image' => $request->hasFile('image') ? $request->file('image')->store('/icon/bukti_pengeluaran') : $transaksi->image,  // Only update image if a new one is uploaded
             'image2' => $request->hasFile('image2') ? $request->file('image2')->store('/icon/bukti_pengeluaran') : $transaksi->image2,  // Only update image2 if a new one is uploaded
