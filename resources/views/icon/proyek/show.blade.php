@@ -99,7 +99,7 @@
                 @endif
             </table>
         </div>
-        <div class="col-md-6 mx-auto mb-5">
+        <div class="col-md-7 mx-auto mb-5">
             <h5 class="text-center">Rincian Pengeluaran</h5>
             <table class="table small table-hover" style="margin: 0">
                 <thead class="table-light">

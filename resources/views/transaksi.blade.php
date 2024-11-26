@@ -24,8 +24,8 @@
     </div>
     @include('dashboard.transaksi.create')
     <div class="mb-4 small" id="scrollX">
-        <table class="table table-striped table-hover align-middle small" id="dataTable">
-            <thead>
+        <table class="table table-striped table-hover small" id="dataTable">
+            <thead class="">
                 <tr>
                     <th scope="col">Tanggal</th>
                     <th scope="col" class="text-center no-wrap">Kode Proyek</th>

@@ -26,8 +26,8 @@
     @include('icon.proyek.create')
 
     <div class="mb-4 small" id="scrollX">
-        <table class="table table-bordered small" id="dataTable">
-            <thead class="table-secondary">
+        <table class="table table-bordered table-hover small" id="dataTable">
+            <thead class="">
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col" class="no-wrap">TANGGAL</th>
@@ -46,8 +46,7 @@
                         <td>{{ $project->project_id }}</td>
                         <td class="no-wrap">{{ \Carbon\Carbon::parse($project->project_date)->format('d M Y') }}</td>
                         <td>{{ $project->location }}</td>
-                        <td><b><a href="/icon/proyek/{{ $project->id }}"
-                                    style="color: #00008B;">{{ $project->title }}</a></b>
+                        <td><b><a href="/icon/proyek/{{ $project->id }}">{{ $project->title }}</a></b>
                         </td>
                         <td>{{ $project->no_pa }}</td>
                         <td class="no-wrap text-end">{{ formatRupiah($project->pkb_initial) }}</td>
@@ -129,8 +128,14 @@
                     return `${day} ${month} ${year}`;
                 }
             }],
-            "dom": '<"container-fluid"<"row"<"col"><"col mb-3"f>>>rt<"container-fluid mt-4"<"row"<"col"i><"col"p>>>',
+            "dom": '<"container-fluid"<"row"<"col"B><"col mb-3"f>>>rt<"container-fluid mt-4"<"row"<"col"l><"col"p>>>',
+            "buttons": [
+                'print', 'excel'
+            ],
             "pageLength": 10,
+            // "pageLength": {
+            //     menu: [10, 25, 50, 100]
+            // },
             "order": [1, 'desc'],
         });
     </script>

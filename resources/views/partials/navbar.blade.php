@@ -56,7 +56,7 @@
                             aria-expanded="false">
                             Welcome, {{ auth()->user()->name }}
                         </a>
-                        <ul class="dropdown-menu" data-bs-theme="light">
+                        <ul class="dropdown-menu dropdown-menu-end" data-bs-theme="light">
                             <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-layout-text-sidebar-reverse"></i>
                                     Dashboard</a></li>
                             <li>

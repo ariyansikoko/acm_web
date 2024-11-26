@@ -1,8 +1,7 @@
 @extends('layouts.main')
 
 @section('body')
-    <h1 class="mb-4">Welcome!</h1>
-    <div class="mx-auto mb-5">
+    <div class="mx-auto my-5">
         <div class="col-md-auto justify-content-center">
             <h2 class="text-center mb-4">PT Acero Cetha Metalindo</h2>
             <div class="card-group m-3">
