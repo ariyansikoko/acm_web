@@ -68,7 +68,7 @@
                         <td style="padding: 0">
                             @if ($project->iconTransaction->isNotEmpty())
                                 <table class="table small" style="margin: 0">
-                                    <thead class="table-light">
+                                    <thead class="">
                                         <tr>
                                             <th scope="col">JUMLAH</th>
                                             <th scope="col" class="text-end no-wrap">NO PENGAJUAN</th>
