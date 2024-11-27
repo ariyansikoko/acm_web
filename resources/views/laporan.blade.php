@@ -47,8 +47,8 @@
                                 $laba = $post->boq_plan - $biaya - $subcon;
                             @endphp
                         @endif
-                        <td class="{{ $laba > 0 ? 'table-success' : 'table-danger' }} no-wrap">
-                            {{ formatRupiah($laba) }}
+                        <td class="{{ $laba > 0 ? 'text-success' : 'text-danger' }} no-wrap">
+                            <b>{{ formatRupiah($laba) }}</b>
                         </td>
 
                         <td class="text-center"> {{ $post->episode }}</td>

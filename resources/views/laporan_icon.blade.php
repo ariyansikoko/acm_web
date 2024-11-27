@@ -40,8 +40,8 @@
                                 $laba = $post->pkb_awal - $expense;
                             @endphp
                         @endif
-                        <td class="{{ $laba > 0 ? 'table-success' : 'table-danger' }} no-wrap">
-                            {{ formatRupiah($laba) }}
+                        <td class="{{ $laba > 0 ? 'text-success' : 'text-danger' }} no-wrap">
+                            <b>{{ formatRupiah($laba) }}</b>
                         </td>
                     </tr>
                 @endforeach

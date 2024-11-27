@@ -47,7 +47,7 @@
                 </tr>
                 <tr>
                     <td><b>TANGGAL ORDER</b></td>
-                    <td class="no-wrap">{{ \Carbon\Carbon::parse($project->project_date)->format('d M Y') }}</td>
+                    <td class="no-wrap">{{ \Carbon\Carbon::parse($project->project_date)->format('d F Y') }}</td>
                 </tr>
                 <tr>
                     <td><b>NO PA</b></td>
@@ -69,28 +69,28 @@
                     <td><b>TOTAL PENGELUARAN</b></td>
                     <td class="no-wrap">{{ formatRupiah($totalexpense) }}</td>
                 </tr>
-                @php
-                    $laba = $project->pkb_final - $totalexpense;
-                @endphp
+                @if ($project->pkb_final)
+                    @php
+                        $laba = $project->pkb_final - $totalexpense;
+                        $persenLaba = ($laba / $project->pkb_final) * 100;
+                    @endphp
+                @else
+                    @php
+                        $laba = $project->pkb_initial - $totalexpense;
+                        $persenLaba = ($laba / $project->pkb_initial) * 100;
+                    @endphp
+                @endif
                 <tr>
                     <td><b>LABA/RUGI</b></td>
-                    <td class="no-wrap {{ $laba > 0 ? 'table-success' : 'table-danger' }}">{{ formatRupiah($laba) }}</td>
+                    <td class="no-wrap {{ $laba > 0 ? 'text-success' : 'text-danger' }}"><b>{{ formatRupiah($laba) }}</b>
+                    </td>
                 </tr>
-                @if ($project->pkb_final !== 0)
-                    <tr>
-                        <td><b>PERSENTASE LABA/RUGI</b></td>
-                        <td class="no-wrap {{ $laba > 0 ? 'table-success' : 'table-danger' }}">
-                            {{ formatPercent(($laba / $project->pkb_final) * 100) }}
-                        </td>
-                    </tr>
-                @else
-                    <tr>
-                        <td><b>PERSENTASE LABA/RUGI</b></td>
-                        <td class="no-wrap {{ $laba > 0 ? 'table-success' : 'table-danger' }}">
-                            {{ formatPercent(($laba / $project->pkb_awal) * 100) }}
-                        </td>
-                    </tr>
-                @endif
+                <tr>
+                    <td><b>PERSENTASE LABA/RUGI</b></td>
+                    <td class="no-wrap {{ $laba > 0 ? 'text-success' : 'text-danger' }}">
+                        <b>{{ formatPercent($persenLaba) }}</b>
+                    </td>
+                </tr>
                 @if ($project->note !== null)
                     <tr>
                         <td><b>KETERANGAN</b></td>
@@ -102,7 +102,7 @@
         <div class="col-md-7 mx-auto mb-5">
             <h5 class="text-center">Rincian Pengeluaran</h5>
             <table class="table small table-hover" style="margin: 0">
-                <thead class="table-light">
+                <thead class="">
                     <tr>
                         <th scope="col" class="no-wrap">TANGGAL</th>
                         <th scope="col" class="no-wrap">NO PENGAJUAN</th>
@@ -150,7 +150,7 @@
                         @endforeach
                     @else
                         <tr class="text-center">
-                            <td colspan="3">Tidak ada pengeluaran</td>
+                            <td colspan="6">Tidak ada pengeluaran</td>
                         </tr>
                     @endif
 
