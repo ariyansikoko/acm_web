@@ -75,6 +75,22 @@
                     </td>
                 </tr>
             @endif
+            @if ($transaksi->image3)
+                <tr class="text-center">
+                    <td colspan="2">
+                        <h5>Foto 3</h5>
+                        <img src="{{ asset('storage/' . $transaksi->image3) }}" style="max-height: 300px; width: auto">
+                    </td>
+                </tr>
+            @endif
+            @if ($transaksi->image4)
+                <tr class="text-center">
+                    <td colspan="2">
+                        <h5>Foto 2</h5>
+                        <img src="{{ asset('storage/' . $transaksi->image4) }}" style="max-height: 300px; width: auto">
+                    </td>
+                </tr>
+            @endif
         </table>
     </div>
 @endsection

@@ -42,6 +42,8 @@ class IconTransactionController extends Controller
             'date' => 'nullable|date',
             'image' => 'nullable|image|file|max:1024',
             'image2' => 'nullable|image|file|max:1024',
+            'image3' => 'nullable|image|file|max:1024',
+            'image4' => 'nullable|image|file|max:1024',
         ]);
 
         if ($request->file('image')) {
@@ -49,6 +51,12 @@ class IconTransactionController extends Controller
         }
         if ($request->file('image2')) {
             $validated['image2'] = $request->file('image2')->store('/icon/bukti_pengeluaran');
+        }
+        if ($request->file('image3')) {
+            $validated['image3'] = $request->file('image3')->store('/icon/bukti_pengeluaran');
+        }
+        if ($request->file('image4')) {
+            $validated['image4'] = $request->file('image4')->store('/icon/bukti_pengeluaran');
         }
 
         $transaksi = new IconTransaction([
@@ -60,6 +68,8 @@ class IconTransactionController extends Controller
             'note' => $validated['note'],
             'image' => $validated['image'] ?? null,
             'image2' => $validated['image2'] ?? null,
+            'image3' => $validated['image3'] ?? null,
+            'image4' => $validated['image4'] ?? null,
         ]);
 
         $proyek->iconTransaction()->save($transaksi);
@@ -117,6 +127,20 @@ class IconTransactionController extends Controller
             $rules['image2'] = 'nullable|image|file|max:1024';  // Validate if a new image2 is uploaded
         }
 
+        if ($request->hasFile('image3')) {
+            if ($transaksi->image3) {
+                Storage::delete($transaksi->image3);
+            }
+            $rules['image3'] = 'nullable|image|file|max:1024';  // Validate if a new image2 is uploaded
+        }
+
+        if ($request->hasFile('image4')) {
+            if ($transaksi->image4) {
+                Storage::delete($transaksi->image4);
+            }
+            $rules['image4'] = 'nullable|image|file|max:1024';  // Validate if a new image2 is uploaded
+        }
+
         $validated = $request->validate($rules);  // Apply dynamic validation rules
 
         // Update the transaction data
@@ -129,6 +153,8 @@ class IconTransactionController extends Controller
             'note' => $validated['note'],
             'image' => $request->hasFile('image') ? $request->file('image')->store('/icon/bukti_pengeluaran') : $transaksi->image,  // Only update image if a new one is uploaded
             'image2' => $request->hasFile('image2') ? $request->file('image2')->store('/icon/bukti_pengeluaran') : $transaksi->image2,  // Only update image2 if a new one is uploaded
+            'image3' => $request->hasFile('image3') ? $request->file('image3')->store('/icon/bukti_pengeluaran') : $transaksi->image3,  // Only update image2 if a new one is uploaded
+            'image4' => $request->hasFile('image4') ? $request->file('image4')->store('/icon/bukti_pengeluaran') : $transaksi->image4,  // Only update image2 if a new one is uploaded
         ]);
 
         return redirect('icon/proyek/' . $proyek->id . '/transaksi/' . $transaksi->id);
@@ -144,6 +170,12 @@ class IconTransactionController extends Controller
         }
         if ($transaksi->image2) {
             Storage::delete($transaksi->image2);
+        }
+        if ($transaksi->image3) {
+            Storage::delete($transaksi->image3);
+        }
+        if ($transaksi->image4) {
+            Storage::delete($transaksi->image4);
         }
 
         IconTransaction::destroy($transaksi->id);

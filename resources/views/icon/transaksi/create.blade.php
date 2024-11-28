@@ -63,55 +63,81 @@
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
             </div>
-            <div class="mb-4">
-                <label for="image" class="form-label">Foto 1 (Max: 1MB)</label>
-                <img class="img-preview img-fluid mb-3 col-sm-3">
-                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image"
-                    name="image" onchange="previewImage()">
-                @error('image')
-                    <div class="text-danger"><small>{{ $message }}</small></div>
-                @enderror
+            <div id="image-input-container">
+                <div class="mb-3 image-input">
+                    <label for="image" class="form-label">Foto 1 (Max: 1MB)</label>
+                    <img class="img-preview img-fluid mb-3 col-sm-3" style="display: none;">
+                    <input type="file" class="form-control" id="image" name="image" onchange="previewImage(this)">
+                    @error('image')
+                        <div class="text-danger"><small>{{ $message }}</small></div>
+                    @enderror
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="button" id="add-image" class="btn btn-secondary mb-2">Tambah Input Foto</button>
+                    <button type="button" id="remove-image" class="btn btn-danger mb-2" style="display: none;">Hapus
+                        Foto Terakhir</button>
+                </div>
             </div>
-            <div class="mb-4">
-                <label for="image2" class="form-label">Foto 2 (Max: 1MB)</label>
-                <img class="img-preview2 img-fluid mb-3 col-sm-3">
-                <input class="form-control @error('image2') is-invalid @enderror" type="file" id="image2"
-                    name="image2" onchange="previewImage2()">
-                @error('image2')
-                    <div class="text-danger"><small>{{ $message }}</small></div>
-                @enderror
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary mt-3 mb-5 px-3">Save</button>
+
             </div>
-            <button type="submit" class="btn btn-primary mb-5">Save</button>
         </form>
     </div>
 
     <script>
-        function previewImage() {
-            const image = document.querySelector('#image');
-            const imgPreview = document.querySelector('.img-preview');
+        let imageCount = 1; // Track the number of image inputs
+        const maxImages = 4; // Maximum allowed image inputs
+
+        document.getElementById('add-image').addEventListener('click', () => {
+            if (imageCount < maxImages) {
+                imageCount++;
+
+                const container = document.getElementById('image-input-container'); // Corrected id here
+                const newInput = document.createElement('div');
+                newInput.classList.add('mb-2', 'image-input');
+                newInput.innerHTML = `
+            <label for="image${imageCount}" class="form-label">Foto ${imageCount} (Max: 1MB)</label>
+            <img class="img-preview img-fluid mb-3 col-sm-3" style="display: none;">
+            <input class="form-control" type="file" id="image${imageCount}" name="image${imageCount}" onchange="previewImage(this)">
+        `;
+                container.appendChild(newInput);
+
+                if (imageCount === maxImages) {
+                    document.getElementById('add-image').style.display = 'none';
+                }
+                document.getElementById('remove-image').style.display =
+                    'inline-block'; // Ensure remove button appears
+            }
+        });
+
+        document.getElementById('remove-image').addEventListener('click', () => {
+            if (imageCount > 1) {
+                const container = document.getElementById('image-input-container'); // Corrected id here
+                container.lastElementChild.remove();
+                imageCount--;
+
+                if (imageCount < maxImages) {
+                    document.getElementById('add-image').style.display = 'inline-block';
+                }
+                if (imageCount === 1) {
+                    document.getElementById('remove-image').style.display =
+                        'none'; // Hide remove button when only 1 input remains
+                }
+            }
+        });
+
+        function previewImage(input) {
+            const imgPreview = input.previousElementSibling;
 
             imgPreview.style.display = 'block';
 
             const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.files[0]);
+            oFReader.readAsDataURL(input.files[0]);
 
             oFReader.onload = function(oFREvent) {
                 imgPreview.src = oFREvent.target.result;
-            }
-        }
-
-        function previewImage2() {
-            const image2 = document.querySelector('#image2');
-            const imgPreview2 = document.querySelector('.img-preview2');
-
-            imgPreview2.style.display = 'block';
-
-            const oFReader = new FileReader();
-            oFReader.readAsDataURL(image2.files[0]);
-
-            oFReader.onload = function(oFREvent) {
-                imgPreview2.src = oFREvent.target.result;
-            }
+            };
         }
     </script>
 @endsection

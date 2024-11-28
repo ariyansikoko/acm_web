@@ -82,13 +82,13 @@
                 <label for="image" class="form-label">Foto 1 (Max: 1MB)</label>
                 <input type="hidden" name="image" value="{{ $transaksi->image }}">
                 @if ($transaksi->image)
-                    <img src="{{ asset('storage/' . $transaksi->image) }}"
-                        class="img-preview img-fluid mb-3 col-sm-3 d-block">
+                    <img src="{{ asset('storage/' . $transaksi->image) }}" id="image"
+                        class="img-fluid mb-3 col-sm-3 d-block">
                 @else
-                    <img class="img-preview img-fluid mb-3 col-sm-3">
+                    <img id="image" class="img-fluid mb-3 col-sm-3" style="display: none;">
                 @endif
-                <input class="form-control" @error('image') is-invalid @enderror type="file" id="image"
-                    name="image" onchange="previewImage()">
+                <input class="form-control @error('image') is-invalid @enderror" type="file" id="image"
+                    name="image" onchange="previewImage(this)">
                 @error('image')
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
@@ -98,14 +98,46 @@
                 <label for="image2" class="form-label">Foto 2 (Max: 1MB)</label>
                 <input type="hidden" name="image2" value="{{ $transaksi->image2 }}">
                 @if ($transaksi->image2)
-                    <img src="{{ asset('storage/' . $transaksi->image2) }}"
-                        class="img-preview2 img-fluid mb-3 col-sm-3 d-block">
+                    <img src="{{ asset('storage/' . $transaksi->image2) }}" id="image2"
+                        class="img-fluid mb-3 col-sm-3 d-block">
                 @else
-                    <img class="img-preview2 img-fluid mb-3 col-sm-3">
+                    <img id="image2" class="img-fluid mb-3 col-sm-3" style="display: none;">
                 @endif
-                <input class="form-control" @error('image2') is-invalid @enderror type="file" id="image2"
-                    name="image2" onchange="previewImage2()">
+                <input class="form-control @error('image2') is-invalid @enderror" type="file" id="image2"
+                    name="image2" onchange="previewImage(this)">
                 @error('image2')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="image3" class="form-label">Foto 3 (Max: 1MB)</label>
+                <input type="hidden" name="image3" value="{{ $transaksi->image3 }}">
+                @if ($transaksi->image3)
+                    <img src="{{ asset('storage/' . $transaksi->image3) }}" id="image3"
+                        class="img-fluid mb-3 col-sm-3 d-block">
+                @else
+                    <img id="image3" class="img-fluid mb-3 col-sm-3" style="display: none;">
+                @endif
+                <input class="form-control @error('image3') is-invalid @enderror" type="file" id="image3"
+                    name="image3" onchange="previewImage(this)">
+                @error('image3')
+                    <div class="text-danger"><small>{{ $message }}</small></div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="image4" class="form-label">Foto 4 (Max: 1MB)</label>
+                <input type="hidden" name="image4" value="{{ $transaksi->image4 }}">
+                @if ($transaksi->image4)
+                    <img src="{{ asset('storage/' . $transaksi->image4) }}" id="image4"
+                        class="img-fluid mb-3 col-sm-3 d-block">
+                @else
+                    <img id="image4" class="img-fluid mb-3 col-sm-3" style="display: none;">
+                @endif
+                <input class="form-control @error('image4') is-invalid @enderror" type="file" id="image4"
+                    name="image4" onchange="previewImage(this)">
+                @error('image4')
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
             </div>
@@ -115,31 +147,17 @@
     </div>
 
     <script>
-        function previewImage() {
-            const image = document.querySelector('#image');
-            const imgPreview = document.querySelector('.img-preview');
+        function previewImage(input) {
+            const imgPreview = input.previousElementSibling;
 
-            imgPreview.style.display = 'block';
+            if (input.files && input.files[0]) {
+                imgPreview.style.display = 'block';
 
-            const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.files[0]);
-
-            oFReader.onload = function(oFREvent) {
-                imgPreview.src = oFREvent.target.result;
-            }
-        }
-
-        function previewImage2() {
-            const image2 = document.querySelector('#image2');
-            const imgPreview2 = document.querySelector('.img-preview2');
-
-            imgPreview2.style.display = 'block';
-
-            const oFReader = new FileReader();
-            oFReader.readAsDataURL(image2.files[0]);
-
-            oFReader.onload = function(oFREvent) {
-                imgPreview2.src = oFREvent.target.result;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imgPreview.src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
             }
         }
     </script>
