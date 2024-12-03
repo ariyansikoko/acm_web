@@ -20,7 +20,9 @@
                             href="/pengeluaran">Transaksi</a>
                         </li> --}}
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link {{ Request::is('pengeluaran*', 'icon*') ? 'active' : '' }}
+" href="#"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Transaksi</a>
                             <ul class="dropdown-menu" data-bs-theme="light">
                                 <li><a class="dropdown-item" href="/pengeluaran">TA</a></li>
@@ -34,8 +36,8 @@
                             <a class="nav-link {{ Request::is('proyek*') ? 'active' : '' }}" href="/proyek">Proyek</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">Laporan</a>
+                            <a class="nav-link {{ Request::is('laporan*') ? 'active' : '' }}" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Laporan</a>
                             <ul class="dropdown-menu" data-bs-theme="light">
                                 <li><a class="dropdown-item" href="/laporan/TA">TA</a></li>
                                 <li>
