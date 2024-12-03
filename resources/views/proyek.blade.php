@@ -104,7 +104,7 @@
                     visible: false,
                 },
             ],
-            "dom": '<"container-fluid"<"row"<"col"B><"col"f>>>t<"container-fluid mt-4"<"row"<"col"i><"col"p>>>',
+            "dom": '<"container-fluid"<"row"<"col"B><"col"f>>>t<"container-fluid mt-4"<"row"<"col"l><"col"p>>>',
             "buttons": [
                 'print', 'excel', 'pdf',
                 {
@@ -112,7 +112,7 @@
                     columns: 'th:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(5)):not(:nth-child(15))'
                 }
             ],
-            "pageLength": 15,
+            "pageLength": 10,
             "order": [0, 'desc'],
             "autoWidth": false,
         });

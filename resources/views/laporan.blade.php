@@ -90,11 +90,11 @@
                     return `${day} ${month} ${year}`;
                 }
             }],
-            "dom": '<"container-fluid"<"row"<"col"B><"col"f>>>rt<"container-fluid mt-4"<"row"<"col"i><"col"p>>>',
+            "dom": '<"container-fluid"<"row"<"col"B><"col"f>>>rt<"container-fluid mt-4"<"row"<"col"l><"col"p>>>',
             "buttons": [
                 'print', 'excel', 'pdf'
             ],
-            "pageLength": 15,
+            "pageLength": 10,
             "order": [0, 'desc'],
         });
     </script>
