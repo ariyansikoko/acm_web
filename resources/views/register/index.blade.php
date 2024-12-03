@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('body')
-    <h3 class="mb-4 text-center">Registration Form</h3>
-    <div class="row justify-content-center">
-        <div class="col-md-5">
+    <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+        <div class="col-md-4">
+            <h3 class="mb-4 text-center">Registration Form</h3>
             <main class="form-registration">
                 <form action="/register" method="POST">
                     @csrf

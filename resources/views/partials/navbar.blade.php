@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg sticky-top" style="background-color:midnightblue" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg sticky-top"
+    style="background-color:rgb(21, 21, 79);box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);" data-bs-theme="dark">
     <div class="container">
         <a class="navbar-brand" href="/">
             <img src="/logo.png" alt="" class="img rounded" height="34" class="d-inline-block">

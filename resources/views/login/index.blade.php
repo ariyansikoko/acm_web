@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('body')
-    <div class="row justify-content-center">
+    <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
         <div class="col-md-4">
 
             @if (session()->has('success'))
@@ -40,7 +40,7 @@
                     </div>
                     <button class="btn btn-primary w-100 py-2 mt-3" type="submit">Login</button>
                 </form>
+            </main>
         </div>
-        </main>
     </div>
 @endsection
