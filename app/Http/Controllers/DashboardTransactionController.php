@@ -15,13 +15,14 @@ class DashboardTransactionController extends Controller
      */
     public function index()
     {
-        $project = Project::orderBy('project_id')->where('status', 1)->get();
+        $projects = Project::orderBy('project_id')->where('status', 1)->get();
+        $ids = $projects->pluck('id');
         $recipient = Recipient::orderBy('name')->where('isActive', 1)->get();
         $expensetype = Expensetype::orderBy('cost_id')->get();
 
         return view('dashboard.transaksi.index', [
-            'transaksi' => Transaction::orderBy('transaction_date', 'desc')->get(),
-            'projects' => $project,
+            'transaksi' => Transaction::whereIn('project_id', $ids)->orderBy('transaction_date', 'desc')->get(),
+            'projects' => $projects,
             'recipients' => $recipient,
             'expensetypes' => $expensetype,
         ]);

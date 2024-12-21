@@ -27,9 +27,9 @@
                 <select class="form-select" name="recipient_id">
                     @foreach ($recipients as $item)
                         @if (old('recipient_id', $transaksi->recipient_id) == $item->id)
-                            <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                            <option value="{{ $item->id }}" selected>{{ $item->cost_id }} - {{ $item->name }}</option>
                         @else
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            <option value="{{ $item->id }}">{{ $item->cost_id }} - {{ $item->name }}</option>
                         @endif
                     @endforeach
                 </select>

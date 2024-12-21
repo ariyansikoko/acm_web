@@ -50,8 +50,8 @@
             </div>
             <div class="mb-3">
                 <label for="project_location" class="form-label">Lokasi Proyek</label>
-                <input type="text" class="form-control" @error('project_location') is-invalid @enderror id="project_location"
-                    name="project_location" required value="{{ old('project_location') }}">
+                <input type="text" class="form-control" @error('project_location') is-invalid @enderror
+                    id="project_location" name="project_location" required value="{{ old('project_location') }}">
                 @error('project_location')
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
@@ -70,6 +70,8 @@
                     <option value="TBG" {{ old('type') == 'TBG' ? 'selected' : '' }}>TBG</option>
                     <option value="GAMAS" {{ old('type') == 'GAMAS' ? 'selected' : '' }}>GAMAS</option>
                     <option value="MAINT" {{ old('type') == 'MAINT' ? 'selected' : '' }}>MAINT</option>
+                    <option value="IOAN" {{ old('type') == 'IOAN' ? 'selected' : '' }}>IOAN</option>
+                    <option value="SALES" {{ old('type') == 'SALES' ? 'selected' : '' }}>SALES</option>
                 </select>
             </div>
             <div class="mb-3">
