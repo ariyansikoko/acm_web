@@ -45,7 +45,7 @@
                         <td><b>{{ $post->project->title }}</b></td>
                         <td>{{ $post->recipient->name }}</td>
                         <td class="no-wrap">{{ formatRupiah($post->amount) }}</td>
-                        <td>{{ $post->description }}</td>
+                        <td>{{ \Str::limit($post->description, 150) }}</td>
                         <td>{{ $post->category }}</td>
                         <td>{{ $post->expensetype->name }}</td>
                     </tr>

@@ -51,8 +51,9 @@
             </div>
             <div class="mb-3">
                 <label for="project_location" class="form-label">Lokasi Proyek</label>
-                <input type="text" class="form-control" @error('project_location') is-invalid @enderror id="project_location"
-                    name="project_location" value="{{ old('project_location', $project->project_location) }}">
+                <input type="text" class="form-control" @error('project_location') is-invalid @enderror
+                    id="project_location" name="project_location"
+                    value="{{ old('project_location', $project->project_location) }}">
                 @error('project_location')
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
@@ -71,6 +72,8 @@
                     <option value="TBG" {{ $project->type == 'TBG' ? 'selected' : '' }}>TBG</option>
                     <option value="GAMAS" {{ $project->type == 'GAMAS' ? 'selected' : '' }}>GAMAS</option>
                     <option value="MAINT" {{ $project->type == 'MAINT' ? 'selected' : '' }}>MAINT</option>
+                    <option value="IOAN" {{ $project->type == 'IOAN' ? 'selected' : '' }}>IOAN</option>
+                    <option value="SALES" {{ $project->type == 'SALES' ? 'selected' : '' }}>SALES</option>
                 </select>
             </div>
             <div class="mb-3">
