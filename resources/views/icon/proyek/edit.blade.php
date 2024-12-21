@@ -67,6 +67,16 @@
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Status Pekerjaan</label>
+                <select type="text" class="form-select" id="status" name="status">
+                    <option value="OPEN" {{ old('status', $project->status) == 'OPEN' ? 'selected' : '' }}
+                        class="text-success">OPEN</option>
+                    <option value="CLOSED" {{ old('status', $project->status) == 'CLOSED' ? 'selected' : '' }}
+                        class="text-danger">CLOSED
+                    </option>
+                </select>
+            </div>
             <div class="mb-4">
                 <label for="note" class="form-label">Keterangan</label>
                 <input type="text" class="form-control" id="note" name="note"

@@ -36,6 +36,7 @@
                     <th scope="col" class="no-wrap">NO PA</th>
                     <th scope="col" class="no-wrap">NILAI PKB AWAL</th>
                     <th scope="col" class="no-wrap">NILAI PKB AKHIR</th>
+                    <th scope="col" class="text-center">STATUS</th>
                     <th scope="col" class="text-center">AKSI</th>
                     <th scope="col" class="text-center">PENGELUARAN</th>
                 </tr>
@@ -51,8 +52,14 @@
                         <td>{{ $project->no_pa }}</td>
                         <td class="no-wrap text-end">{{ formatRupiah($project->pkb_initial) }}</td>
                         <td class="no-wrap text-end">{{ formatRupiah($project->pkb_final) }}</td>
+                        @if ($project->status == 'OPEN')
+                            <td class="text-success text-center"><b>OPEN</b></td>
+                        @else
+                            <td class="text-danger text-center"><b>CLOSED</b></td>
+                        @endif
                         <td class="no-wrap">
-                            <a href="{{ route('icon_transaction.create', $project->id) }}" class="btn btn-sm btn-success">
+                            <a href="{{ route('icon_transaction.create', $project->id) }}"
+                                class="btn btn-sm {{ $project->status == 'CLOSED' ? 'btn-secondary disabled' : 'btn-success' }}">
                                 <i class="bi bi-currency-dollar"></i></a>
                             <a href="/icon/proyek/{{ $project->id }}/edit" class="btn btn-sm btn-warning">
                                 <i class="bi bi-pencil-square"></i></a>

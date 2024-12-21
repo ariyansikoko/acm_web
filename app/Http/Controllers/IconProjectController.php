@@ -40,7 +40,8 @@ class IconProjectController extends Controller
             'no_pa' => 'required|unique:icon_projects',
             'pkb_initial' => 'nullable|numeric|integer',
             'pkb_final' => 'nullable|numeric|integer',
-            'boq_desc' => 'max:255|nullable',
+            'status' => 'required',
+            'note' => 'max:255|nullable',
         ]);
 
         IconProject::create($validated);
@@ -85,6 +86,7 @@ class IconProjectController extends Controller
             'no_pa' => 'required',
             'pkb_initial' => 'nullable|numeric|integer',
             'pkb_final' => 'nullable|numeric|integer',
+            'status' => 'required',
             'note' => 'max:255|nullable',
         ];
 

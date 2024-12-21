@@ -39,7 +39,13 @@
             <table class="table table-hover table-striped-columns table-bordered border-dark">
                 <tr>
                     <td><b>ID PROYEK</b></td>
-                    <td>{{ $project->project_id }}</td>
+                    <td><b>{{ $project->project_id }}</b></td>
+                </tr>
+                <tr>
+                    <td><b>STATUS</b></td>
+                    <td class="{{ $project->status == 'OPEN' ? 'text-success' : 'text-danger' }}">
+                        <b>{{ $project->status }}</b>
+                    </td>
                 </tr>
                 <tr>
                     <td><b>WILAYAH KERJA</b></td>

@@ -48,9 +48,9 @@
                         <td>{{ $post['boq_desc'] }}</td>
                         <td>{{ $post['episode'] }}</td>
                         @if ($post->status == 1)
-                            <td class="text-success text-center">OPEN</td>
+                            <td class="text-success text-center"><b>OPEN</b></td>
                         @else
-                            <td class="text-danger text-center">CLOSED</td>
+                            <td class="text-danger text-center"><b>CLOSED</b></td>
                         @endif
                         <td class="no-wrap">
                             @if ($post->boq_plan == 0 || $post->boq_actual == 0 || $post->no_po == null)
