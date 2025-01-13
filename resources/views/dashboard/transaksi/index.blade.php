@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Data Pengeluaran Proyek</h1>
+        <h1 class="h2">Data Pengeluaran Proyek OPEN</h1>
         <div class="">
             <a href="/dashboard/pengeluaranClosed" class="btn btn-secondary">Transaksi Proyek Closed</a>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="modalOpen">Tambah
@@ -19,6 +19,20 @@
     @endif
 
     @include('dashboard.transaksi.create')
+
+    <form method="GET" action="/dashboard/pengeluaran" class="d-flex align-items-start">
+        <div class="form-group">
+            <select name="episode" id="episode" class="form-select" style="width: auto">
+                <option value="">Pilih Episode</option>
+                @foreach ($episodes as $episode)
+                    <option value="{{ $episode }}" {{ $projectEpisode == $episode ? 'selected' : '' }}>
+                        Episode {{ $episode }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <button type="submit" class="btn btn-dark mx-2" style="white-space: nowrap;">Filter</button>
+    </form>
 
     <div class="table-responsive small overflow-auto mt-3 mb-4" id="scrollX">
 

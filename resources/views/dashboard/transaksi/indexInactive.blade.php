@@ -6,12 +6,19 @@
         <a href="/dashboard/pengeluaran" class="btn btn-primary">Kembali</a>
     </div>
 
-    @if (session()->has('success'))
-        <div class="alert alert-success col-lg-8 alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <form method="GET" action="/dashboard/pengeluaranClosed" class="d-flex align-items-start">
+        <div class="form-group">
+            <select name="episode" id="episode" class="form-select" style="width: auto">
+                <option value="">Pilih Episode</option>
+                @foreach ($episodes as $episode)
+                    <option value="{{ $episode }}" {{ $projectEpisode == $episode ? 'selected' : '' }}>
+                        Episode {{ $episode }}
+                    </option>
+                @endforeach
+            </select>
         </div>
-    @endif
+        <button type="submit" class="btn btn-dark mx-2" style="white-space: nowrap;">Filter</button>
+    </form>
 
     <div class="table-responsive small overflow-auto mt-3 mb-4" id="scrollX">
 

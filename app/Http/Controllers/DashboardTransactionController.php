@@ -13,28 +13,59 @@ class DashboardTransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $projectEpisode = $request->get('episode');
+
+        // Fetch unique project episodes for the filter dropdown
+        $episodes = Project::where('status', 1)->distinct()->pluck('episode'); // Adjust 'episode' field based on your table structure
+
         $projects = Project::orderBy('project_id')->where('status', 1)->get();
-        $ids = $projects->pluck('id');
         $recipient = Recipient::orderBy('name')->where('isActive', 1)->get();
         $expensetype = Expensetype::orderBy('cost_id')->get();
 
+        // Filter transactions based on episode
+        $transactions = Transaction::when($projectEpisode, function ($query, $episode) {
+            return $query->whereHas('project', function ($q) use ($episode) {
+                $q->where('episode', $episode);
+            });
+        })->get(); // Ensure you call `get()` to actually execute the query and retrieve the transactions
+
+        if (!$projectEpisode) {
+            $transactions = collect();  // No data will be shown if no episode is selected
+        }
+
         return view('dashboard.transaksi.index', [
-            'transaksi' => Transaction::whereIn('project_id', $ids)->orderBy('transaction_date', 'desc')->get(),
+            'transaksi' => $transactions,
             'projects' => $projects,
             'recipients' => $recipient,
             'expensetypes' => $expensetype,
+            'episodes' => $episodes,
+            'projectEpisode' => $projectEpisode
         ]);
     }
 
-    public function indexInactive()
+
+    public function indexInactive(Request $request)
     {
-        $projects = Project::orderBy('project_id')->where('status', 0)->get();
-        $ids = $projects->pluck('id');
+        $projectEpisode = $request->get('episode');
+
+        $episodes = Project::where('status', 0)->distinct()->pluck('episode');
+
+        $transactions = Transaction::when($projectEpisode, function ($query, $episode) {
+            return $query->whereHas('project', function ($q) use ($episode) {
+                $q->where('episode', $episode);
+            });
+        })->get();
+
+        if (!$projectEpisode) {
+            $transactions = collect();  // No data will be shown if no episode is selected
+        }
 
         return view('dashboard.transaksi.indexInactive', [
-            'transaksi' => Transaction::whereIn('project_id', $ids)->orderBy('transaction_date', 'desc')->get(),
+            'transaksi' => $transactions,
+            'episodes' => $episodes,
+            'projectEpisode' => $projectEpisode
         ]);
     }
 
