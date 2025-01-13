@@ -71,6 +71,7 @@ Route::delete('/icon/proyek/{proyek}/transaksi/{transaksi}', [IconTransactionCon
 
 //Telkom Akses
 Route::resource('/dashboard/pengeluaran', DashboardTransactionController::class)->middleware('auth');
+Route::get('/dashboard/pengeluaranClosed', [DashboardTransactionController::class, 'indexInactive'])->middleware('auth');
 Route::resource('/dashboard/proyek', DashboardProjectController::class)->middleware('auth');
 Route::resource('/dashboard/penerima', DashboardRecipientController::class)->except('show')->middleware('auth');
 

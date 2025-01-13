@@ -98,12 +98,11 @@
                     return `${day} ${month} ${year}`;
                 }
             }],
-            "dom": '<"container-fluid"<"row"<"col"B><"col"f>>>t<"container-fluid mt-4"<"row"<"col"i><"col"p>>>',
+            "dom": '<"container-fluid"<"row"<"col"B><"col"f>>>t<"container-fluid mt-4"<"row"<"col"l><"col"p>>>',
             "buttons": [
                 'print', 'excel', 'pdf'
             ],
             "pagingType": 'numbers',
-            "pageLength": 15,
             "order": [0, 'desc'],
         });
     </script>

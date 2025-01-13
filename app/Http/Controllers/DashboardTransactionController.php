@@ -28,6 +28,16 @@ class DashboardTransactionController extends Controller
         ]);
     }
 
+    public function indexInactive()
+    {
+        $projects = Project::orderBy('project_id')->where('status', 0)->get();
+        $ids = $projects->pluck('id');
+
+        return view('dashboard.transaksi.indexInactive', [
+            'transaksi' => Transaction::whereIn('project_id', $ids)->orderBy('transaction_date', 'desc')->get(),
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

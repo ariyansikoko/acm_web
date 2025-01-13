@@ -5,8 +5,8 @@
         <h1 class="h2">Data Pengeluaran Proyek</h1>
     </div>
     <div class="mb-3">
-        <a href="/dashboard/pengeluaran" class="btn btn-primary">
-            <i class="bi bi-caret-left-fill"></i> Kembali</a>
+        <button onclick="history.back()" class="btn btn-primary">
+            <i class="bi bi-caret-left-fill"></i>Kembali</button>
         <a href="/dashboard/pengeluaran/{{ $transaksi->id }}/edit" class="btn btn-warning">
             <i class="bi bi-pencil-square"></i> Edit</a>
         <form action="/dashboard/pengeluaran/{{ $transaksi->id }}" method="POST" class="d-inline">
